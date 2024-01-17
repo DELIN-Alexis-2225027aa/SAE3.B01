@@ -34,7 +34,7 @@ public class PosSaver : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            sceneToLoad = "Inventory";
+            sceneToLoad = "Proof";
             SavePlayerPosition();
             SceneManager.LoadScene(sceneToLoad);
         }

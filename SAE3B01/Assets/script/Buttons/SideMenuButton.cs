@@ -15,4 +15,9 @@ public class SideMenuButton : MonoBehaviour
     {
         SceneManager.LoadScene("Proof");
     }
+
+    public void onQuitButtonPressed() 
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
 }

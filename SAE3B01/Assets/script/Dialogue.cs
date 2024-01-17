@@ -23,8 +23,10 @@ public class DialogueSelector
 
 public class Dialogue : MonoBehaviour
 {
+    [SerializeField] Image img;
     public GameObject dialoguePanel;
     public Text dialogueText;
+    public Text dialogueName;
     public string[] dialogueToShow;
     private int index;
     public GameObject contButton;
@@ -32,12 +34,16 @@ public class Dialogue : MonoBehaviour
     private bool isDialogueActive;
     string json;
     string filePath;
+    public List<int> sprites;
+    public string nameSprite;
 
     void Start()
     {
         dialogueText.text = "";
         filePath = Application.dataPath + "/SaveJson/dialogueManager.json";
         GetWichDialogue();
+        StartDialogue();
+        dialogueName.text = nameSprite;
     }
 
     void FixedUpdate()
@@ -83,6 +89,7 @@ public class Dialogue : MonoBehaviour
 
     IEnumerator Typing()
     {
+        changImg(nameSprite, sprites[index]);
         foreach (char letter in dialogueToShow[index].ToCharArray())
         {
             dialogueText.text += letter;
@@ -116,6 +123,8 @@ public class Dialogue : MonoBehaviour
             string json = File.ReadAllText(filePath);
             DialogueBD dialogues = JsonUtility.FromJson<DialogueBD>(json);
             dialogueToShow = dialogues.dialogue;
+            sprites = dialogues.poseID;
+            nameSprite = dialogues.name;
         }
     }
 
@@ -132,6 +141,22 @@ public class Dialogue : MonoBehaviour
             }
         }
     }
+
+    public void changImg(string name, int poseID)
+    {
+        string spriteName = $"{name}{poseID}.png";
+        string imagePath = Path.Combine(Application.dataPath, "Images", spriteName);
+        Debug.LogError(imagePath);
+        if (File.Exists(imagePath))
+        {
+            byte[] fileData = File.ReadAllBytes(imagePath);
+            Texture2D texture = new Texture2D(2, 2);
+            texture.LoadImage(fileData);
+            Sprite sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f));
+            img.sprite = sprite;
+        }
+    }
+
 
 }
 

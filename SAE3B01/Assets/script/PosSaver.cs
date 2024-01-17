@@ -3,6 +3,9 @@ using UnityEngine.SceneManagement;
 using System.Collections;
 using System.IO;
 
+/// <summary>
+/// Représente les données du joueur.
+/// </summary>
 [System.Serializable]
 public class PlayerData
 {
@@ -11,6 +14,9 @@ public class PlayerData
     public float z;
 }
 
+/// <summary>
+/// Gère la sauvegarde et le chargement de la position du joueur.
+/// </summary>
 public class PosSaver : MonoBehaviour
 {
 
@@ -18,12 +24,19 @@ public class PosSaver : MonoBehaviour
     string filePath;
     public string sceneToLoad;
 
+    /// <summary>
+    /// Méthode appelée au démarrage.
+    /// </summary>
     void Start()
     {
         filePath = Application.dataPath + "/SaveJson/playerData.json";
+        // Charge la position du joueur au démarrage
         LoadPlayerPosition();
     }
 
+    /// <summary>
+    /// Méthode appelée à chaque frame.
+    /// </summary>
     void Update()
     {
         if (Input.GetKeyDown("m"))
@@ -40,8 +53,12 @@ public class PosSaver : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Sauvegarde la position actuelle du joueur.
+    /// </summary>
     void SavePlayerPosition()
     {
+        // Obtient la position actuelle du joueur
         Vector3 playerPos = transform.position;
 
         // Convertir la position du joueur en une classe PlayerData
@@ -59,6 +76,9 @@ public class PosSaver : MonoBehaviour
         Debug.Log("Player position saved to file.");
     }
 
+    /// <summary>
+    /// Charge la position du joueur depuis le fichier JSON.
+    /// </summary>
     void LoadPlayerPosition()
     {
         if (File.Exists(filePath))

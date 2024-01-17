@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Contrôleur du joueur.
+/// </summary>
 public class Player2DController : MonoBehaviour
 {
     private float horizontal;
@@ -9,23 +12,30 @@ public class Player2DController : MonoBehaviour
     private float speed = 8f;
 
     [SerializeField] private Rigidbody2D rb;
-    
 
-    // Start is called before the first frame update
+    /// <summary>
+    /// Méthode appelée au démarrage.
+    /// </summary>
     void Start()
     {
         
     }
 
-    // Update is called once per frame
+    /// <summary>
+    /// Méthode appelée à chaque frame.
+    /// </summary>
     void Update()
     {
         horizontal = Input.GetAxisRaw("Horizontal");
         vertical = Input.GetAxisRaw("Vertical");
     }
 
+    /// <summary>
+    /// Méthode appelée à chaque intervalle fixe de temps.
+    /// </summary>
     private void FixedUpdate()
     {
+        // Applique une vélocité au Rigidbody pour déplacer le joueur
         rb.velocity = new Vector3(horizontal * speed, vertical * speed);
     }
 }

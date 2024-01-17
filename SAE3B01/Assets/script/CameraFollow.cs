@@ -1,5 +1,8 @@
 using UnityEngine;
 
+/// <summary>
+/// Gère le suivi 2D d'un objet par la caméra.
+/// </summary>
 public class SuiviCamera2D : MonoBehaviour
 {
     public Transform objetASuivre;
@@ -8,7 +11,7 @@ public class SuiviCamera2D : MonoBehaviour
 
     void Update()
     {
-
+        // Gestion du zoom de la caméra
         if (Input.GetKey(KeyCode.Plus) || Input.GetKey(KeyCode.KeypadPlus) && cam.orthographicSize > 8)
         {
             cam.orthographicSize -= 3f * Time.deltaTime;

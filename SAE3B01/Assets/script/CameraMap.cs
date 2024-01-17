@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Gère le suivi 2D d'un objet par la caméra dans la scène de la carte.
+/// </summary>
 public class MapScript : MonoBehaviour
 {
     public Transform objetASuivre;
@@ -10,7 +13,7 @@ public class MapScript : MonoBehaviour
 
     void Update()
     {
-
+        // Gestion du zoom de la caméra.
         if (Input.GetKey(KeyCode.Plus) || Input.GetKey(KeyCode.KeypadPlus) && cam.orthographicSize > 2)
         {
             cam.orthographicSize -= 1f * Time.deltaTime;

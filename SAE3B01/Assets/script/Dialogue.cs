@@ -6,7 +6,9 @@ using UnityEngine.UI;
 using System.IO;
 using System.Linq;
 
-
+/// <summary>
+/// Gère l'affichage et la gestion des dialogues dans le jeu.
+/// </summary>
 [System.Serializable]
 public class DialogueBD
 {
@@ -16,6 +18,9 @@ public class DialogueBD
     public string[] dialogue;
 }
 
+/// <summary>
+/// Représente la sélection d'un ensemble de dialogues par son répertoire.
+/// </summary>
 public class DialogueSelector
 {
     public string repertory;
@@ -37,6 +42,10 @@ public class Dialogue : MonoBehaviour
     public List<int> sprites;
     public string nameSprite;
 
+
+    /// <summary>
+    /// Méthode appelée au démarrage.
+    /// </summary>
     void Start()
     {
         dialogueText.text = "";
@@ -46,11 +55,17 @@ public class Dialogue : MonoBehaviour
         dialogueName.text = nameSprite;
     }
 
+    /// <summary>
+    /// Méthode appelée à chaque frame fixe.
+    /// </summary>
     void FixedUpdate()
     {
         wordSpeed = 0.05f;
     }
 
+    /// <summary>
+    /// Méthode appelée à chaque frame.
+    /// </summary>
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.E))
@@ -70,6 +85,9 @@ public class Dialogue : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Démarre l'affichage du dialogue.
+    /// </summary>
     void StartDialogue()
     {
         if (dialogueToShow.Length > 0 && index < dialogueToShow.Length)
@@ -79,6 +97,9 @@ public class Dialogue : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Réinitialise le texte du dialogue.
+    /// </summary>
     public void zeroText()
     {
         dialogueText.text = "";
@@ -87,6 +108,10 @@ public class Dialogue : MonoBehaviour
         SceneManager.LoadScene("MovingPhase");
     }
 
+    /// <summary>
+    /// Effectue l'effet de dactylographie pour afficher le dialogue lettre par lettre.
+    /// </summary>
+    /// <returns>Coroutine.</returns>
     IEnumerator Typing()
     {
         changImg(nameSprite, sprites[index]);
@@ -98,6 +123,9 @@ public class Dialogue : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// Passe à la ligne suivante du dialogue.
+    /// </summary>
     public void NextLine()
     {
 
@@ -116,6 +144,9 @@ public class Dialogue : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// Récupère les dialogues à partir du fichier JSON.
+    /// </summary>
     public void GetDialogueByFileName()
     {
         if (File.Exists(filePath))
@@ -128,6 +159,9 @@ public class Dialogue : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Récupère le répertoire de dialogues à partir du fichier JSON et charge les dialogues associés.
+    /// </summary>
     public void GetWichDialogue()
     {
         if (File.Exists(filePath))

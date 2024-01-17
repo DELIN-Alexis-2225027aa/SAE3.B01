@@ -4,7 +4,9 @@ using UnityEngine.SceneManagement;
 using UnityEngine;
 using System.IO;
 
-
+/// <summary>
+/// Gère le téléporteur du joueur en fonction des déclencheurs et des touches pressées.
+/// </summary>
 public class TriggerTP : MonoBehaviour
 {
     public float xTP;
@@ -15,12 +17,18 @@ public class TriggerTP : MonoBehaviour
 
     string filePath;
 
+    /// <summary>
+    /// Méthode appelée au démarrage.
+    /// </summary>
     void Start()
     {
         filePath = Application.dataPath + "/SaveJson/playerData.json";
         myCollider = GetComponent<Collider2D>();
     }
-    
+
+    /// <summary>
+    /// Méthode appelée à chaque frame.
+    /// </summary>
     void Update()
     {
         Collider2D[] colliders = new Collider2D[1]; 
@@ -33,8 +41,8 @@ public class TriggerTP : MonoBehaviour
             colName = null;
         }
 
-
-            if (Input.GetKeyDown(KeyCode.Space))
+        // Détermine la destination du téléporteur en fonction du nom de l'objet en collision
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             if (colName.Equals("004TPTrigger")) 
             {
@@ -123,11 +131,18 @@ public class TriggerTP : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Méthode appelée lorsque le téléporteur entre en collision avec un objet.
+    /// </summary>
+    /// <param /name=//collision>Collider de l'objet en collision.</param>
     private void OnTriggerEnter2D(Collider2D collision)
     {
         colName = collision.gameObject.name;
     }
 
+    /// <summary>
+    /// Téléporte le joueur à la position spécifiée et enregistre les données dans le fichier JSON.
+    /// </summary>
     void TPPlayer()
     {
         PlayerData playerData = new PlayerData

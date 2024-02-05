@@ -7,7 +7,7 @@ using System.IO;
 using System.Linq;
 
 /// <summary>
-/// Gère l'affichage et la gestion des dialogues dans le jeu.
+/// Gï¿½re l'affichage et la gestion des dialogues dans le jeu.
 /// </summary>
 [System.Serializable]
 public class DialogueBD
@@ -19,7 +19,7 @@ public class DialogueBD
 }
 
 /// <summary>
-/// Représente la sélection d'un ensemble de dialogues par son répertoire.
+/// Reprï¿½sente la sï¿½lection d'un ensemble de dialogues par son rï¿½pertoire.
 /// </summary>
 public class DialogueSelector
 {
@@ -44,7 +44,7 @@ public class Dialogue : MonoBehaviour
 
 
     /// <summary>
-    /// Méthode appelée au démarrage.
+    /// Mï¿½thode appelï¿½e au dï¿½marrage.
     /// </summary>
     void Start()
     {
@@ -56,7 +56,7 @@ public class Dialogue : MonoBehaviour
     }
 
     /// <summary>
-    /// Méthode appelée à chaque frame fixe.
+    /// Mï¿½thode appelï¿½e ï¿½ chaque frame fixe.
     /// </summary>
     void FixedUpdate()
     {
@@ -64,7 +64,7 @@ public class Dialogue : MonoBehaviour
     }
 
     /// <summary>
-    /// Méthode appelée à chaque frame.
+    /// Mï¿½thode appelï¿½e ï¿½ chaque frame.
     /// </summary>
     void Update()
     {
@@ -86,10 +86,11 @@ public class Dialogue : MonoBehaviour
     }
 
     /// <summary>
-    /// Démarre l'affichage du dialogue.
+    /// Dï¿½marre l'affichage du dialogue.
     /// </summary>
     void StartDialogue()
     {
+        contButton.SetActive(false);
         if (dialogueToShow.Length > 0 && index < dialogueToShow.Length)
         {
             isDialogueActive = true;
@@ -98,7 +99,7 @@ public class Dialogue : MonoBehaviour
     }
 
     /// <summary>
-    /// Réinitialise le texte du dialogue.
+    /// Rï¿½initialise le texte du dialogue.
     /// </summary>
     public void zeroText()
     {
@@ -124,7 +125,7 @@ public class Dialogue : MonoBehaviour
     }
 
     /// <summary>
-    /// Passe à la ligne suivante du dialogue.
+    /// Passe ï¿½ la ligne suivante du dialogue.
     /// </summary>
     public void NextLine()
     {
@@ -145,7 +146,7 @@ public class Dialogue : MonoBehaviour
     }
 
     /// <summary>
-    /// Récupère les dialogues à partir du fichier JSON.
+    /// Rï¿½cupï¿½re les dialogues ï¿½ partir du fichier JSON.
     /// </summary>
     public void GetDialogueByFileName()
     {
@@ -160,7 +161,7 @@ public class Dialogue : MonoBehaviour
     }
 
     /// <summary>
-    /// Récupère le répertoire de dialogues à partir du fichier JSON et charge les dialogues associés.
+    /// Rï¿½cupï¿½re le rï¿½pertoire de dialogues ï¿½ partir du fichier JSON et charge les dialogues associï¿½s.
     /// </summary>
     public void GetWichDialogue()
     {

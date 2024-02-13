@@ -28,7 +28,7 @@ public class MapButtons : MonoBehaviour
     /// </summary>
     void Start()
     {
-        filePath = Application.dataPath + "/SaveJson/playerData.json";
+        filePath = Application.persistentDataPath + "/SaveJson/playerData.json";
         VerifyStartFloor();
     }
 

@@ -17,15 +17,18 @@ public class MainMenuButton : MonoBehaviour
     /// </summary>
     string filePath;
 
+    private void Start()
+    {
+        // Configuration des positions et du dialogue avant de charger la scène
+        posSetup();
+        dialogueSetup();
+    }
 
     /// <summary>
     /// Configure les positions et le dialogue avant de charger la scène.
     /// </summary>
     public void onPlayButtonPressed()
     {
-        // Configuration des positions et du dialogue avant de charger la scène
-        posSetup();
-        dialogueSetup();
         SceneManager.LoadScene("dialogue");
     }
 
@@ -42,7 +45,7 @@ public class MainMenuButton : MonoBehaviour
     /// </summary>
     public void posSetup()
     {
-        filePath = Application.dataPath + "/SaveJson/playerData.json";
+        filePath = Application.dataPath+ "/SaveJson/playerData.json";
         PlayerData playerData = new PlayerData
         {
             x = 0,
@@ -60,7 +63,7 @@ public class MainMenuButton : MonoBehaviour
     public void dialogueSetup()
     {
         filePath = Application.dataPath + "/SaveJson/dialogueManager.json";
-
+        Debug.Log(filePath);
         DialogueSelector dialogueSelector = new DialogueSelector
         {
             repertory = "MakssoudIntro"

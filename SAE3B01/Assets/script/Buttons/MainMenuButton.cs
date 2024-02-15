@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -6,30 +6,31 @@ using System.IO;
 
 
 /// <summary>
-/// Gère les interactions des boutons dans le menu principal.
+/// GÃ¨re les interactions des boutons dans le menu principal.
 /// </summary>
 public class MainMenuButton : MonoBehaviour
 {
     string json;
 
     /// <summary>
-    /// Chemin du fichier JSON pour les données du joueur.
+    /// Chemin du fichier JSON pour les donnÃ©es du joueur.
     /// </summary>
     string filePath;
 
     private void Start()
     {
-        // Configuration des positions et du dialogue avant de charger la scène
+        // Configuration des positions et du dialogue avant de charger la scÃ¨ne
         posSetup();
         dialogueSetup();
+        classRoomSetup();
     }
 
     /// <summary>
-    /// Configure les positions et le dialogue avant de charger la scène.
+    /// Configure les positions et le dialogue avant de charger la scÃ¨ne.
     /// </summary>
     public void onPlayButtonPressed()
     {
-        SceneManager.LoadScene("dialogue");
+        SceneManager.LoadScene("IntroMmeMakssoud");
     }
 
     /// <summary>
@@ -41,7 +42,7 @@ public class MainMenuButton : MonoBehaviour
     }
 
     /// <summary>
-    /// Configure les positions initiales du joueur et enregistre les données dans un fichier JSON.
+    /// Configure les positions initiales du joueur et enregistre les donnÃ©es dans un fichier JSON.
     /// </summary>
     public void posSetup()
     {
@@ -58,12 +59,11 @@ public class MainMenuButton : MonoBehaviour
     }
 
     /// <summary>
-    /// Configure le gestionnaire de dialogue et enregistre les données dans un fichier JSON.
+    /// Configure le gestionnaire de dialogue et enregistre les donnÃ©es dans un fichier JSON.
     /// </summary>
     public void dialogueSetup()
     {
         filePath = Application.dataPath + "/SaveJson/dialogueManager.json";
-        Debug.Log(filePath);
         DialogueSelector dialogueSelector = new DialogueSelector
         {
             repertory = "MakssoudIntro"
@@ -71,7 +71,22 @@ public class MainMenuButton : MonoBehaviour
 
         string updatedJson = JsonUtility.ToJson(dialogueSelector);
 
-        // Écriture du fichier JSON dans le chemin spécifié
+        // Ã©criture du fichier JSON dans le chemin splifiÃ©ãƒ»
         File.WriteAllText(filePath, updatedJson);
     }
+
+    public void classRoomSetup()
+    {
+        filePath = Application.dataPath + "/SaveJson/classroom.json";
+        Classroom classroom = new Classroom
+        {
+            classroomName = "000"
+        };
+
+        string updatedJson = JsonUtility.ToJson(classroom);
+
+        // Ã©criture du fichier JSON dans le chemin spÃ©cifiqueãƒ»
+        File.WriteAllText(filePath, updatedJson);
+    }
+
 }

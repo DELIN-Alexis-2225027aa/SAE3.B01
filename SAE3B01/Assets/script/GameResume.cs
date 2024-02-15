@@ -1,13 +1,13 @@
-using UnityEngine.SceneManagement;
+ï»¿using UnityEngine.SceneManagement;
 using UnityEngine;
 
 /// <summary>
-/// Gère la reprise du jeu en chargeant la scène "MovingPhase" lorsque la touche Échap est pressée.
+/// GÃ¨re la reprise du jeu en chargeant la sc(ne "MovingPhase" lorsque la touche ï¾‰chap est pressÃ©e.
 /// </summary>
 public class GameResume : MonoBehaviour
 {
     /// <summary>
-    /// Méthode appelée à chaque frame.
+    /// MÃ©thode appelÃ©e ãƒ»chaque frame.
     /// </summary>
     void Update()
     {

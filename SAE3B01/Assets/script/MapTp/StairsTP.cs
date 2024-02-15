@@ -1,9 +1,9 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Gère le téléporteur du joueur en fonction des collisions avec les escaliers.
+/// GÃ¨re le tÃ©lÃ©porteur du joueur en fonction des collisions avec les escaliers.
 /// </summary>
 public class StairsTP : MonoBehaviour
 {
@@ -12,12 +12,12 @@ public class StairsTP : MonoBehaviour
     public string colName;
 
     /// <summary>
-    /// Méthode appelée lorsque le téléporteur entre en collision avec un objet.
+    /// MÃ©thode appelÃ©e lorsque le tÃ©lÃ©orteur entre en collision avec un objet.
     /// </summary>
     /// <param /name = //collision> Collider de l'objet en collision.</param>
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        // Détermine la destination du téléporteur en fonction du nom de l'objet en collision
+        // DÃ©termine la destination du tÃ©lÃ©porteur en fonction du nom de l'objet en collision
         colName = collision.gameObject.name;
 
         if (colName.Equals("LeftStairs1stFloor"))
@@ -71,7 +71,7 @@ public class StairsTP : MonoBehaviour
     }
 
     /// <summary>
-    /// Téléporte le joueur à la position spécifiée.
+    /// TÃ©lÃ©porte le joueur ãƒ»la position spÃ©cifiÃ©e.
     /// </summary>
     private void TPPlayer()
     {

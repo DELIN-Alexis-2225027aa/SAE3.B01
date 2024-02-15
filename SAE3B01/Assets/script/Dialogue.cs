@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
@@ -7,7 +7,7 @@ using System.IO;
 using System.Linq;
 
 /// <summary>
-/// Gère l'affichage et la gestion des dialogues dans le jeu.
+/// GÃ¨re l'affichage et la gestion des dialogues dans le jeu.
 /// </summary>
 [System.Serializable]
 public class DialogueBD
@@ -19,7 +19,7 @@ public class DialogueBD
 }
 
 /// <summary>
-/// Représente la sélection d'un ensemble de dialogues par son répertoire.
+/// ReprÃ©sente la sÃ©lection d'un ensemble de dialogues par son rÃ©pertoire.
 /// </summary>
 public class DialogueSelector
 {
@@ -41,22 +41,31 @@ public class Dialogue : MonoBehaviour
     string filePath;
     public List<int> sprites;
     public string nameSprite;
+    [SerializeField] GameObject isIntroObject;
+    bool isTextInitialized;
+
+    public bool isDialogueLoaded;
+
+    [SerializeField] ClassroomSpriteSetter classroomSpriteSetter;
 
 
     /// <summary>
-    /// Méthode appelée au démarrage.
+    /// MÃ©thode appelÃ©e au dÃ©marrage.
     /// </summary>
     void Start()
     {
+        isTextInitialized = false;
+        isDialogueLoaded = false;
         dialogueText.text = "";
         filePath = Application.dataPath + "/SaveJson/dialogueManager.json";
-        GetWichDialogue();
-        StartDialogue();
-        dialogueName.text = nameSprite;
+        if (isIntro() == true)
+        {
+            LoadDialogue();
+        }
     }
 
     /// <summary>
-    /// Méthode appelée à chaque frame fixe.
+    /// MÃ©thode appelÃ©e Ã  chaque frame fixe.
     /// </summary>
     void FixedUpdate()
     {
@@ -64,19 +73,15 @@ public class Dialogue : MonoBehaviour
     }
 
     /// <summary>
-    /// Méthode appelée à chaque frame.
+    /// MÃ©thode appelÃ©e Ã  chaque frame.
     /// </summary>
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            if (isDialogueActive)
+            if (!isDialogueActive)
             {
                 NextLine();
-            }
-            else
-            {
-                StartDialogue();
             }
         }
         if (index < dialogueToShow.Length && dialogueText.text == dialogueToShow[index])
@@ -86,26 +91,36 @@ public class Dialogue : MonoBehaviour
     }
 
     /// <summary>
-    /// Démarre l'affichage du dialogue.
+    /// DÃ©marre l'affichage du dialogue.
     /// </summary>
     void StartDialogue()
     {
+
         if (dialogueToShow.Length > 0 && index < dialogueToShow.Length)
         {
+            contButton.SetActive(false);
+            isTextInitialized = true;
             isDialogueActive = true;
             StartCoroutine(Typing());
         }
     }
 
     /// <summary>
-    /// Réinitialise le texte du dialogue.
+    /// RÃ©initialise le texte du dialogue.
     /// </summary>
     public void zeroText()
     {
         dialogueText.text = "";
         index = 0;
         isDialogueActive = false;
-        SceneManager.LoadScene("MovingPhase");
+        if(isIntro() == true)
+        {
+            SceneManager.LoadScene("MovingPhase");
+        }
+        else
+        {
+            classroomSpriteSetter.removeDialogueObjectFromUI();
+        }
     }
 
     /// <summary>
@@ -120,15 +135,42 @@ public class Dialogue : MonoBehaviour
             dialogueText.text += letter;
             yield return new WaitForSeconds(wordSpeed);
         }
+        isDialogueActive=false;
 
     }
 
+    public void LoadDialogue()
+    {
+        if(isDialogueLoaded)
+        {
+            if (!isTextInitialized)
+            {
+                StartDialogue();
+            }
+            else
+            {
+                if (!isDialogueActive)
+                {
+                    NextLine();
+                }
+            }
+        }
+        else
+        {
+            if(GetWichDialogue() != false)
+            {
+                GetWichDialogue();
+                StartDialogue();
+                dialogueName.text = MmeOrMr() + nameSprite;
+            }
+        }
+    }
+
     /// <summary>
-    /// Passe à la ligne suivante du dialogue.
+    /// Passe Ã  la ligne suivante du dialogue.
     /// </summary>
     public void NextLine()
     {
-
         contButton.SetActive(false);
 
         if (index < dialogueToShow.Length - 1)
@@ -141,11 +183,10 @@ public class Dialogue : MonoBehaviour
         {
             zeroText();
         }
-
     }
 
     /// <summary>
-    /// Récupère les dialogues à partir du fichier JSON.
+    /// RÃ©cupÃ¨re les dialogues Ã  partir du fichier JSON.
     /// </summary>
     public void GetDialogueByFileName()
     {
@@ -160,10 +201,11 @@ public class Dialogue : MonoBehaviour
     }
 
     /// <summary>
-    /// Récupère le répertoire de dialogues à partir du fichier JSON et charge les dialogues associés.
+    /// RÃ©cupÃ¨re le rÃ©pertoire de dialogues Ã  partir du fichier JSON et charge les dialogues associÃ©e.
     /// </summary>
-    public void GetWichDialogue()
+    public bool GetWichDialogue()
     {
+        bool returednBool = false;
         if (File.Exists(filePath))
         {
             string json = File.ReadAllText(filePath);
@@ -172,15 +214,18 @@ public class Dialogue : MonoBehaviour
             {
                 filePath = Path.Combine(Application.dataPath, "SaveJson", dialoguesSelector.repertory+".json");
                 GetDialogueByFileName();
+                returednBool = true;
+                isDialogueLoaded = true;
+                resetClassroom();
             }
         }
+        return returednBool;
     }
 
     public void changImg(string name, int poseID)
     {
         string spriteName = $"{name}{poseID}.png";
         string imagePath = Path.Combine(Application.dataPath, "Images", spriteName);
-        Debug.LogError(imagePath);
         if (File.Exists(imagePath))
         {
             byte[] fileData = File.ReadAllBytes(imagePath);
@@ -191,9 +236,34 @@ public class Dialogue : MonoBehaviour
         }
     }
 
+    void resetClassroom()
+    {
+        filePath = Path.Combine(Application.dataPath, "SaveJson/classroom.json");
+        Classroom classroom = new Classroom
+        {
+            classroomName = null
+        };
 
+        // Convertir la classe en JSON et Ã©crire dans le fichier
+        string updatedJson = JsonUtility.ToJson(classroom);
+        File.WriteAllText(filePath, updatedJson);
+
+    }
+
+    bool isIntro()
+    {
+        if (isIntroObject != null)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    public string MmeOrMr()
+    {
+        if (nameSprite.Equals("MAKSSOUD"))
+        {
+            return "Mme ";
+        } else return "Mr ";
+    }
 }
-
-
-
-

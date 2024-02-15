@@ -1,10 +1,10 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
 using System.IO;
 
 /// <summary>
-/// Représente les données du joueur.
+/// ReprÃ©sente les donnÃ©es du joueur.
 /// </summary>
 [System.Serializable]
 public class PlayerData
@@ -15,7 +15,7 @@ public class PlayerData
 }
 
 /// <summary>
-/// Gère la sauvegarde et le chargement de la position du joueur.
+/// GÃ¨re la sauvegarde et le chargement de la position du joueur.
 /// </summary>
 public class PosSaver : MonoBehaviour
 {
@@ -25,17 +25,17 @@ public class PosSaver : MonoBehaviour
     public string sceneToLoad;
 
     /// <summary>
-    /// Méthode appelée au démarrage.
+    /// MÃ©thode appelÃ©e au dÃ©marrage.
     /// </summary>
     void Start()
     {
         filePath = Application.dataPath + "/SaveJson/playerData.json";
-        // Charge la position du joueur au démarrage
+        // Charge la position du joueur au dÃ©marrage
         LoadPlayerPosition();
     }
 
     /// <summary>
-    /// Méthode appelée à chaque frame.
+    /// MÃ©thode appelÃ©e Ã  chaque frame.
     /// </summary>
     void Update()
     {
@@ -69,7 +69,7 @@ public class PosSaver : MonoBehaviour
             z = playerPos.z
         };
 
-        // Convertir la classe en JSON et écrire dans le fichier
+        // Convertir la classe en JSON et Ã©crire dans le fichier
         string updatedJson = JsonUtility.ToJson(playerData);
         File.WriteAllText(filePath, updatedJson);
 
@@ -89,10 +89,10 @@ public class PosSaver : MonoBehaviour
             // Convertir le JSON en classe PlayerData
             PlayerData loadedPlayerData = JsonUtility.FromJson<PlayerData>(json);
 
-            // Créer un Vector3 à partir des données chargées
+            // CrÃ©er un Vector3 ãƒ»partir des donnÃ©es chargÃ©es
             Vector3 loadedPlayerPos = new Vector3(loadedPlayerData.x, loadedPlayerData.y, loadedPlayerData.z);
 
-            // Appliquer la position chargée au joueur
+            // Appliquer la position chargÃ©e au joueur
             transform.position = loadedPlayerPos;
         }
         else

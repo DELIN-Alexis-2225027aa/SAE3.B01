@@ -1,4 +1,4 @@
-using System.Linq;
+ï»¿using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.IO;
@@ -6,12 +6,12 @@ using System.IO;
 [System.Serializable]
 public class Classroom
 {
-    public string className;
+    public string classroomName;
 }
 
 
     /// <summary>
-    /// Gère les déclencheurs des salles de classe pour changer de scène.
+    /// GÃ¨re les dÃ©clencheurs des salles de classe pour changer de scÃ¨ne.
     /// </summary>
     public class ClassroomsTriggers : MonoBehaviour
     {
@@ -28,12 +28,13 @@ public class Classroom
         }
 
         /// <summary>
-        /// Méthode appelée à chaque frame.
+        /// MÃ©thode appel Ã  chaque frame.
         /// </summary>
         void Update()
         {
             if (Input.GetKeyDown(KeyCode.E) && colName != null)
             {
+            SaveClassroomOnJSON();
                 TPClassroom();
             }
         }
@@ -45,17 +46,21 @@ public class Classroom
         }
 
         void TPClassroom()
-        {
-
-            Classroom classroom = new Classroom
-            {
-                className = classroomNumber
-            };
-
-            // Convertir la classe en JSON et écrire dans le fichier
-            string updatedJson = JsonUtility.ToJson(classroom);
-            File.WriteAllText(filePath, updatedJson);
-
+        { 
             SceneManager.LoadScene("Classroom");
         }
+
+        void SaveClassroomOnJSON()
+        {
+            Classroom classroom = new Classroom
+            {
+                classroomName = classroomNumber
+            };
+
+        // Convertir la classe en JSON et Ã©crire dans le fichier
+        string updatedJson = JsonUtility.ToJson(classroom);
+        File.WriteAllText(filePath, updatedJson);
+
+        Debug.Log("Classroom saved to file.");
+    }
     }

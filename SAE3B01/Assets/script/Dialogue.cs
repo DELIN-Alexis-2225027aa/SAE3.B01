@@ -6,7 +6,7 @@ using UnityEngine.UI;
 using System.IO;
 using System.Linq;
 
-/// <summary>
+
 /// Gère l'affichage et la gestion des dialogues dans le jeu.
 /// </summary>
 [System.Serializable]
@@ -49,7 +49,7 @@ public class Dialogue : MonoBehaviour
     [SerializeField] ClassroomSpriteSetter classroomSpriteSetter;
 
 
-    /// <summary>
+
     /// Méthode appelée au démarrage.
     /// </summary>
     void Start()
@@ -64,7 +64,6 @@ public class Dialogue : MonoBehaviour
         }
     }
 
-    /// <summary>
     /// Méthode appelée à chaque frame fixe.
     /// </summary>
     void FixedUpdate()
@@ -72,7 +71,6 @@ public class Dialogue : MonoBehaviour
         wordSpeed = 0.05f;
     }
 
-    /// <summary>
     /// Méthode appelée à chaque frame.
     /// </summary>
     void Update()
@@ -90,12 +88,13 @@ public class Dialogue : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Démarre l'affichage du dialogue.
+
+
+
     /// </summary>
     void StartDialogue()
     {
-
+        contButton.SetActive(false);
         if (dialogueToShow.Length > 0 && index < dialogueToShow.Length)
         {
             contButton.SetActive(false);
@@ -105,7 +104,7 @@ public class Dialogue : MonoBehaviour
         }
     }
 
-    /// <summary>
+
     /// Réinitialise le texte du dialogue.
     /// </summary>
     public void zeroText()
@@ -123,7 +122,6 @@ public class Dialogue : MonoBehaviour
         }
     }
 
-    /// <summary>
     /// Effectue l'effet de dactylographie pour afficher le dialogue lettre par lettre.
     /// </summary>
     /// <returns>Coroutine.</returns>
@@ -168,7 +166,6 @@ public class Dialogue : MonoBehaviour
 
     /// <summary>
     /// Passe à la ligne suivante du dialogue.
-    /// </summary>
     public void NextLine()
     {
         contButton.SetActive(false);
@@ -187,7 +184,7 @@ public class Dialogue : MonoBehaviour
 
     /// <summary>
     /// Récupère les dialogues à partir du fichier JSON.
-    /// </summary>
+
     public void GetDialogueByFileName()
     {
         if (File.Exists(filePath))
@@ -202,7 +199,6 @@ public class Dialogue : MonoBehaviour
 
     /// <summary>
     /// Récupère le répertoire de dialogues à partir du fichier JSON et charge les dialogues associée.
-    /// </summary>
     public bool GetWichDialogue()
     {
         bool returednBool = false;

@@ -31,6 +31,9 @@ public class MainMenuButton : MonoBehaviour
     public void onPlayButtonPressed()
     {
         SceneManager.LoadScene("IntroMmeMakssoud");
+        posSetup();
+        dialogueSetup();
+        SceneManager.LoadScene("dialogue");
     }
 
     /// <summary>
@@ -46,7 +49,7 @@ public class MainMenuButton : MonoBehaviour
     /// </summary>
     public void posSetup()
     {
-        filePath = Application.dataPath+ "/SaveJson/playerData.json";
+        filePath = Application.dataPath + "/SaveJson/playerData.json";
         PlayerData playerData = new PlayerData
         {
             x = 0,

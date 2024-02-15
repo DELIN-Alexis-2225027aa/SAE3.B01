@@ -4,12 +4,17 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.IO;
 
+public class Classroom
+{
+    public string classroomName;
+}
 
 /// <summary>
 /// Gère les interactions des boutons dans le menu principal.
 /// </summary>
 public class MainMenuButton : MonoBehaviour
 {
+
     string json;
 
     /// <summary>
@@ -31,9 +36,6 @@ public class MainMenuButton : MonoBehaviour
     public void onPlayButtonPressed()
     {
         SceneManager.LoadScene("IntroMmeMakssoud");
-        posSetup();
-        dialogueSetup();
-        SceneManager.LoadScene("dialogue");
     }
 
     /// <summary>

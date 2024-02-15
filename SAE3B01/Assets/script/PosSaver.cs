@@ -56,7 +56,7 @@ public class PosSaver : MonoBehaviour
     /// <summary>
     /// Sauvegarde la position actuelle du joueur.
     /// </summary>
-    void SavePlayerPosition()
+    public void SavePlayerPosition()
     {
         // Obtient la position actuelle du joueur
         Vector3 playerPos = transform.position;

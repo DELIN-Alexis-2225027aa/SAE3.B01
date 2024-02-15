@@ -15,6 +15,7 @@ public class ClassroomSpriteSetter : MonoBehaviour
     [SerializeField] RectTransform dialogueRect;
     [SerializeField] RectTransform dialogueBGRect;
     [SerializeField] RectTransform caracterSpriteRect;
+    [SerializeField] RectTransform returnButtonRect;
 
     string json;
     string filePath;
@@ -30,6 +31,7 @@ public class ClassroomSpriteSetter : MonoBehaviour
     Vector3 dialogueRectPos;
     Vector3 dialogueBGRectPos;
     Vector3 caracterSpriteRectPos;
+    Vector3 returnButtonRectPos;
     Vector3 posOutOfUI;
 
     // Start is called before the first frame update
@@ -132,6 +134,7 @@ public class ClassroomSpriteSetter : MonoBehaviour
         dialogueRectPos = dialogueRect.localPosition;
         dialogueBGRectPos = dialogueBGRect.localPosition;
         caracterSpriteRectPos = caracterSpriteRect.localPosition;
+        returnButtonRectPos = returnButtonRect.localPosition;
     }
 
     public void removeDialogueObjectFromUI()
@@ -142,15 +145,18 @@ public class ClassroomSpriteSetter : MonoBehaviour
         dialogueRect.localPosition = posOutOfUI;
         dialogueBGRect.localPosition = posOutOfUI; 
         caracterSpriteRect.localPosition = posOutOfUI;
+        returnButtonRect.localPosition = returnButtonRectPos;
     }
 
     void putBackDialogueObjectToUI()
     {
+        posOutOfUI = new Vector3(1001f, 1000f, 0f);
         dialogueButtonRect.localPosition = dialogueButtonRectPos;
         nameDialogueRect.localPosition = nameDialogueRectPos;
         dialogueRect.localPosition = dialogueRectPos;
         dialogueBGRect.localPosition = dialogueBGRectPos;
         caracterSpriteRect.localPosition = caracterSpriteRectPos;
+        returnButtonRect.localPosition = posOutOfUI;
     }
 
     public void button()

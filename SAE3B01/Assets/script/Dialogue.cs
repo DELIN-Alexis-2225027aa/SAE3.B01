@@ -18,6 +18,7 @@ public class DialogueBD
     public string[] dialogue;
 }
 
+
 /// <summary>
 /// Représente la sélection d'un ensemble de dialogues par son répertoire.
 /// </summary>
@@ -168,6 +169,7 @@ public class Dialogue : MonoBehaviour
     /// Passe à la ligne suivante du dialogue.
     public void NextLine()
     {
+        isDialogueActive = true;
         contButton.SetActive(false);
 
         if (index < dialogueToShow.Length - 1)

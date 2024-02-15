@@ -16,4 +16,9 @@ public class GameResume : MonoBehaviour
             SceneManager.LoadScene("MovingPhase");
         } 
     }
+
+    public void OnClick()
+    {
+        SceneManager.LoadScene("MovingPhase");
+    }
 }

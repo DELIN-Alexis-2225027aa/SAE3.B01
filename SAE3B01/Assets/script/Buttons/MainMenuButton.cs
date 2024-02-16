@@ -54,9 +54,9 @@ public class MainMenuButton : MonoBehaviour
         filePath = Application.dataPath + "/SaveJson/playerData.json";
         PlayerData playerData = new PlayerData
         {
-            x = 0,
-            y = 0,
-            z = 0
+            x = -33.7f,
+            y = -12f,
+            z = 0f
         };
 
         string updatedJson = JsonUtility.ToJson(playerData);

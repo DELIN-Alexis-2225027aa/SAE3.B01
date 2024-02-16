@@ -35,9 +35,21 @@ public class ClassroomsTriggers : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E) && colName != null)
         {
-            posSaver.SavePlayerPosition();
-            SaveClassroomOnJSON();
-            TPClassroom();
+            if (areAllCharactersDigits())
+            {
+                posSaver.SavePlayerPosition();
+                SaveClassroomOnJSON();
+                TPClassroom();
+            }else
+            {
+                if(classroomNumber.Equals("Bde") || classroomNumber.Equals("Mak"))
+                {
+                    posSaver.SavePlayerPosition();
+                    SaveClassroomOnJSON();
+                    TPClassroom();
+                }
+            }
+            
         }
     }
 
@@ -45,6 +57,12 @@ public class ClassroomsTriggers : MonoBehaviour
     {
         colName = collision.gameObject.name;
         classroomNumber = colName.Substring(0, 3);
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        colName = null;
+        classroomNumber = null;
     }
 
     void TPClassroom()
@@ -64,5 +82,19 @@ public class ClassroomsTriggers : MonoBehaviour
         File.WriteAllText(filePath, updatedJson);
 
         Debug.Log("Classroom saved to file.");
+    }
+
+    bool areAllCharactersDigits()
+    {
+        foreach (char character in classroomNumber)
+        {
+            if (!char.IsDigit(character))
+            {
+                // Si le caractère n'est pas un chiffre, retourne false
+                return false;
+            }
+        }
+        // Si tous les caractères sont des chiffres, retourne true
+        return true;
     }
 }

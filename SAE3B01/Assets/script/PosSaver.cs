@@ -20,6 +20,8 @@ public class PlayerData
 public class PosSaver : MonoBehaviour
 {
 
+    
+    string sceneName;
     string json;
     string filePath;
     public string sceneToLoad;
@@ -29,9 +31,12 @@ public class PosSaver : MonoBehaviour
     /// </summary>
     void Start()
     {
-        filePath = Application.dataPath + "/SaveJson/playerData.json";
-        // Charge la position du joueur au démarrage
-        LoadPlayerPosition();
+        if (getSceneName().Equals("MovingPhase"))
+        {
+            filePath = Application.dataPath + "/SaveJson/playerData.json";
+            // Charge la position du joueur au démarrage
+            LoadPlayerPosition();
+        }
     }
 
     /// <summary>
@@ -39,18 +44,30 @@ public class PosSaver : MonoBehaviour
     /// </summary>
     void Update()
     {
-        if (Input.GetKeyDown("m"))
+        if (getSceneName().Equals("MovingPhase"))
         {
-            sceneToLoad = "Map";
-            SavePlayerPosition();
-            SceneManager.LoadScene(sceneToLoad);
+            if (Input.GetKeyDown("m"))
+            {
+                SavePlayerPosition();
+                sceneToLoad = "Map";
+                SaveScneToLoadWhenReturn();
+                SceneManager.LoadScene(sceneToLoad);
+            }
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                SavePlayerPosition();
+                sceneToLoad = "Proof";
+                SaveScneToLoadWhenReturn();
+                SceneManager.LoadScene(sceneToLoad);
+            }
         }
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            sceneToLoad = "Proof";
-            SavePlayerPosition();
-            SceneManager.LoadScene(sceneToLoad);
-        }
+    }
+
+    public string getSceneName()
+    {
+        Scene currentScene = SceneManager.GetActiveScene();
+
+        return currentScene.name;
     }
 
     /// <summary>
@@ -73,7 +90,24 @@ public class PosSaver : MonoBehaviour
         string updatedJson = JsonUtility.ToJson(playerData);
         File.WriteAllText(filePath, updatedJson);
 
-        Debug.Log("Player position saved to file.");
+    }
+
+    public void SaveScneToLoadWhenReturn()
+    {
+        filePath = Application.dataPath + "/SaveJson/sceneToLoad.json";
+
+        // Convertir la position du joueur en une classe PlayerData
+        LastMainScene lastMainScene = new LastMainScene
+        {
+            lastScene = getSceneName()
+        };
+
+        // Convertir la classe en JSON et écrire dans le fichier
+        string updatedJson = JsonUtility.ToJson(lastMainScene);
+        File.WriteAllText(filePath, updatedJson);
+
+        filePath = Application.dataPath + "/SaveJson/playerData.json";
+
     }
 
     /// <summary>
@@ -94,10 +128,6 @@ public class PosSaver : MonoBehaviour
 
             // Appliquer la position chargée au joueur
             transform.position = loadedPlayerPos;
-        }
-        else
-        {
-            Debug.Log("No saved player position found.");
         }
     }
 }

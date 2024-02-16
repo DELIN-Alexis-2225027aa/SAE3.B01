@@ -50,7 +50,6 @@ public class Dialogue : MonoBehaviour
     [SerializeField] ClassroomSpriteSetter classroomSpriteSetter;
 
 
-
     /// Méthode appelée au démarrage.
     /// </summary>
     void Start()
@@ -61,7 +60,7 @@ public class Dialogue : MonoBehaviour
         filePath = Application.dataPath + "/SaveJson/dialogueManager.json";
         if (isIntro() == true)
         {
-            LoadDialogue();
+            loadDialogue();
         }
     }
 
@@ -80,7 +79,7 @@ public class Dialogue : MonoBehaviour
         {
             if (!isDialogueActive)
             {
-                NextLine();
+                nextLine();
             }
         }
         if (index < dialogueToShow.Length && dialogueText.text == dialogueToShow[index])
@@ -93,7 +92,7 @@ public class Dialogue : MonoBehaviour
 
 
     /// </summary>
-    void StartDialogue()
+    void startDialogue()
     {
         contButton.SetActive(false);
         if (dialogueToShow.Length > 0 && index < dialogueToShow.Length)
@@ -101,7 +100,7 @@ public class Dialogue : MonoBehaviour
             contButton.SetActive(false);
             isTextInitialized = true;
             isDialogueActive = true;
-            StartCoroutine(Typing());
+            StartCoroutine(typing());
         }
     }
 
@@ -113,7 +112,7 @@ public class Dialogue : MonoBehaviour
         dialogueText.text = "";
         index = 0;
         isDialogueActive = false;
-        if(isIntro() == true)
+        if (isIntro() == true)
         {
             SceneManager.LoadScene("MovingPhase");
         }
@@ -126,7 +125,7 @@ public class Dialogue : MonoBehaviour
     /// Effectue l'effet de dactylographie pour afficher le dialogue lettre par lettre.
     /// </summary>
     /// <returns>Coroutine.</returns>
-    IEnumerator Typing()
+    IEnumerator typing()
     {
         changImg(nameSprite, sprites[index]);
         foreach (char letter in dialogueToShow[index].ToCharArray())
@@ -134,40 +133,40 @@ public class Dialogue : MonoBehaviour
             dialogueText.text += letter;
             yield return new WaitForSeconds(wordSpeed);
         }
-        isDialogueActive=false;
+        isDialogueActive = false;
 
     }
 
-    public void LoadDialogue()
+    public void loadDialogue()
     {
-        if(isDialogueLoaded)
+        if (isDialogueLoaded)
         {
             if (!isTextInitialized)
             {
-                StartDialogue();
+                startDialogue();
             }
             else
             {
                 if (!isDialogueActive)
                 {
-                    NextLine();
+                    nextLine();
                 }
             }
         }
         else
         {
-            if(GetWichDialogue() != false)
+            if (getWichDialogue() != false)
             {
-                GetWichDialogue();
-                StartDialogue();
-                dialogueName.text = MmeOrMr() + nameSprite;
+                getWichDialogue();
+                startDialogue();
+                dialogueName.text = mmeOrMr() + nameSprite;
             }
         }
     }
 
     /// <summary>
     /// Passe à la ligne suivante du dialogue.
-    public void NextLine()
+    public void nextLine()
     {
         isDialogueActive = true;
         contButton.SetActive(false);
@@ -176,7 +175,7 @@ public class Dialogue : MonoBehaviour
         {
             index++;
             dialogueText.text = "";
-            StartCoroutine(Typing());
+            StartCoroutine(typing());
         }
         else
         {
@@ -187,7 +186,7 @@ public class Dialogue : MonoBehaviour
     /// <summary>
     /// Récupère les dialogues à partir du fichier JSON.
 
-    public void GetDialogueByFileName()
+    public void getDialogueByFileName()
     {
         if (File.Exists(filePath))
         {
@@ -201,7 +200,7 @@ public class Dialogue : MonoBehaviour
 
     /// <summary>
     /// Récupère le répertoire de dialogues à partir du fichier JSON et charge les dialogues associée.
-    public bool GetWichDialogue()
+    public bool getWichDialogue()
     {
         bool returednBool = false;
         if (File.Exists(filePath))
@@ -210,8 +209,8 @@ public class Dialogue : MonoBehaviour
             DialogueSelector dialoguesSelector = JsonUtility.FromJson<DialogueSelector>(json);
             if (dialoguesSelector != null)
             {
-                filePath = Path.Combine(Application.dataPath, "SaveJson", dialoguesSelector.repertory+".json");
-                GetDialogueByFileName();
+                filePath = Path.Combine(Application.dataPath, "SaveJson", dialoguesSelector.repertory + ".json");
+                getDialogueByFileName();
                 returednBool = true;
                 isDialogueLoaded = true;
                 resetClassroom();
@@ -257,11 +256,12 @@ public class Dialogue : MonoBehaviour
         return false;
     }
 
-    public string MmeOrMr()
+    public string mmeOrMr()
     {
         if (nameSprite.Equals("MAKSSOUD"))
         {
             return "Mme ";
-        } else return "Mr ";
+        }
+        else return "Mr ";
     }
 }

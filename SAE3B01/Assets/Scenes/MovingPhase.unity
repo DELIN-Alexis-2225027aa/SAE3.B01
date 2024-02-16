@@ -8644,6 +8644,7 @@ MonoBehaviour:
   myCollider: {fileID: 1178037271}
   colName: 
   classroomNumber: 
+  posSaver: {fileID: 1178037274}
 --- !u!1 &1196902679
 GameObject:
   m_ObjectHideFlags: 0
@@ -10738,7 +10739,6 @@ GameObject:
   - component: {fileID: 1525953409}
   - component: {fileID: 1525953412}
   - component: {fileID: 1525953411}
-  - component: {fileID: 1525953413}
   m_Layer: 0
   m_Name: MakssoudTPTrigger
   m_TagString: Untagged
@@ -10859,18 +10859,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1525953413
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1525953408}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b90af13760a2d624c9a36d21c688f784, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1535557405
 GameObject:
   m_ObjectHideFlags: 0

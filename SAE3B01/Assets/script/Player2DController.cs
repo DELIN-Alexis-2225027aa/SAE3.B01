@@ -1,9 +1,9 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Contrôleur du joueur.
+/// ContrîŒœeur du joueur.
 /// </summary>
 public class Player2DController : MonoBehaviour
 {
@@ -14,7 +14,7 @@ public class Player2DController : MonoBehaviour
     [SerializeField] private Rigidbody2D rb;
 
     /// <summary>
-    /// Méthode appelée au démarrage.
+    /// MÃ©thode appelÃ©e au dÃ©marrage.
     /// </summary>
     void Start()
     {
@@ -22,7 +22,7 @@ public class Player2DController : MonoBehaviour
     }
 
     /// <summary>
-    /// Méthode appelée à chaque frame.
+    /// MÃ©thode appelÃ©e ãƒ»chaque frame.
     /// </summary>
     void Update()
     {
@@ -31,11 +31,11 @@ public class Player2DController : MonoBehaviour
     }
 
     /// <summary>
-    /// Méthode appelée à chaque intervalle fixe de temps.
+    /// MÃ©thode appelÃ©e ãƒ»chaque intervalle fixe de temps.
     /// </summary>
     private void FixedUpdate()
     {
-        // Applique une vélocité au Rigidbody pour déplacer le joueur
+        // Applique une vÃ©locitãƒ»au Rigidbody pour dÃ©placer le joueur
         rb.velocity = new Vector3(horizontal * speed, vertical * speed);
     }
 }

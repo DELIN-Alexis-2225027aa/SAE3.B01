@@ -1,19 +1,76 @@
+ï»¿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
+using UnityEngine.UI;
+using System.IO;
+
+public class LastMainScene
+{
+    public string lastScene;
+}
 
 /// <summary>
-/// Gère la reprise du jeu en chargeant la scène "MovingPhase" lorsque la touche Échap est pressée.
+/// GÃ¨re la reprise du jeu en chargeant la scÃ¨nne "MovingPhase" lorsque la touche ï¾‰chap est pressÃ©e.
 /// </summary>
 public class GameResume : MonoBehaviour
 {
+    public PosSaver posaver;
+    public string sceneToLoad;
+    public string filePath;
+
+    void Start()
+    {
+        filePath = Application.dataPath + "/SaveJson/sceneToLoad.json";
+        loadSceneToLoad();
+        if (mapReturner().Equals("Classroom"))
+        {
+            posaver.SaveScneToLoadWhenReturn();
+        }
+    }
+
     /// <summary>
-    /// Méthode appelée à chaque frame.
+    /// MÃ©thode appelÃ©e ãƒ»chaque frame.
     /// </summary>
     void Update()
     {
-       if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
-            SceneManager.LoadScene("MovingPhase");
-        } 
+            SceneManager.LoadScene(sceneToLoad);
+        }
+        if (Input.GetKeyDown("m"))
+        {
+            if (mapReturner().Equals("Map"))
+            {
+                SceneManager.LoadScene(sceneToLoad);
+            }
+            else
+            {
+                SceneManager.LoadScene("Map");
+            }
+        }
+    }
+
+    public string mapReturner()
+    {
+        Scene currentScene = SceneManager.GetActiveScene();
+        return currentScene.name;
+
+    }
+
+    public void onClick()
+    {
+        SceneManager.LoadScene("MovingPhase");
+    }
+
+    public void loadSceneToLoad()
+    {
+        if (File.Exists(filePath))
+        {
+            string json = File.ReadAllText(filePath);
+            LastMainScene lastMainScene = JsonUtility.FromJson<LastMainScene>(json);
+            sceneToLoad = lastMainScene.lastScene;
+        }
+
     }
 }

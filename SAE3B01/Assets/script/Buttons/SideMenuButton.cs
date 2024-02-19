@@ -1,16 +1,16 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 /// <summary>
-/// Gère les interactions des boutons dans le menu latéral.
+/// GÃ¨re les interactions des boutons dans le menu latÃ©ral.
 /// </summary>
 public class SideMenuButton : MonoBehaviour
 {
 
     /// <summary>
-    /// Charge la scène de la carte.
+    /// Charge la scÃ¨ne de la carte.
     /// </summary>
     public void onMapButtonPressed()
     {
@@ -18,7 +18,7 @@ public class SideMenuButton : MonoBehaviour
     }
 
     /// <summary>
-    /// Charge la scène de la preuve.
+    /// Charge la scÃ¨ne de la preuve.
     /// </summary>
     public void onProofButtonPressed()
     {
@@ -26,7 +26,7 @@ public class SideMenuButton : MonoBehaviour
     }
 
     /// <summary>
-    /// Charge la scène du menu principal.
+    /// Charge la scÃ¨ne du menu principal.
     /// </summary>
     public void onQuitButtonPressed() 
     {

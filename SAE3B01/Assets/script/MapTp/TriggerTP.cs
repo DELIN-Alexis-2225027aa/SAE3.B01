@@ -1,11 +1,11 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
 using System.IO;
 
 /// <summary>
-/// Gère le téléporteur du joueur en fonction des déclencheurs et des touches pressées.
+/// GÃ¨ree le tÃ©lÃ©porteur du joueur en fonction des dÃ©clencheurs et des touches pressÃ©es.
 /// </summary>
 public class TriggerTP : MonoBehaviour
 {
@@ -18,7 +18,7 @@ public class TriggerTP : MonoBehaviour
     string filePath;
 
     /// <summary>
-    /// Méthode appelée au démarrage.
+    /// MÃ©thode appelÃ©e au dÃ©marrage.
     /// </summary>
     void Start()
     {
@@ -27,7 +27,7 @@ public class TriggerTP : MonoBehaviour
     }
 
     /// <summary>
-    /// Méthode appelée à chaque frame.
+    /// MÃ©thode appelÃ©e Ã  chaque frame.
     /// </summary>
     void Update()
     {
@@ -41,7 +41,7 @@ public class TriggerTP : MonoBehaviour
             colName = null;
         }
 
-        // Détermine la destination du téléporteur en fonction du nom de l'objet en collision
+        // DÃ©termine la destination du tÃ©lÃ©porteur en fonction du nom de l'objet en collision
         if (Input.GetKeyDown(KeyCode.Space))
         {
             if (colName.Equals("004TPTrigger")) 
@@ -132,7 +132,7 @@ public class TriggerTP : MonoBehaviour
     }
 
     /// <summary>
-    /// Méthode appelée lorsque le téléporteur entre en collision avec un objet.
+    /// MÃ©thode appelÃ©e lorsque le tÃ©lÃ©porteur entre en collision avec un objet.
     /// </summary>
     /// <param /name=//collision>Collider de l'objet en collision.</param>
     private void OnTriggerEnter2D(Collider2D collision)
@@ -141,7 +141,7 @@ public class TriggerTP : MonoBehaviour
     }
 
     /// <summary>
-    /// Téléporte le joueur à la position spécifiée et enregistre les données dans le fichier JSON.
+    /// TÃ©lÃ©porte le joueur Ã  la position spÃ©cifiÃ©e et enregistre les donnÃ©es dans le fichier JSON.
     /// </summary>
     void TPPlayer()
     {
@@ -152,7 +152,7 @@ public class TriggerTP : MonoBehaviour
             z = zTP
         };
 
-        // Convertir la classe en JSON et écrire dans le fichier
+        // Convertir la classe en JSON et Ã©crire dans le fichier
         string updatedJson = JsonUtility.ToJson(playerData);
         File.WriteAllText(filePath, updatedJson);
 

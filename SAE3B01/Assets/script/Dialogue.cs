@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
@@ -6,8 +6,8 @@ using UnityEngine.UI;
 using System.IO;
 using System.Linq;
 
-/// <summary>
-/// G�re l'affichage et la gestion des dialogues dans le jeu.
+
+/// Gère l'affichage et la gestion des dialogues dans le jeu.
 /// </summary>
 [System.Serializable]
 public class DialogueBD
@@ -18,8 +18,9 @@ public class DialogueBD
     public string[] dialogue;
 }
 
+
 /// <summary>
-/// Repr�sente la s�lection d'un ensemble de dialogues par son r�pertoire.
+/// Représente la sélection d'un ensemble de dialogues par son répertoire.
 /// </summary>
 public class DialogueSelector
 {
@@ -41,42 +42,44 @@ public class Dialogue : MonoBehaviour
     string filePath;
     public List<int> sprites;
     public string nameSprite;
+    [SerializeField] GameObject isIntroObject;
+    bool isTextInitialized;
+
+    public bool isDialogueLoaded;
+
+    [SerializeField] ClassroomSpriteSetter classroomSpriteSetter;
 
 
-    /// <summary>
-    /// M�thode appel�e au d�marrage.
+    /// Méthode appelée au démarrage.
     /// </summary>
     void Start()
     {
+        isTextInitialized = false;
+        isDialogueLoaded = false;
         dialogueText.text = "";
         filePath = Application.dataPath + "/SaveJson/dialogueManager.json";
-        GetWichDialogue();
-        StartDialogue();
-        dialogueName.text = nameSprite;
+        if (isIntro() == true)
+        {
+            loadDialogue();
+        }
     }
 
-    /// <summary>
-    /// M�thode appel�e � chaque frame fixe.
+    /// Méthode appelée à chaque frame fixe.
     /// </summary>
     void FixedUpdate()
     {
         wordSpeed = 0.05f;
     }
 
-    /// <summary>
-    /// M�thode appel�e � chaque frame.
+    /// Méthode appelée à chaque frame.
     /// </summary>
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            if (isDialogueActive)
+            if (!isDialogueActive)
             {
-                NextLine();
-            }
-            else
-            {
-                StartDialogue();
+                nextLine();
             }
         }
         if (index < dialogueToShow.Length && dialogueText.text == dialogueToShow[index])
@@ -85,35 +88,44 @@ public class Dialogue : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// D�marre l'affichage du dialogue.
+
+
+
     /// </summary>
-    void StartDialogue()
+    void startDialogue()
     {
         contButton.SetActive(false);
         if (dialogueToShow.Length > 0 && index < dialogueToShow.Length)
         {
+            contButton.SetActive(false);
+            isTextInitialized = true;
             isDialogueActive = true;
-            StartCoroutine(Typing());
+            StartCoroutine(typing());
         }
     }
 
-    /// <summary>
-    /// R�initialise le texte du dialogue.
+
+    /// Réinitialise le texte du dialogue.
     /// </summary>
     public void zeroText()
     {
         dialogueText.text = "";
         index = 0;
         isDialogueActive = false;
-        SceneManager.LoadScene("MovingPhase");
+        if (isIntro() == true)
+        {
+            SceneManager.LoadScene("MovingPhase");
+        }
+        else
+        {
+            classroomSpriteSetter.removeDialogueObjectFromUI();
+        }
     }
 
-    /// <summary>
     /// Effectue l'effet de dactylographie pour afficher le dialogue lettre par lettre.
     /// </summary>
     /// <returns>Coroutine.</returns>
-    IEnumerator Typing()
+    IEnumerator typing()
     {
         changImg(nameSprite, sprites[index]);
         foreach (char letter in dialogueToShow[index].ToCharArray())
@@ -121,34 +133,60 @@ public class Dialogue : MonoBehaviour
             dialogueText.text += letter;
             yield return new WaitForSeconds(wordSpeed);
         }
+        isDialogueActive = false;
 
     }
 
-    /// <summary>
-    /// Passe � la ligne suivante du dialogue.
-    /// </summary>
-    public void NextLine()
+    public void loadDialogue()
     {
+        if (isDialogueLoaded)
+        {
+            if (!isTextInitialized)
+            {
+                startDialogue();
+            }
+            else
+            {
+                if (!isDialogueActive)
+                {
+                    nextLine();
+                }
+            }
+        }
+        else
+        {
+            if (getWichDialogue() != false)
+            {
+                getWichDialogue();
+                startDialogue();
+                dialogueName.text = mmeOrMr() + nameSprite;
+            }
+        }
+    }
 
+    /// <summary>
+    /// Passe à la ligne suivante du dialogue.
+    public void nextLine()
+    {
+        isDialogueActive = true;
         contButton.SetActive(false);
 
         if (index < dialogueToShow.Length - 1)
         {
             index++;
             dialogueText.text = "";
-            StartCoroutine(Typing());
+            StartCoroutine(typing());
         }
         else
         {
             zeroText();
         }
-
     }
 
     /// <summary>
-    /// R�cup�re les dialogues � partir du fichier JSON.
-    /// </summary>
-    public void GetDialogueByFileName()
+    /// Récupère les dialogues à partir du fichier JSON.
+
+    public void getDialogueByFileName()
     {
         if (File.Exists(filePath))
         {
@@ -161,27 +199,30 @@ public class Dialogue : MonoBehaviour
     }
 
     /// <summary>
-    /// R�cup�re le r�pertoire de dialogues � partir du fichier JSON et charge les dialogues associ�s.
-    /// </summary>
-    public void GetWichDialogue()
+    /// Récupère le répertoire de dialogues à partir du fichier JSON et charge les dialogues associée.
+    public bool getWichDialogue()
     {
+        bool returednBool = false;
         if (File.Exists(filePath))
         {
             string json = File.ReadAllText(filePath);
             DialogueSelector dialoguesSelector = JsonUtility.FromJson<DialogueSelector>(json);
             if (dialoguesSelector != null)
             {
-                filePath = Path.Combine(Application.dataPath, "SaveJson", dialoguesSelector.repertory+".json");
-                GetDialogueByFileName();
+                filePath = Path.Combine(Application.dataPath, "SaveJson", dialoguesSelector.repertory + ".json");
+                getDialogueByFileName();
+                returednBool = true;
+                isDialogueLoaded = true;
+                resetClassroom();
             }
         }
+        return returednBool;
     }
 
     public void changImg(string name, int poseID)
     {
         string spriteName = $"{name}{poseID}.png";
         string imagePath = Path.Combine(Application.dataPath, "Images", spriteName);
-        Debug.LogError(imagePath);
         if (File.Exists(imagePath))
         {
             byte[] fileData = File.ReadAllBytes(imagePath);
@@ -192,9 +233,35 @@ public class Dialogue : MonoBehaviour
         }
     }
 
+    void resetClassroom()
+    {
+        filePath = Path.Combine(Application.dataPath, "SaveJson/classroom.json");
+        Classroom classroom = new Classroom
+        {
+            classroomName = null
+        };
 
+        // Convertir la classe en JSON et écrire dans le fichier
+        string updatedJson = JsonUtility.ToJson(classroom);
+        File.WriteAllText(filePath, updatedJson);
+
+    }
+
+    bool isIntro()
+    {
+        if (isIntroObject != null)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    public string mmeOrMr()
+    {
+        if (nameSprite.Equals("MAKSSOUD"))
+        {
+            return "Mme ";
+        }
+        else return "Mr ";
+    }
 }
-
-
-
-

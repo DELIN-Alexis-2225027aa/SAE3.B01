@@ -1,10 +1,10 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
 using System.IO;
 
 /// <summary>
-/// Représente les données du joueur.
+/// ReprÃ©sente les donnÃ©es du joueur.
 /// </summary>
 [System.Serializable]
 public class PlayerData
@@ -15,48 +15,65 @@ public class PlayerData
 }
 
 /// <summary>
-/// Gère la sauvegarde et le chargement de la position du joueur.
+/// GÃ¨re la sauvegarde et le chargement de la position du joueur.
 /// </summary>
 public class PosSaver : MonoBehaviour
 {
 
+    
+    string sceneName;
     string json;
     string filePath;
     public string sceneToLoad;
 
     /// <summary>
-    /// Méthode appelée au démarrage.
+    /// MÃ©thode appelÃ©e au dÃ©marrage.
     /// </summary>
     void Start()
     {
-        filePath = Application.dataPath + "/SaveJson/playerData.json";
-        // Charge la position du joueur au démarrage
-        LoadPlayerPosition();
+        if (getSceneName().Equals("MovingPhase"))
+        {
+            filePath = Application.dataPath + "/SaveJson/playerData.json";
+            // Charge la position du joueur au dÃ©marrage
+            LoadPlayerPosition();
+        }
     }
 
     /// <summary>
-    /// Méthode appelée à chaque frame.
+    /// MÃ©thode appelÃ©e Ã  chaque frame.
     /// </summary>
     void Update()
     {
-        if (Input.GetKeyDown("m"))
+        if (getSceneName().Equals("MovingPhase"))
         {
-            sceneToLoad = "Map";
-            SavePlayerPosition();
-            SceneManager.LoadScene(sceneToLoad);
+            if (Input.GetKeyDown("m"))
+            {
+                SavePlayerPosition();
+                sceneToLoad = "Map";
+                SaveScneToLoadWhenReturn();
+                SceneManager.LoadScene(sceneToLoad);
+            }
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                SavePlayerPosition();
+                sceneToLoad = "Proof";
+                SaveScneToLoadWhenReturn();
+                SceneManager.LoadScene(sceneToLoad);
+            }
         }
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            sceneToLoad = "Proof";
-            SavePlayerPosition();
-            SceneManager.LoadScene(sceneToLoad);
-        }
+    }
+
+    public string getSceneName()
+    {
+        Scene currentScene = SceneManager.GetActiveScene();
+
+        return currentScene.name;
     }
 
     /// <summary>
     /// Sauvegarde la position actuelle du joueur.
     /// </summary>
-    void SavePlayerPosition()
+    public void SavePlayerPosition()
     {
         // Obtient la position actuelle du joueur
         Vector3 playerPos = transform.position;
@@ -69,11 +86,28 @@ public class PosSaver : MonoBehaviour
             z = playerPos.z
         };
 
-        // Convertir la classe en JSON et écrire dans le fichier
+        // Convertir la classe en JSON et Ã©crire dans le fichier
         string updatedJson = JsonUtility.ToJson(playerData);
         File.WriteAllText(filePath, updatedJson);
 
-        Debug.Log("Player position saved to file.");
+    }
+
+    public void SaveScneToLoadWhenReturn()
+    {
+        filePath = Application.dataPath + "/SaveJson/sceneToLoad.json";
+
+        // Convertir la position du joueur en une classe PlayerData
+        LastMainScene lastMainScene = new LastMainScene
+        {
+            lastScene = getSceneName()
+        };
+
+        // Convertir la classe en JSON et Ã©crire dans le fichier
+        string updatedJson = JsonUtility.ToJson(lastMainScene);
+        File.WriteAllText(filePath, updatedJson);
+
+        filePath = Application.dataPath + "/SaveJson/playerData.json";
+
     }
 
     /// <summary>
@@ -89,15 +123,11 @@ public class PosSaver : MonoBehaviour
             // Convertir le JSON en classe PlayerData
             PlayerData loadedPlayerData = JsonUtility.FromJson<PlayerData>(json);
 
-            // Créer un Vector3 à partir des données chargées
+            // CrÃ©er un Vector3 ãƒ»partir des donnÃ©es chargÃ©es
             Vector3 loadedPlayerPos = new Vector3(loadedPlayerData.x, loadedPlayerData.y, loadedPlayerData.z);
 
-            // Appliquer la position chargée au joueur
+            // Appliquer la position chargÃ©e au joueur
             transform.position = loadedPlayerPos;
-        }
-        else
-        {
-            Debug.Log("No saved player position found.");
         }
     }
 }

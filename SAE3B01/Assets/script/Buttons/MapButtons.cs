@@ -1,18 +1,18 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.IO;
 
 /// <summary>
-/// Gère les interactions des boutons sur la carte.
+/// GÃ¨re les interactions des boutons sur la carte.
 /// </summary>
 public class MapButtons : MonoBehaviour
 {
     string json;
 
     /// <summary>
-    /// Chemin du fichier JSON pour les données du joueur.
+    /// Chemin du fichier JSON pour les donnÃ©es du joueur.
     /// </summary>
     string filePath;
 
@@ -24,7 +24,7 @@ public class MapButtons : MonoBehaviour
     [SerializeField] private Transform tr;
 
     /// <summary>
-    /// Méthode appelée au démarrage.
+    /// MÃ©thode appelÃ©e au dÃ©marrage.
     /// </summary>
     void Start()
     {
@@ -33,7 +33,7 @@ public class MapButtons : MonoBehaviour
     }
 
     /// <summary>
-    /// Vérifie le niveau initial du joueur en fonction de sa position chargée depuis le fichier.
+    /// VÃ©rifie le niveau initial du joueur en fonction de sa position chargÃ©e depuis le fichier.
     /// </summary>
     void VerifyStartFloor()
     {
@@ -84,7 +84,7 @@ public class MapButtons : MonoBehaviour
     }
 
     /// <summary>
-    /// Place le réticule sur la carte au niveau 3.
+    /// Place le rÃ©ticule sur la carte au niveau 3.
     /// </summary>
     public void OnButton3Pressed()
     {
@@ -93,7 +93,7 @@ public class MapButtons : MonoBehaviour
     }
 
     /// <summary>
-    /// Place le réticule sur la carte au niveau 2.
+    /// Place le rÃ©ticule sur la carte au niveau 2.
     /// </summary>
     public void OnButton2Pressed()
     {
@@ -102,7 +102,7 @@ public class MapButtons : MonoBehaviour
     }
 
     /// <summary>
-    /// Place le réticule sur la carte au niveau 1.
+    /// Place le rÃ©ticule sur la carte au niveau 1.
     /// </summary>
     public void OnButton1Pressed()
     {

@@ -3115,7 +3115,6 @@ GameObject:
   - component: {fileID: 414032997}
   - component: {fileID: 414033000}
   - component: {fileID: 414032999}
-  - component: {fileID: 414032998}
   m_Layer: 0
   m_Name: 109TPTrigger
   m_TagString: Untagged
@@ -3138,19 +3137,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 747141931}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &414032998
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 414032996}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b90af13760a2d624c9a36d21c688f784, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nomDeLaNouvelleScene: 109
 --- !u!61 &414032999
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5716,7 +5702,6 @@ GameObject:
   - component: {fileID: 707190427}
   - component: {fileID: 707190429}
   - component: {fileID: 707190428}
-  - component: {fileID: 707190430}
   m_Layer: 0
   m_Name: 002TPTrigger
   m_TagString: Untagged
@@ -5837,19 +5822,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &707190430
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 707190426}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b90af13760a2d624c9a36d21c688f784, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nomDeLaNouvelleScene: 002
 --- !u!1 &710237476
 GameObject:
   m_ObjectHideFlags: 0
@@ -8467,6 +8439,7 @@ GameObject:
   - component: {fileID: 1178037269}
   - component: {fileID: 1178037274}
   - component: {fileID: 1178037275}
+  - component: {fileID: 1178037276}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -8656,6 +8629,22 @@ MonoBehaviour:
   x: 0
   y: 0
   colName: 
+--- !u!114 &1178037276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1178037268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fee1254b3a342454797a61b8fea1959e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myCollider: {fileID: 1178037271}
+  colName: 
+  classroomNumber: 
+  posSaver: {fileID: 1178037274}
 --- !u!1 &1196902679
 GameObject:
   m_ObjectHideFlags: 0
@@ -9144,7 +9133,6 @@ GameObject:
   - component: {fileID: 1314677314}
   - component: {fileID: 1314677317}
   - component: {fileID: 1314677316}
-  - component: {fileID: 1314677315}
   m_Layer: 0
   m_Name: 104TPTrigger
   m_TagString: Untagged
@@ -9167,19 +9155,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 747141931}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1314677315
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1314677313}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b90af13760a2d624c9a36d21c688f784, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nomDeLaNouvelleScene: 104
 --- !u!61 &1314677316
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -10764,7 +10739,6 @@ GameObject:
   - component: {fileID: 1525953409}
   - component: {fileID: 1525953412}
   - component: {fileID: 1525953411}
-  - component: {fileID: 1525953413}
   m_Layer: 0
   m_Name: MakssoudTPTrigger
   m_TagString: Untagged
@@ -10885,19 +10859,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1525953413
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1525953408}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b90af13760a2d624c9a36d21c688f784, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nomDeLaNouvelleScene: Makssoud
 --- !u!1 &1535557405
 GameObject:
   m_ObjectHideFlags: 0
@@ -11132,7 +11093,6 @@ GameObject:
   - component: {fileID: 1595810464}
   - component: {fileID: 1595810467}
   - component: {fileID: 1595810466}
-  - component: {fileID: 1595810465}
   m_Layer: 0
   m_Name: 009TPTrigger
   m_TagString: Untagged
@@ -11155,19 +11115,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1535557407}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1595810465
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1595810463}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b90af13760a2d624c9a36d21c688f784, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nomDeLaNouvelleScene: 009
 --- !u!61 &1595810466
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -12910,7 +12857,6 @@ GameObject:
   - component: {fileID: 1799028421}
   - component: {fileID: 1799028424}
   - component: {fileID: 1799028423}
-  - component: {fileID: 1799028422}
   m_Layer: 0
   m_Name: BdeTPTrigger
   m_TagString: Untagged
@@ -12933,19 +12879,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1061814117}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1799028422
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1799028420}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b90af13760a2d624c9a36d21c688f784, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nomDeLaNouvelleScene: Bde
 --- !u!61 &1799028423
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -14143,7 +14076,6 @@ GameObject:
   - component: {fileID: 1915517329}
   - component: {fileID: 1915517332}
   - component: {fileID: 1915517331}
-  - component: {fileID: 1915517330}
   m_Layer: 0
   m_Name: 010TPTrigger
   m_TagString: Untagged
@@ -14166,19 +14098,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1535557407}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1915517330
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1915517328}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b90af13760a2d624c9a36d21c688f784, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nomDeLaNouvelleScene: 010
 --- !u!61 &1915517331
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -14897,7 +14816,6 @@ GameObject:
   - component: {fileID: 2001427089}
   - component: {fileID: 2001427092}
   - component: {fileID: 2001427091}
-  - component: {fileID: 2001427090}
   m_Layer: 0
   m_Name: 110TPTrigger
   m_TagString: Untagged
@@ -14920,19 +14838,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 747141931}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2001427090
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2001427088}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b90af13760a2d624c9a36d21c688f784, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nomDeLaNouvelleScene: 110
 --- !u!61 &2001427091
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -15173,7 +15078,6 @@ GameObject:
   - component: {fileID: 2033578579}
   - component: {fileID: 2033578582}
   - component: {fileID: 2033578581}
-  - component: {fileID: 2033578580}
   m_Layer: 0
   m_Name: 208TPTrigger
   m_TagString: Untagged
@@ -15196,19 +15100,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1061814117}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2033578580
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2033578578}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b90af13760a2d624c9a36d21c688f784, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nomDeLaNouvelleScene: 208
 --- !u!61 &2033578581
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -16184,7 +16075,6 @@ GameObject:
   - component: {fileID: 2138152164}
   - component: {fileID: 2138152167}
   - component: {fileID: 2138152166}
-  - component: {fileID: 2138152168}
   m_Layer: 0
   m_Name: 004TPTrigger
   m_TagString: Untagged
@@ -16305,19 +16195,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2138152168
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2138152163}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b90af13760a2d624c9a36d21c688f784, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nomDeLaNouvelleScene: 004
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

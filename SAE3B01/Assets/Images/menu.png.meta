@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 5b0b9b1584bc96c4ab0e6919e7dca90e
+guid: 3d44d6a8cbcb87d4480d383775115396
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3756223706150004029
-    second: "Capture d'\xE9cran 2024-02-15 164735_0"
+      213: 7042847911465117151
+    second: menu_0
   externalObjects: {}
   serializedVersion: 12
   mipmaps:
@@ -98,13 +98,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "Capture d'\xE9cran 2024-02-15 164735_0"
+      name: menu_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 1334
-        height: 913
+        height: 1723
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -112,8 +112,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d35e8f53f89c02430800000000000000
-      internalID: 3756223706150004029
+      spriteID: fd5eaf16cd83db160800000000000000
+      internalID: 7042847911465117151
       vertices: []
       indices: 
       edges: []

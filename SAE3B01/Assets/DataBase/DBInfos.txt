@@ -1,0 +1,11 @@
+Dialogues
+ - dialogueID : int
+ - dialogueSubID : int
+ - nom
+ - poseID
+ - dialogue
+
+
+Inventaire
+ - id
+ - objet

@@ -35,6 +35,14 @@ public class GameResume : MonoBehaviour
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
+            if (mapReturner().Equals("Classroom"))
+            {
+                SceneManager.LoadScene("Proof");
+            }
+            else
+            {
+                SceneManager.LoadScene(sceneToLoad);
+            }
         {
             SceneManager.LoadScene(sceneToLoad);
         }

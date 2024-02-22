@@ -101,10 +101,10 @@ TextureImporter:
       name: 2emeEtage_0
       rect:
         serializedVersion: 2
-        x: 9
-        y: 5
-        width: 971
-        height: 397
+        x: 43
+        y: 23
+        width: 5150
+        height: 2110
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}

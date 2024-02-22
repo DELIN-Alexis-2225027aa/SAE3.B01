@@ -14,7 +14,7 @@ public class Classroom
 /// </summary>
 public class MainMenuButton : MonoBehaviour
 {
-
+    DBManager dbManager;
     string json;
 
     /// <summary>
@@ -28,6 +28,8 @@ public class MainMenuButton : MonoBehaviour
         posSetup();
         dialogueSetup();
         classRoomSetup();
+        initBD();
+
     }
 
     /// <summary>
@@ -93,5 +95,10 @@ public class MainMenuButton : MonoBehaviour
         // écriture du fichier JSON dans le chemin spécifique・
         File.WriteAllText(filePath, updatedJson);
     }
+    
+    public void initBD()
+    {
+        
 
+    }
 }

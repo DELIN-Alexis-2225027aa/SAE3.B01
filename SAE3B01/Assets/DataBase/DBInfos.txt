@@ -1,6 +1,5 @@
 Dialogues
  - dialogueID : int
- - dialogueSubID : int
  - nom
  - poseID
  - dialogue

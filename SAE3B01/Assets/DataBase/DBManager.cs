@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using System.Collections;
 using System.Data;
 using System.Data.SQLite;
@@ -16,7 +16,7 @@ public class DBManager
         connexionDB.Open();
     }
 
-    public void FermerConnexion()
+    public void CloseConnexion()
     {
         if (connexionDB != null && connexionDB.State != ConnectionState.Closed)
         {
@@ -31,7 +31,7 @@ public class DBManager
         return cmdDB.ExecuteReader();
     }
 
-    public void CreerTable(string nom, string[] colonnes, string[] types)
+    public void CreateTable(string nom, string[] colonnes, string[] types)
     {
         string requete = "CREATE TABLE IF NOT EXISTS " + nom + "(" + colonnes[0] + " " + types[0];
         for (int i = 1; i < colonnes.Length; i++)
@@ -39,14 +39,14 @@ public class DBManager
             requete += ", " + colonnes[i] + " " + types[i];
         }
         requete += ")";
-        ExecuterRequeteSansResultat(requete);
+        ExecuteRequestWithoutResult(requete);
     }
 
     /*
     public void InsererUnique(string table, string cle, string valeur)
     {
         string requete = "INSERT INTO " + table + "(" + cle + ") VALUES (" + valeur + ")";
-        ExecuterRequeteSansResultat(requete);
+        ExecuteRequestWithoutResult(requete);
     }
 
     public void InsererSpecifique(string table, string[] cle, string[] valeurs)
@@ -70,11 +70,11 @@ public class DBManager
     }
     */
 
-    public void Insertion(string table, string[] valeurs)
+    public void Insert(string table, string[] valeurs)
     {
         if (valeurs == null || valeurs.Length == 0)
         {
-            Debug.LogError("Aucune valeur à insérer.");
+            Debug.LogError("Aucune valeur Ã  insÃ©rer.");
             return;
         }
 
@@ -91,6 +91,7 @@ public class DBManager
         {
             cmdDB.CommandText = requete;
             var parameters = ((SQLiteCommand)cmdDB).Parameters;
+
             for (int i = 0; i < valeurs.Length; i++)
             {
                 parameters.AddWithValue("@valeur" + i, valeurs[i]);
@@ -125,10 +126,10 @@ public class DBManager
     public void Supprimer(string table, string condition, string valeur)
     {
         string requete = "DELETE FROM " + table + " WHERE " + condition + " = '" + valeur + "'";
-        ExecuterRequeteSansResultat(requete);
+        ExecuteRequestWithoutResult(requete);
     }
 
-    private void ExecuterRequeteSansResultat(string requete)
+    private void ExecuteRequestWithoutResult(string requete)
     {
         IDbCommand cmdDB = connexionDB.CreateCommand();
         cmdDB.CommandText = requete;

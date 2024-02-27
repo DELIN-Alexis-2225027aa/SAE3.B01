@@ -29,6 +29,9 @@ public class DialogueSelector
 
 public class Dialogue : MonoBehaviour
 {
+    private ValluesConvertor valluesConvertor;
+    private DBManager dbManager;
+
     [SerializeField] Image img;
     public GameObject dialoguePanel;
     public Text dialogueText;
@@ -40,10 +43,12 @@ public class Dialogue : MonoBehaviour
     private bool isDialogueActive;
     string json;
     string filePath;
-    public List<int> sprites;
+    public int[] sprites;
     public string nameSprite;
     [SerializeField] GameObject isIntroObject;
     bool isTextInitialized;
+
+    public int id;
 
     public bool isDialogueLoaded;
 
@@ -54,10 +59,17 @@ public class Dialogue : MonoBehaviour
     /// </summary>
     void Start()
     {
+        valluesConvertor = new ValluesConvertor();
+        dbManager = new DBManager();
+
+
         isTextInitialized = false;
         isDialogueLoaded = false;
         dialogueText.text = "";
-        filePath = Application.dataPath + "/SaveJson/dialogueManager.json";
+
+        id = 1;
+        getDialogueInfoByID(id);
+
         if (isIntro() == true)
         {
             loadDialogue();
@@ -155,12 +167,12 @@ public class Dialogue : MonoBehaviour
         }
         else
         {
-            if (getWichDialogue() != false)
+            /*if (getWichDialogue() != false)
             {
                 getWichDialogue();
                 startDialogue();
                 dialogueName.text = mmeOrMr() + nameSprite;
-            }
+            }*/
         }
     }
 
@@ -182,7 +194,7 @@ public class Dialogue : MonoBehaviour
             zeroText();
         }
     }
-
+    /*
     /// <summary>
     /// Récupère les dialogues à partir du fichier JSON.
 
@@ -198,7 +210,7 @@ public class Dialogue : MonoBehaviour
         }
     }
 
-    /// <summary>
+     <summary>
     /// Récupère le répertoire de dialogues à partir du fichier JSON et charge les dialogues associée.
     public bool getWichDialogue()
     {
@@ -218,7 +230,8 @@ public class Dialogue : MonoBehaviour
         }
         return returednBool;
     }
-
+    
+    */
     public void changImg(string name, int poseID)
     {
         string spriteName = $"{name}{poseID}.png";
@@ -232,7 +245,7 @@ public class Dialogue : MonoBehaviour
             img.sprite = sprite;
         }
     }
-
+    /*
     void resetClassroom()
     {
         filePath = Path.Combine(Application.dataPath, "SaveJson/classroom.json");
@@ -245,7 +258,50 @@ public class Dialogue : MonoBehaviour
         string updatedJson = JsonUtility.ToJson(classroom);
         File.WriteAllText(filePath, updatedJson);
 
+    }*/
+
+
+    public void getDialogueInfoByID(int id)
+    {
+        getDialogueByID(id);
+        getNameByID(id);
+        getPosIDsByID(id);
+        dialogueName.text = mmeOrMr() + nameSprite;
+        isDialogueLoaded = true;
     }
+
+    public void getDialogueByID(int ID)
+    {
+        List<List<object>> resultat = dbManager.Select("Dialogues", "dialogue", "ID = " + ID);
+
+        foreach (List<object> row in resultat)
+        {
+            dialogueToShow = valluesConvertor.ConvertrowToStringArray(row);
+        }
+    }
+
+    public void getNameByID(int ID)
+    {
+        List<List<object>> resultat = dbManager.Select("Dialogues", "name", "ID = " + ID);
+
+        foreach (List<object> row in resultat)
+        {
+            string str = valluesConvertor.convertRowToString(row);
+            nameSprite = valluesConvertor.convertRowToString(row);
+        }
+    }
+
+    public void getPosIDsByID(int ID)
+    {
+        List<List<object>> resultat = dbManager.Select("Dialogues", "posID", "ID = " + ID);
+
+        foreach (List<object> row in resultat)
+        {
+            string str = valluesConvertor.convertRowToString(row);
+            sprites = valluesConvertor.convertDBstringToIntArray(str);
+        }
+    }
+
 
     bool isIntro()
     {

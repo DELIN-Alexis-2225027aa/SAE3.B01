@@ -7,6 +7,8 @@ using UnityEngine.UI;
 
 public class ClassroomSpriteSetter : MonoBehaviour
 {
+    private ValluesConvertor valluesConvertor;
+    private DBManager dbManager;
 
     [SerializeField] Image background;
     [SerializeField] Button interactiveObject;
@@ -18,12 +20,11 @@ public class ClassroomSpriteSetter : MonoBehaviour
     [SerializeField] RectTransform returnButtonRect;
 
     string json;
-    string filePath;
     [SerializeField] RectTransform interactiveObjectPos;
     private string classroomNumber;
     private string spriteName;
     string imagePath;
-    int intValueOfClassroom;
+    string strClassroomName;
 
 
     Vector3 dialogueButtonRectPos;
@@ -37,36 +38,25 @@ public class ClassroomSpriteSetter : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        dbManager = new DBManager();
+        valluesConvertor = new ValluesConvertor();
         saveDialogueObjectPos();
-
-        filePath = Application.dataPath + "/SaveJson/classroom.json";
         LoadClassroomSprites();
         SetupInteractibleObject();
         loadInteractiveObjectSprite();
-        filePath = Application.dataPath + "/SaveJson/dialogueManager.json";
         removeDialogueObjectFromUI();
     }
 
     void LoadClassroomSprites()
     {
-        if (File.Exists(filePath))
-        {
-            // Lire le JSON depuis le fichier
-            string json = File.ReadAllText(filePath);
-            Classroom classroomNumber = JsonUtility.FromJson<Classroom>(json);
-            spriteName = $"{classroomNumber.classroomName}.png";
-            intValueOfClassroom = int.Parse(classroomNumber.classroomName);
+        strClassroomName = getClassroomName();
+            spriteName = $"{strClassroomName}.png";
             imagePath = Path.Combine(Application.dataPath, "Images", spriteName);
             byte[] fileData = File.ReadAllBytes(imagePath);
             Texture2D texture = new Texture2D(2, 2);
             texture.LoadImage(fileData);
             Sprite sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f));
             background.sprite = sprite;
-        }
-        else
-        {
-            Debug.Log("No saved player position found.");
-        }
     }
 
 
@@ -76,13 +66,13 @@ public class ClassroomSpriteSetter : MonoBehaviour
         float y = 0f;
         float width = 0f;
         float height = 0f;
-        switch (intValueOfClassroom)
+        switch (strClassroomName)
         {
-            case 000:
+            case "000":
                 x = 1000f;
                 y = 1000f;
                     break;
-            case 002:
+            case "002":
                 x = Screen.width / 3;
                 y = -Screen.height / 5;
                 width = 320f;
@@ -102,9 +92,9 @@ public class ClassroomSpriteSetter : MonoBehaviour
     void loadInteractiveObjectSprite()
     {
         string interactiveObjectSprite = null;
-        switch (intValueOfClassroom)
+        switch (strClassroomName)
         {
-            case 002:
+            case "002":
                 interactiveObjectSprite = "MAKSSOUD1";
                 break;
         }
@@ -161,11 +151,28 @@ public class ClassroomSpriteSetter : MonoBehaviour
 
     public void button()
     {
+        Debug.Log(dialogueButtonRectPos);
+        Debug.Log(dialogueButtonRect.localPosition);
+
         if (dialogueButtonRectPos != dialogueButtonRect.localPosition)
         //Vérifie si les objets sont positioné en mode "dialogue"
         {
             putBackDialogueObjectToUI();
         }
 
+    }
+
+    public string getClassroomName()
+    {
+        List<List<object>> resultat = dbManager.Select("Classroom", "classroomName", "1");
+        string classroomRow = null;
+        if (resultat.Count > 0)
+        {
+            foreach (List<object> row in resultat)
+            {
+                classroomRow = valluesConvertor.convertRowToString(row);
+            }
+        }
+        return classroomRow;
     }
 }

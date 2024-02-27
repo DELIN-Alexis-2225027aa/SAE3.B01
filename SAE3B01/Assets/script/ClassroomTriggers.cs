@@ -16,15 +16,13 @@ public class ClassroomsTriggers : MonoBehaviour
 {
     [SerializeField] private Collider2D myCollider;
     public string colName;
-    string filePath;
     public string classroomNumber;
     [SerializeField] private PosSaver posSaver;
 
-
+    private DBManager dbManager;
 
     void Start()
     {
-        filePath = Application.dataPath + "/SaveJson/classroom.json";
         myCollider = GetComponent<Collider2D>();
     }
 
@@ -38,14 +36,14 @@ public class ClassroomsTriggers : MonoBehaviour
             if (areAllCharactersDigits())
             {
                 posSaver.SavePlayerPosition();
-                SaveClassroomOnJSON();
+                SaveClassroomOnDB();
                 TPClassroom();
             }else
             {
                 if(classroomNumber.Equals("Bde") || classroomNumber.Equals("Mak"))
                 {
                     posSaver.SavePlayerPosition();
-                    SaveClassroomOnJSON();
+                    SaveClassroomOnDB();
                     TPClassroom();
                 }
             }
@@ -70,18 +68,11 @@ public class ClassroomsTriggers : MonoBehaviour
         SceneManager.LoadScene("Classroom");
     }
 
-    void SaveClassroomOnJSON()
+    void SaveClassroomOnDB()
     {
-        Classroom classroom = new Classroom
-        {
-            classroomName = classroomNumber
-        };
-
-        // Convertir la classe en JSON et écrire dans le fichier
-        string updatedJson = JsonUtility.ToJson(classroom);
-        File.WriteAllText(filePath, updatedJson);
-
-        Debug.Log("Classroom saved to file.");
+        dbManager = new DBManager();
+        dbManager.DeleteEverythingFromTable("Classroom");
+        dbManager.InsertOneValue("Classroom", classroomNumber);
     }
 
     bool areAllCharactersDigits()

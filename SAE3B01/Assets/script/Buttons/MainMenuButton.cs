@@ -14,7 +14,8 @@ public class Classroom
 /// </summary>
 public class MainMenuButton : MonoBehaviour
 {
-    DBManager dbManager;
+    private DBManager dbManager;
+
     string json;
 
     /// <summary>
@@ -100,5 +101,16 @@ public class MainMenuButton : MonoBehaviour
     {
         
 
+    }
+
+    public void eraseDB()
+    {
+        dbManager = new DBManager();
+        dbManager.Droptable("Dialogues");
+    }
+
+    void OnDestroy()
+    {
+        dbManager.CloseConnexion();
     }
 }

@@ -15,6 +15,7 @@ public class Classroom
 public class MainMenuButton : MonoBehaviour
 {
     private DBManager dbManager;
+    private PlayerInfoDispayScript playerInfoDispayScript;
 
     string json;
 
@@ -29,7 +30,6 @@ public class MainMenuButton : MonoBehaviour
         posSetup();
         dialogueSetup();
         classRoomSetup();
-        initBD();
 
     }
 
@@ -38,7 +38,8 @@ public class MainMenuButton : MonoBehaviour
     /// </summary>
     public void onPlayButtonPressed()
     {
-        SceneManager.LoadScene("IntroMmeMakssoud");
+        playerInfoDispayScript.showOnUI();
+        //SceneManager.LoadScene("IntroMmeMakssoud");
     }
 
     /// <summary>
@@ -96,21 +97,10 @@ public class MainMenuButton : MonoBehaviour
         // écriture du fichier JSON dans le chemin spécifique・
         File.WriteAllText(filePath, updatedJson);
     }
-    
-    public void initBD()
-    {
-        
-
-    }
 
     public void eraseDB()
     {
         dbManager = new DBManager();
         dbManager.Droptable("Dialogues");
-    }
-
-    void OnDestroy()
-    {
-        dbManager.CloseConnexion();
     }
 }

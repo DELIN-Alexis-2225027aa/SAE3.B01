@@ -277,6 +277,7 @@ public class Dialogue : MonoBehaviour
         foreach (List<object> row in resultat)
         {
             dialogueToShow = valluesConvertor.ConvertrowToStringArray(row);
+            Debug.LogError(dialogueToShow);
         }
     }
 
@@ -286,7 +287,7 @@ public class Dialogue : MonoBehaviour
 
         foreach (List<object> row in resultat)
         {
-            string str = valluesConvertor.convertRowToString(row);
+            //string str = valluesConvertor.convertRowToString(row);
             nameSprite = valluesConvertor.convertRowToString(row);
         }
     }
@@ -319,5 +320,22 @@ public class Dialogue : MonoBehaviour
             return "Mme ";
         }
         else return "Mr ";
+    }
+
+
+    public void getIdByClassroomNumber(string numb)
+    {
+        int id;
+        switch(numb)
+        {
+            case "BDE":
+                break;
+            case "MAK":
+                break;
+            case "001":
+                id = 2;
+                break;
+
+        }
     }
 }

@@ -26,6 +26,8 @@ public class ClassroomSpriteSetter : MonoBehaviour
     string imagePath;
     string strClassroomName;
 
+    float xSize;
+    float ySize;
 
     Vector3 dialogueButtonRectPos;
     Vector3 nameDialogueRectPos;
@@ -45,18 +47,19 @@ public class ClassroomSpriteSetter : MonoBehaviour
         SetupInteractibleObject();
         loadInteractiveObjectSprite();
         removeDialogueObjectFromUI();
+        resizeInteractiveObjectByNameOfTheClassroom();
     }
 
     void LoadClassroomSprites()
     {
         strClassroomName = getClassroomName();
-            spriteName = $"{strClassroomName}.png";
-            imagePath = Path.Combine(Application.dataPath, "Images", spriteName);
-            byte[] fileData = File.ReadAllBytes(imagePath);
-            Texture2D texture = new Texture2D(2, 2);
-            texture.LoadImage(fileData);
-            Sprite sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f));
-            background.sprite = sprite;
+        spriteName = $"{strClassroomName}.png";
+        imagePath = Path.Combine(Application.dataPath, "Images", spriteName);
+        byte[] fileData = File.ReadAllBytes(imagePath);
+        Texture2D texture = new Texture2D(2, 2);
+        texture.LoadImage(fileData);
+        Sprite sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f));
+        background.sprite = sprite;
     }
 
 
@@ -71,7 +74,7 @@ public class ClassroomSpriteSetter : MonoBehaviour
             case "000":
                 x = 1000f;
                 y = 1000f;
-                    break;
+                break;
             case "002":
                 x = Screen.width / 3;
                 y = -Screen.height / 5;
@@ -114,7 +117,7 @@ public class ClassroomSpriteSetter : MonoBehaviour
             newPos.y = 1000f;
             interactiveObjectPos.localPosition = newPos;
         }
-        
+
     }
 
     void saveDialogueObjectPos()
@@ -133,7 +136,7 @@ public class ClassroomSpriteSetter : MonoBehaviour
         dialogueButtonRect.localPosition = posOutOfUI;
         nameDialogueRect.localPosition = posOutOfUI;
         dialogueRect.localPosition = posOutOfUI;
-        dialogueBGRect.localPosition = posOutOfUI; 
+        dialogueBGRect.localPosition = posOutOfUI;
         caracterSpriteRect.localPosition = posOutOfUI;
         returnButtonRect.localPosition = returnButtonRectPos;
     }
@@ -174,5 +177,26 @@ public class ClassroomSpriteSetter : MonoBehaviour
             }
         }
         return classroomRow;
+    }
+
+    public void resizeInteractiveObjectByNameOfTheClassroom()
+    {
+        switch(strClassroomName)
+        {
+            case "MAK":
+                xSize = 3;
+                ySize = 3;
+                break;
+            case "BDE":
+                break;
+            case "002":
+                xSize = 2;
+                ySize = 2;
+                break;
+            case "004":
+                break;
+        }
+
+        interactiveObjectPos.localScale = new Vector3(xSize, ySize, 1f);
     }
 }

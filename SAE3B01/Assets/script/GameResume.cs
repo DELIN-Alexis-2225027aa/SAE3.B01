@@ -22,7 +22,7 @@ public class GameResume : MonoBehaviour
     void Start()
     {
         filePath = Application.dataPath + "/SaveJson/sceneToLoad.json";
-        loadSceneToLoad();
+        //loadSceneToLoad();
         if (mapReturner().Equals("Classroom"))
         {
             posaver.SaveScneToLoadWhenReturn();

@@ -14,6 +14,11 @@ public class FootstepController : MonoBehaviour
         }
     }
 
+    void Awake()
+    {
+        DontDestroyOnLoad(gameObject);
+    }
+
     void Update()
     {
         bool isMoving = Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D) ||
@@ -34,4 +39,12 @@ public class FootstepController : MonoBehaviour
             }
         }
     }
+    public void ResetFootstepController()
+    {
+        if (footstepAudio.isPlaying)
+        {
+            footstepAudio.Stop();
+        }
+    }
+
 }

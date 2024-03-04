@@ -75,7 +75,7 @@ public class PlayerInfoDispayScript : MonoBehaviour
         if (isTextInsertInTextField())
         {
             string[] data = { textFieldName.text , gender };
-            dbManager.Insert("playerData", data);
+            dbManager.Insert("PlayerData", data);
             SceneManager.LoadScene("IntroMmeMakssoud");
         }
     }

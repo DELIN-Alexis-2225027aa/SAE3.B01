@@ -42,34 +42,6 @@ public class DBManager
         ExecuteRequestWithoutResult(requete);
     }
 
-    /*
-    public void InsererUnique(string table, string cle, string valeur)
-    {
-        string requete = "INSERT INTO " + table + "(" + cle + ") VALUES (" + valeur + ")";
-        ExecuteRequestWithoutResult(requete);
-    }
-
-    public void InsererSpecifique(string table, string[] cle, string[] valeurs)
-    {
-        string requete = "INSERT INTO " + table + "(";
-        for (int i = 0; i < cle.Length; i++)
-        {
-            requete += cle[i];
-            if (i < cle.Length - 1)
-                requete += ", ";
-        }
-        requete += ") VALUES (";
-        for (int i = 0; i < valeurs.Length; i++)
-        {
-            requete += "'" + valeurs[i] + "'";
-            if (i < valeurs.Length - 1)
-                requete += ", ";
-        }
-        requete += ")";
-        ExecuterRequeteSansResultat(requete);
-    }
-    */
-
     public void Insert(string table, string[] valeurs)
     {
         if (valeurs == null || valeurs.Length == 0)

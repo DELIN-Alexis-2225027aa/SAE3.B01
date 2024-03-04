@@ -1,8 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
-using System.IO;
 using UnityEngine.UI;
+using System.IO;
+using System.Linq;
 
 
 public class ClassroomSpriteSetter : MonoBehaviour
@@ -18,9 +20,11 @@ public class ClassroomSpriteSetter : MonoBehaviour
     [SerializeField] RectTransform dialogueBGRect;
     [SerializeField] RectTransform caracterSpriteRect;
     [SerializeField] RectTransform returnButtonRect;
+    [SerializeField] Transform isDialogueFinished;
+    [SerializeField] RectTransform interactiveObjectPos;
+
 
     string json;
-    [SerializeField] RectTransform interactiveObjectPos;
     private string classroomNumber;
     private string spriteName;
     string imagePath;
@@ -36,6 +40,7 @@ public class ClassroomSpriteSetter : MonoBehaviour
     Vector3 caracterSpriteRectPos;
     Vector3 returnButtonRectPos;
     Vector3 posOutOfUI;
+    Vector3 PosChecker;
 
     // Start is called before the first frame update
     void Start()
@@ -48,13 +53,26 @@ public class ClassroomSpriteSetter : MonoBehaviour
         loadInteractiveObjectSprite();
         removeDialogueObjectFromUI();
         resizeInteractiveObjectByNameOfTheClassroom();
+        PosChecker = new Vector3(0f, 0f, 0f);
+        posOutOfUI = new Vector3(1000f, 1000f, 0f);
+    }
+    void Update()
+    {
+        if (isDialogueFinished.localPosition == PosChecker)
+        {
+            if (nameDialogueRectPos == nameDialogueRect.localPosition)
+            {
+                removeDialogueObjectFromUI();
+                isDialogueFinished.localPosition = posOutOfUI;
+            }
+        }
     }
 
     void LoadClassroomSprites()
     {
-        strClassroomName = getClassroomName();
+        strClassroomName = getClassroomName(dbManager, valluesConvertor);
         spriteName = $"{strClassroomName}.png";
-        imagePath = Path.Combine(Application.dataPath, "Images", spriteName);
+        imagePath = Path.Combine(Application.dataPath, "Images/Classe", spriteName);
         byte[] fileData = File.ReadAllBytes(imagePath);
         Texture2D texture = new Texture2D(2, 2);
         texture.LoadImage(fileData);
@@ -98,13 +116,13 @@ public class ClassroomSpriteSetter : MonoBehaviour
         switch (strClassroomName)
         {
             case "002":
-                interactiveObjectSprite = "MAKSSOUD1";
+                interactiveObjectSprite = "NEUVOT1";
                 break;
         }
         if (interactiveObjectSprite != null)
         {
             spriteName = $"{interactiveObjectSprite}.png";
-            imagePath = Path.Combine(Application.dataPath, "Images", spriteName);
+            imagePath = Path.Combine(Application.dataPath, "Images/Personnage", spriteName);
             byte[] fileData = File.ReadAllBytes(imagePath);
             Texture2D texture = new Texture2D(2, 2);
             texture.LoadImage(fileData);
@@ -132,18 +150,18 @@ public class ClassroomSpriteSetter : MonoBehaviour
 
     public void removeDialogueObjectFromUI()
     {
-        posOutOfUI = new Vector3(1001f, 1000f, 0f);
-        dialogueButtonRect.localPosition = posOutOfUI;
+        posOutOfUI = new Vector3(1000f, 1000f, 0f);
         nameDialogueRect.localPosition = posOutOfUI;
         dialogueRect.localPosition = posOutOfUI;
         dialogueBGRect.localPosition = posOutOfUI;
         caracterSpriteRect.localPosition = posOutOfUI;
         returnButtonRect.localPosition = returnButtonRectPos;
+        dialogueButtonRect.localPosition = posOutOfUI;
     }
 
     void putBackDialogueObjectToUI()
     {
-        posOutOfUI = new Vector3(1001f, 1000f, 0f);
+        posOutOfUI = new Vector3(1000f, 1000f, 0f);
         dialogueButtonRect.localPosition = dialogueButtonRectPos;
         nameDialogueRect.localPosition = nameDialogueRectPos;
         dialogueRect.localPosition = dialogueRectPos;
@@ -154,10 +172,8 @@ public class ClassroomSpriteSetter : MonoBehaviour
 
     public void button()
     {
-        Debug.Log(dialogueButtonRectPos);
-        Debug.Log(dialogueButtonRect.localPosition);
 
-        if (dialogueButtonRectPos != dialogueButtonRect.localPosition)
+        if (nameDialogueRectPos != nameDialogueRect.localPosition)
         //Vérifie si les objets sont positioné en mode "dialogue"
         {
             putBackDialogueObjectToUI();
@@ -165,7 +181,7 @@ public class ClassroomSpriteSetter : MonoBehaviour
 
     }
 
-    public string getClassroomName()
+    public string getClassroomName(DBManager dbManager, ValluesConvertor valluesConvertor)
     {
         List<List<object>> resultat = dbManager.Select("Classroom", "classroomName", "1");
         string classroomRow = null;

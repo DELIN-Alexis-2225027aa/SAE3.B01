@@ -14,6 +14,7 @@ public class Classroom
 /// </summary>
 public class MainMenuButton : MonoBehaviour
 {
+    private TestSQLite testSQLite;
     private DBManager dbManager;
     private PlayerInfoDispayScript playerInfoDispayScript;
 
@@ -30,7 +31,6 @@ public class MainMenuButton : MonoBehaviour
         posSetup();
         dialogueSetup();
         classRoomSetup();
-
     }
 
     /// <summary>

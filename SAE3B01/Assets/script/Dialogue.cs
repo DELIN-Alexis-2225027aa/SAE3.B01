@@ -31,6 +31,7 @@ public class Dialogue : MonoBehaviour
 {
     private ValluesConvertor valluesConvertor;
     private DBManager dbManager;
+    [SerializeField] Transform isDialogueFinished;
 
     [SerializeField] Image img;
     public GameObject dialoguePanel;
@@ -44,21 +45,25 @@ public class Dialogue : MonoBehaviour
     string json;
     string filePath;
     public int[] sprites;
-    public string nameSprite;
+    public string[] nameSprite;
     [SerializeField] GameObject isIntroObject;
     bool isTextInitialized;
+    string spriteName;
 
     public int id;
 
     public bool isDialogueLoaded;
 
-    [SerializeField] ClassroomSpriteSetter classroomSpriteSetter;
+    Vector3 outPos;
+    Vector3 inPos;
 
+    [SerializeField] ClassroomSpriteSetter classroomSpriteSetter;
 
     /// Méthode appelée au démarrage.
     /// </summary>
     void Start()
     {
+        classroomSpriteSetter = new ClassroomSpriteSetter();
         valluesConvertor = new ValluesConvertor();
         dbManager = new DBManager();
 
@@ -67,20 +72,29 @@ public class Dialogue : MonoBehaviour
         isDialogueLoaded = false;
         dialogueText.text = "";
 
-        id = 1;
+        spriteName = classroomSpriteSetter.getClassroomName(dbManager, valluesConvertor);
+        if (spriteName != null)
+        {
+            id = getIdByClassroomNumber(spriteName);
+        }
+        else id = 1;
+        
         getDialogueInfoByID(id);
 
         if (isIntro() == true)
         {
             loadDialogue();
         }
+
+        outPos = new Vector3(1000f, 1000f, 0f);;
+        inPos = new Vector3(0f, 0f, 0f);;
     }
 
     /// Méthode appelée à chaque frame fixe.
     /// </summary>
     void FixedUpdate()
     {
-        wordSpeed = 0.05f;
+        wordSpeed = 0.02f;
     }
 
     /// Méthode appelée à chaque frame.
@@ -130,6 +144,7 @@ public class Dialogue : MonoBehaviour
         }
         else
         {
+            isDialogueFinished.localPosition = inPos;
             classroomSpriteSetter.removeDialogueObjectFromUI();
         }
     }
@@ -139,7 +154,7 @@ public class Dialogue : MonoBehaviour
     /// <returns>Coroutine.</returns>
     IEnumerator typing()
     {
-        changImg(nameSprite, sprites[index]);
+        changImg(nameSprite[index], sprites[index]);
         foreach (char letter in dialogueToShow[index].ToCharArray())
         {
             dialogueText.text += letter;
@@ -180,6 +195,7 @@ public class Dialogue : MonoBehaviour
     /// Passe à la ligne suivante du dialogue.
     public void nextLine()
     {
+        isDialogueFinished.localPosition = outPos;
         isDialogueActive = true;
         contButton.SetActive(false);
 
@@ -191,51 +207,15 @@ public class Dialogue : MonoBehaviour
         }
         else
         {
+            Debug.Log("1");
             zeroText();
         }
     }
-    /*
-    /// <summary>
-    /// Récupère les dialogues à partir du fichier JSON.
 
-    public void getDialogueByFileName()
-    {
-        if (File.Exists(filePath))
-        {
-            string json = File.ReadAllText(filePath);
-            DialogueBD dialogues = JsonUtility.FromJson<DialogueBD>(json);
-            dialogueToShow = dialogues.dialogue;
-            sprites = dialogues.poseID;
-            nameSprite = dialogues.name;
-        }
-    }
-
-     <summary>
-    /// Récupère le répertoire de dialogues à partir du fichier JSON et charge les dialogues associée.
-    public bool getWichDialogue()
-    {
-        bool returednBool = false;
-        if (File.Exists(filePath))
-        {
-            string json = File.ReadAllText(filePath);
-            DialogueSelector dialoguesSelector = JsonUtility.FromJson<DialogueSelector>(json);
-            if (dialoguesSelector != null)
-            {
-                filePath = Path.Combine(Application.dataPath, "SaveJson", dialoguesSelector.repertory + ".json");
-                getDialogueByFileName();
-                returednBool = true;
-                isDialogueLoaded = true;
-                resetClassroom();
-            }
-        }
-        return returednBool;
-    }
-    
-    */
     public void changImg(string name, int poseID)
     {
         string spriteName = $"{name}{poseID}.png";
-        string imagePath = Path.Combine(Application.dataPath, "Images", spriteName);
+        string imagePath = Path.Combine(Application.dataPath, "Images/Personnage", spriteName);
         if (File.Exists(imagePath))
         {
             byte[] fileData = File.ReadAllBytes(imagePath);
@@ -245,54 +225,42 @@ public class Dialogue : MonoBehaviour
             img.sprite = sprite;
         }
     }
-    /*
-    void resetClassroom()
-    {
-        filePath = Path.Combine(Application.dataPath, "SaveJson/classroom.json");
-        Classroom classroom = new Classroom
-        {
-            classroomName = null
-        };
-
-        // Convertir la classe en JSON et écrire dans le fichier
-        string updatedJson = JsonUtility.ToJson(classroom);
-        File.WriteAllText(filePath, updatedJson);
-
-    }*/
 
 
     public void getDialogueInfoByID(int id)
     {
-        getDialogueByID(id);
-        getNameByID(id);
-        getPosIDsByID(id);
-        dialogueName.text = mmeOrMr() + nameSprite;
+        string strID = id.ToString();
+        getDialogueByID(strID);
+        getNameByID(strID);
+        getPosIDsByID(strID);
+        dialogueName.text = mmeOrM() + nameSprite[index];
         isDialogueLoaded = true;
     }
 
-    public void getDialogueByID(int ID)
+    public void getDialogueByID(string ID)
     {
+        
         List<List<object>> resultat = dbManager.Select("Dialogues", "dialogue", "ID = " + ID);
 
         foreach (List<object> row in resultat)
         {
             dialogueToShow = valluesConvertor.ConvertrowToStringArray(row);
-            Debug.LogError(dialogueToShow);
+            Debug.Log(dialogueToShow);
         }
     }
 
-    public void getNameByID(int ID)
+    public void getNameByID(string ID)
     {
         List<List<object>> resultat = dbManager.Select("Dialogues", "name", "ID = " + ID);
 
         foreach (List<object> row in resultat)
         {
             //string str = valluesConvertor.convertRowToString(row);
-            nameSprite = valluesConvertor.convertRowToString(row);
+            nameSprite = valluesConvertor.ConvertrowToStringArray(row);
         }
     }
 
-    public void getPosIDsByID(int ID)
+    public void getPosIDsByID(string ID)
     {
         List<List<object>> resultat = dbManager.Select("Dialogues", "posID", "ID = " + ID);
 
@@ -313,29 +281,29 @@ public class Dialogue : MonoBehaviour
         return false;
     }
 
-    public string mmeOrMr()
+    public string mmeOrM()
     {
-        if (nameSprite.Equals("MAKSSOUD"))
+        if (nameSprite[index].Equals("MAKSSOUD"))
         {
             return "Mme ";
         }
-        else return "Mr ";
+        else return "M. ";
+    
     }
-
-
-    public void getIdByClassroomNumber(string numb)
+    public int getIdByClassroomNumber(string numb)
     {
-        int id;
         switch(numb)
         {
             case "BDE":
                 break;
             case "MAK":
-                break;
-            case "001":
                 id = 2;
+                break;
+            case "002":
+                id = 3;
                 break;
 
         }
+            return id;
     }
 }

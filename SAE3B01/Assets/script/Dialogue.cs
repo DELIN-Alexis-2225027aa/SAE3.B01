@@ -195,7 +195,10 @@ public class Dialogue : MonoBehaviour
     /// Passe à la ligne suivante du dialogue.
     public void nextLine()
     {
-        isDialogueFinished.localPosition = outPos;
+        if (isDialogueFinished != null)
+        {
+            isDialogueFinished.localPosition = outPos;
+        }
         isDialogueActive = true;
         contButton.SetActive(false);
 
@@ -245,7 +248,6 @@ public class Dialogue : MonoBehaviour
         foreach (List<object> row in resultat)
         {
             dialogueToShow = valluesConvertor.ConvertrowToStringArray(row);
-            Debug.Log(dialogueToShow);
         }
     }
 
@@ -295,6 +297,7 @@ public class Dialogue : MonoBehaviour
         switch(numb)
         {
             case "BDE":
+                id = 7;
                 break;
             case "MAK":
                 id = 2;
@@ -302,7 +305,18 @@ public class Dialogue : MonoBehaviour
             case "002":
                 id = 3;
                 break;
-
+            case "010":
+                id = 4;
+                break;
+            case "102":
+                id = 5;
+                break;
+            case "110":
+                id = 6;
+                break;
+            case "208":
+                id = 8;
+                break;
         }
             return id;
     }

@@ -93,11 +93,23 @@ public class ClassroomSpriteSetter : MonoBehaviour
                 x = 1000f;
                 y = 1000f;
                 break;
+            case "MAK":
+                break;
+            case "BDE":
+                break;
             case "002":
                 x = Screen.width / 3;
                 y = -Screen.height / 5;
                 width = 320f;
                 height = 400f;
+                break;
+            case "010":
+                break;
+            case "102":
+                break;
+            case "110":
+                break;
+            case "208":
                 break;
         }
 
@@ -115,8 +127,26 @@ public class ClassroomSpriteSetter : MonoBehaviour
         string interactiveObjectSprite = null;
         switch (strClassroomName)
         {
+            case "BDE":
+                interactiveObjectSprite = "Myke1";
+                break;
+            case "MAK":
+                interactiveObjectSprite = "Papier1";
+                break;
             case "002":
                 interactiveObjectSprite = "NEUVOT1";
+                break;
+            case "010":
+                interactiveObjectSprite = "papier1";
+                break;
+            case "102":
+                interactiveObjectSprite = "papier2";
+                break;
+            case "110":
+                interactiveObjectSprite = "MAKSSOUD1";
+                break;
+            case "208":
+                interactiveObjectSprite = "Parrain1";
                 break;
         }
         if (interactiveObjectSprite != null)
@@ -209,7 +239,13 @@ public class ClassroomSpriteSetter : MonoBehaviour
                 xSize = 2;
                 ySize = 2;
                 break;
-            case "004":
+            case "010":
+                break;
+            case "102":
+                break;
+            case "110":
+                break;
+            case "208":
                 break;
         }
 

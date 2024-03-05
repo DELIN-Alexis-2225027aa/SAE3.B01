@@ -26,12 +26,7 @@ public class FootstepController : MonoBehaviour
         }
     }
 
-    void Awake()
-    {
-        //DontDestroyOnLoad(gameObject);
-        SceneManager.sceneUnloaded += OnSceneUnloaded;
-        footstepAudio.clip = footstepClip;
-    }
+
 
     void OnSceneUnloaded(Scene scene)
     {

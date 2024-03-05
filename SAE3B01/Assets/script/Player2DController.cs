@@ -7,8 +7,8 @@ using UnityEngine;
 /// </summary>
 public class Player2DController : MonoBehaviour
 {
-    private float horizontal;
-    private float vertical;
+    public float horizontal;
+    public float vertical;
     private float speed = 8f;
 
     [SerializeField] private Rigidbody2D rb;
@@ -18,8 +18,10 @@ public class Player2DController : MonoBehaviour
     /// </summary>
     void Start()
     {
-        
+
     }
+
+
 
     /// <summary>
     /// Méthode appelée ・chaque frame.

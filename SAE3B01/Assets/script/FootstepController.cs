@@ -1,9 +1,12 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class FootstepController : MonoBehaviour
 {
     public GameObject footstepObject;
+    public AudioClip footstepClip;
     private AudioSource footstepAudio;
+    private bool isMoving;
 
     void Start()
     {
@@ -12,17 +15,40 @@ public class FootstepController : MonoBehaviour
         {
             Debug.LogError("Footstep GameObject doesn't contain an AudioSource!");
         }
+        isMoving = false;
+    }
+
+    void OnDestroy()
+    {
+        if (footstepAudio.isPlaying)
+        {
+            footstepAudio.Stop();
+        }
     }
 
     void Awake()
     {
-        DontDestroyOnLoad(gameObject);
+        //DontDestroyOnLoad(gameObject);
+        SceneManager.sceneUnloaded += OnSceneUnloaded;
+        footstepAudio.clip = footstepClip;
     }
 
-    void Update()
+    void OnSceneUnloaded(Scene scene)
     {
-        bool isMoving = Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D) ||
-                        Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.LeftArrow);
+        ResetFootstepController();
+        Destroy(gameObject);
+    }
+
+    void FixedUpdate()
+    {
+        if (Input.GetAxisRaw("Horizontal") != 0f || Input.GetAxisRaw("Vertical") !=0f )
+        {
+            isMoving = true;
+        }else 
+        {
+            isMoving = false;
+        }
+        
 
         if (isMoving)
         {
@@ -35,7 +61,7 @@ public class FootstepController : MonoBehaviour
         {
             if (footstepAudio.isPlaying)
             {
-                footstepAudio.Stop();
+               footstepAudio.Stop();
             }
         }
     }

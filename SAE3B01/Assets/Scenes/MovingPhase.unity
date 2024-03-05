@@ -4853,6 +4853,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   footstepObject: {fileID: 502180612}
+  footstepClip: {fileID: 8300000, guid: 40d7df787e689684f9cbcc62696e4939, type: 3}
 --- !u!1 &502180612
 GameObject:
   m_ObjectHideFlags: 0
@@ -9272,6 +9273,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 426d71f753d9a754f8f7bb7898b60980, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  horizontal: 0
+  vertical: 0
   rb: {fileID: 1178037270}
 --- !u!50 &1178037270
 Rigidbody2D:

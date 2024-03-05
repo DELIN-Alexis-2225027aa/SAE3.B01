@@ -43,7 +43,7 @@ public class TestSQLite : MonoBehaviour
         dbManager.DeleteEverythingFromTable("Classroom");
         dbManager.DeleteEverythingFromTable("PlayerPos");
         dbManager.DeleteEverythingFromTable("PlayerData");
-
+        dbManager.DeleteEverythingFromTable("Proof");
         initTable();
     }
 
@@ -74,16 +74,16 @@ public class TestSQLite : MonoBehaviour
         dbManager.Insert("Dialogues", values3);
 
         iD = "4";
-        name = "$";
-        posID = "1";
-        string dialogue4 = "Ah oui, il ne faut pas que j’oublie de parler des matières complémentaires !";
+        name = "$|$";
+        posID = "1,1";
+        string dialogue4 = "Ah oui, il ne faut pas que j’oublie de parler des matières complémentaires !|Liste des matières complémentaires obtenue";
         string[] values4 = { iD, name, posID, dialogue4};
         dbManager.Insert("Dialogues", values4);
         
         iD = "5";
-        name = "$";
-        posID = "1";
-        string dialogue5 = "Ça, j’le connais par cœur, mais bon, avec le trac, j’préfère l’avoir avec moi.";
+        name = "$|$";
+        posID = "1,1";
+        string dialogue5 = "Ça, j’le connais par cœur, mais bon, avec le trac, j’préfère l’avoir avec moi.|Liste des matières informatiques obtenue";
         string[] values5 = { iD, name, posID, dialogue5 };
         dbManager.Insert("Dialogues", values5);
 
@@ -116,23 +116,24 @@ public class TestSQLite : MonoBehaviour
         description = "Il y a de nombreuses SAE, toutes plus intéressantes les unes que les autres. Voici certains projets que vous pourrez avoir en 2 années de BUT : Programmation d’un PacMan. Production d’un escape game. Conception d’un jeu vidéo en rapport avec le BUT. Création d’un code pour visualiser les catastrophes naturelles en France. Création d’un réseau social inédit. ";
         isEarned = "F";
         string[] Proofvalues = { iDProof, pName, description, isEarned };
-        dbManager.Insert("Dialogues", Proofvalues);
+        dbManager.Insert("Proof", Proofvalues);
 
         iDProof = "2";
         pName = "Stage & Alternance";
         description = "Information sur l'Alternance Durée : 1 ou 2 ans Objectifs : Acquérir une expérience professionnelle tout en poursuivant ses études Avantages : Rémunération, acquisition de compétences pratiques, possibilité d'être embauché à la fin de la formation | Informations sur le Stage : Durée : 11 semaines (à la fin de la deuxième année) Objectifs : Découverte du milieu professionnel, mise en pratique des connaissances théoriques Avantages : Acquisition d'expérience, possibilité d'obtenir une offre d'emploi à l'issue du stage";
         isEarned = "F";
         string[] Proofvalues2 = { iDProof, pName, description, isEarned };
-        dbManager.Insert("Dialogues", Proofvalues2);
+        dbManager.Insert("Proof", Proofvalues2);
 
         iDProof = "3";
         pName = "BDE";
         description = "Il y a de nombreuses SAE, toutes plus intéressantes les unes que les autres. Voici certains projets que vous pourrez avoir en 2 années de BUT : Programmation d’un PacMan. Production d’un escape game. Conception d’un jeu vidéo en rapport avec le BUT. Création d’un code pour visualiser les catastrophes naturelles en France. Création d’un réseau social inédit. ";
         isEarned = "F";
         string[] Proofvalues3 = { iDProof, pName, description, isEarned };
-        dbManager.Insert("Dialogues", Proofvalues3);
+        dbManager.Insert("Proof", Proofvalues3);
+    
     }
-
+    
     void OnDestroy()
     {
         dbManager.CloseConnexion();

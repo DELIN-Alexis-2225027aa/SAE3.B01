@@ -96,6 +96,10 @@ public class ClassroomSpriteSetter : MonoBehaviour
             case "MAK":
                 break;
             case "BDE":
+                x = Screen.width / 100;
+                y = Screen.height / 5;
+                width = 320f;
+                height = 400f;
                 break;
             case "002":
                 x = Screen.width / 3;
@@ -116,6 +120,10 @@ public class ClassroomSpriteSetter : MonoBehaviour
                 height = 80f;
                 break;
             case "110":
+                x = Screen.width / 3;
+                y = -Screen.height / 5;
+                width = 320f;
+                height = 400f;
                 break;
             case "208":
                 break;
@@ -242,6 +250,8 @@ public class ClassroomSpriteSetter : MonoBehaviour
                 ySize = 3;
                 break;
             case "BDE":
+                xSize = 2;
+                ySize = 2;
                 break;
             case "002":
                 xSize = 2;
@@ -256,6 +266,8 @@ public class ClassroomSpriteSetter : MonoBehaviour
                 ySize = 1;
                 break;
             case "110":
+                xSize = 3;
+                ySize = 3;
                 break;
             case "208":
                 break;

@@ -19,7 +19,10 @@ public class VideoPlayerManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKey(KeyCode.G) && Input.GetKey(KeyCode.O)&& Input.GetKey(KeyCode.Q)&& Input.GetKey(KeyCode.T))
+        {
+            OnVideoFinished();
+        }
     }
 
     void OnVideoFinished(VideoPlayer vp)
@@ -27,4 +30,9 @@ public class VideoPlayerManager : MonoBehaviour
         SceneManager.LoadScene("IntroMmeMakssoud");    
     }
 
+    void OnVideoFinished()
+    {
+        videoPlayer.Stop();
+        SceneManager.LoadScene("IntroMmeMakssoud");
+    }
 }

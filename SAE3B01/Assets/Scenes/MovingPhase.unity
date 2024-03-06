@@ -4799,7 +4799,6 @@ GameObject:
   m_Component:
   - component: {fileID: 491623914}
   - component: {fileID: 491623913}
-  - component: {fileID: 491623915}
   m_Layer: 0
   m_Name: MusicManager
   m_TagString: Untagged
@@ -4840,20 +4839,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &491623915
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 491623912}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20aec8d2c526b96449efb13805d465b7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  footstepObject: {fileID: 502180612}
-  footstepClip: {fileID: 8300000, guid: 40d7df787e689684f9cbcc62696e4939, type: 3}
 --- !u!1 &502180612
 GameObject:
   m_ObjectHideFlags: 0
@@ -14876,6 +14861,52 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1884129233
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1884129235}
+  - component: {fileID: 1884129234}
+  m_Layer: 0
+  m_Name: SoundEffect
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1884129234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1884129233}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20aec8d2c526b96449efb13805d465b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  footstepObject: {fileID: 502180612}
+  footstepClip: {fileID: 8300000, guid: 40d7df787e689684f9cbcc62696e4939, type: 3}
+--- !u!4 &1884129235
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1884129233}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 948.57074, y: 577.34424, z: -3.0612912}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1896597913
 GameObject:
   m_ObjectHideFlags: 0
@@ -17312,3 +17343,4 @@ SceneRoots:
   - {fileID: 2062364354}
   - {fileID: 284458263}
   - {fileID: 491623914}
+  - {fileID: 1884129235}

@@ -104,8 +104,16 @@ public class ClassroomSpriteSetter : MonoBehaviour
                 height = 400f;
                 break;
             case "010":
+                x = Screen.width / 30;
+                y = -Screen.height / 5.3f;
+                width = 80f;
+                height = 80f;
                 break;
-            case "102":
+            case "109":
+                x = -Screen.width / 2.2f;
+                y = -Screen.height / 15;
+                width = 80f;
+                height = 80f;
                 break;
             case "110":
                 break;
@@ -137,10 +145,10 @@ public class ClassroomSpriteSetter : MonoBehaviour
                 interactiveObjectSprite = "NEUVOT1";
                 break;
             case "010":
-                interactiveObjectSprite = "papier1";
+                interactiveObjectSprite = "Papier1";
                 break;
-            case "102":
-                interactiveObjectSprite = "papier2";
+            case "109":
+                interactiveObjectSprite = "Papier2";
                 break;
             case "110":
                 interactiveObjectSprite = "MAKSSOUD1";
@@ -240,8 +248,12 @@ public class ClassroomSpriteSetter : MonoBehaviour
                 ySize = 2;
                 break;
             case "010":
+                xSize = 1;
+                ySize = 1;
                 break;
-            case "102":
+            case "109":
+                xSize = 1;
+                ySize = 1;
                 break;
             case "110":
                 break;

@@ -7,18 +7,6 @@ using System.IO;
 using System.Linq;
 
 
-/// Gère l'affichage et la gestion des dialogues dans le jeu.
-/// </summary>
-[System.Serializable]
-public class DialogueBD
-{
-    public int ID;
-    public string name;
-    public List<int> poseID;
-    public string[] dialogue;
-}
-
-
 /// <summary>
 /// Représente la sélection d'un ensemble de dialogues par son répertoire.
 /// </summary>
@@ -79,7 +67,7 @@ public class Dialogue : MonoBehaviour
         }
         else id = 1;
         
-        getDialogueInfoByID(id);
+        getDialogueInfoByID(dbManager, id);
 
         if (isIntro() == true)
         {
@@ -228,7 +216,7 @@ public class Dialogue : MonoBehaviour
     }
 
 
-    public void getDialogueInfoByID(int id)
+    public void getDialogueInfoByID(DBManager dbManager, int id)
     {
         string strID = id.ToString();
         getDialogueByID(strID);
@@ -236,6 +224,20 @@ public class Dialogue : MonoBehaviour
         getPosIDsByID(strID);
         dialogueName.text = mmeOrM() + nameSprite[index];
         isDialogueLoaded = true;
+        getIsFirstTimeByID(strID);
+        if (id < 10 && isFirstTime.Equals("F"))
+        {
+            id += 10;
+            strID = id.ToString();
+            getDialogueByID(strID);
+            getNameByID(strID);
+            getPosIDsByID(strID);
+            dialogueName.text = mmeOrM() + nameSprite[index];
+            isDialogueLoaded = true;
+        }else
+        {
+            UpdateDialogueDB(dbManager);
+        }
     }
 
     public void getDialogueByID(string ID)
@@ -329,4 +331,10 @@ public class Dialogue : MonoBehaviour
         }
             return id;
     }
+
+    public void UpdateDialogueDB(DBManager dbManager)
+    {
+        dbManager.UpdateTuple(dbManager, "Dialogue", "isFirstTime", "F", "ID" , id.ToString());
+    }
+
 }

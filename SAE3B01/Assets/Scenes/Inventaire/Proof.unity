@@ -1292,7 +1292,11 @@ MonoBehaviour:
   index: 0
   descriptionImg: {fileID: 1016704807}
   imgName: 
+<<<<<<< Updated upstream:SAE3B01/Assets/Scenes/Inventaire/Proof.unity
   descriptionRect: {fileID: 0}
+=======
+  descriptionRect: {fileID: 1016704806}
+>>>>>>> Stashed changes:SAE3B01/Assets/Scenes/Proof.unity
   descriptionRectPos: {x: 0, y: 0, z: 0}
   posOutOfUI: {x: 0, y: 0, z: 0}
 --- !u!4 &574196879

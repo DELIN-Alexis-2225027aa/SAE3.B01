@@ -46,6 +46,7 @@ public class Dialogue : MonoBehaviour
     string filePath;
     public int[] sprites;
     public string[] nameSprite;
+    public string isFirstTime;
     [SerializeField] GameObject isIntroObject;
     bool isTextInitialized;
     string spriteName;
@@ -256,8 +257,17 @@ public class Dialogue : MonoBehaviour
 
         foreach (List<object> row in resultat)
         {
-            //string str = valluesConvertor.convertRowToString(row);
             nameSprite = valluesConvertor.ConvertRowToStringArray(row);
+        }
+    }
+
+    public void getIsFirstTimeByID(string ID)
+    {
+        List<List<object>> resultat = dbManager.Select("Dialogues", "isFirstTime", "ID = " + ID);
+
+        foreach (List<object> row in resultat)
+        {
+            isFirstTime = valluesConvertor.convertRowToString(row);
         }
     }
 

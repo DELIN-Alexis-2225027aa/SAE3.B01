@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MusicManager : MonoBehaviour
+public class MainMenuMusicManager : MonoBehaviour
 {
     public AudioClip musicClip;
     private AudioSource musicSource;
@@ -13,7 +13,7 @@ public class MusicManager : MonoBehaviour
     "MovingPhase"
 };
 
-    private static MusicManager instance;
+    private static MainMenuMusicManager instance;
 
     void Awake()
     {

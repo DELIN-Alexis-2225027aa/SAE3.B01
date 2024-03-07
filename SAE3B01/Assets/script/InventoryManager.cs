@@ -8,67 +8,75 @@ using TMPro;
 
 public class YourScript : MonoBehaviour
 {
-    DBManager dbManager;
-    ValluesConvertor valluesConvertor;
-    [SerializeField] string[] proofsID;
-    [SerializeField] string[] proofsName;
-    [SerializeField] string[] proofsDescription;
-    [SerializeField] string[] proofsIsCollected;
-    [SerializeField] string[] inventoryManagement;
-    [SerializeField] int index;
-    [SerializeField] Image descriptionImg;
-    [SerializeField] string imgName;
-    [SerializeField] RectTransform descriptionRect;
+    private const int NumProofs = 6;
 
-    [SerializeField] Vector3 descriptionRectPos;
-    [SerializeField] Vector3 posOutOfUI;
+    private DBManager dbManager;
+    private ValluesConvertor valluesConvertor;
+    [SerializeField] private string[] proofsID;
+    [SerializeField] private string[] proofsName;
+    [SerializeField] private string[] proofsDescription;
+    [SerializeField] private string[] proofsIsCollected;
 
-    void Start()
+private void Start()
+{
+    InitializeComponents();
+    InitializeProofArrays();
+    getIngo();
+    CheckAndApplyImages();
+}
+
+
+private void InitializeComponents()
     {
-        descriptionRectPos = descriptionRect.localPosition;
-        posOutOfUI = new Vector3(1000f, 1000f, 0f);
-        descriptionRect.localPosition = posOutOfUI;
-
         dbManager = new DBManager();
         valluesConvertor = new ValluesConvertor();
-
-        proofsID = new string[] { ".", ".", ".", ".", ".", "." };
-        proofsName = new string[] { ".", ".", ".", ".", ".", "." };
-        proofsDescription = new string[] { ".", ".", ".", ".", ".", "." };
-        proofsIsCollected = new string[] { ".", ".", ".", ".", ".", "." };
-        inventoryManagement = new string[] { ".", ".", ".", ".", ".", "." };
-
-        getInfo(valluesConvertor, dbManager);  
-        CheckAndApplyImages();
     }
 
-    public void getInfo(ValluesConvertor valluesConvertor, DBManager dbManager)
+private void InitializeProofArrays()
+{
+    proofsID = new string[NumProofs];
+    proofsName = new string[NumProofs];
+    proofsDescription = new string[NumProofs];
+    proofsIsCollected = new string[NumProofs];
+}
+
+
+private void getInfo()
+{
+    for (int i = 0; i < NumProofs; ++i)
     {
-        for (int i = 0; i < 6; ++i)
+           LoadProofDataForIndex(i);
+    }
+}
+
+private void LoadProofDataForIndex(int index)
+{
+    List<List<object>> idResult = dbManager.Select("Proof", "ID", (index + 1).ToString());
+    List<List<object>> nameResult = dbManager.Select("Proof", "name", (index + 1).ToString());
+    List<List<object>> descriptionResult = dbManager.Select("Proof", "Description", (index + 1).ToString());
+    List<List<object>> isCollectedResult = dbManager.Select("Proof", "isCollected", (index + 1).ToString());
+
+    if (idResult.Count > 0)
+    {
+        List<object> idRow = idResult[0];
+        List<object> nameRow = nameResult.Count > 0 ? nameResult[0] : new List<object>();
+        List<object> descriptionRow = descriptionResult.Count > 0 ? descriptionResult[0] : new List<object>();
+        List<object> isCollectedRow = isCollectedResult.Count > 0 ? isCollectedResult[0] : new List<object>();
+
+        string id = valluesConvertor.convertRowToString(idRow);
+        if (!isThereAlreadyThisValue(id))
         {
-            List<List<object>> idResult = dbManager.Select("Proof", "ID", (i + 1).ToString());
-            List<List<object>> nameResult = dbManager.Select("Proof", "name", (i + 1).ToString());
-            List<List<object>> descriptionResult = dbManager.Select("Proof", "Description", (i + 1).ToString());
-            List<List<object>> isCollectedResult = dbManager.Select("Proof", "isCollected", (i + 1).ToString());
-
-            if (idResult.Count > 0)
-            {
-                List<object> idRow = idResult[i];
-                List<object> nameRow = nameResult[i];
-                List<object> descriptionRow = descriptionResult[i];
-                List<object> isCollectedRow = isCollectedResult[i];
-
-                if (!isThereAlreadyThisValue(valluesConvertor.convertRowToString(idRow)))
-                {
-                    proofsID[i] = valluesConvertor.convertRowToString(idRow);
-                    proofsName[i] = valluesConvertor.convertRowToString(nameRow);
-                    proofsDescription[i] = valluesConvertor.convertRowToString(descriptionRow);
-                    proofsIsCollected[i] = valluesConvertor.convertRowToString(isCollectedRow);
-                }
-
-            }
+            proofsID[index] = id;
+            proofsName[index] = valluesConvertor.convertRowToString(nameRow);
+            proofsDescription[index] = valluesConvertor.convertRowToString(descriptionRow);
+            proofsIsCollected[index] = valluesConvertor.convertRowToString(isCollectedRow);
         }
-    }   
+    }
+    else
+    {
+        Debug.LogError($"No data found for Proof with ID: {index + 1}");
+    }
+} 
 
 
     public bool isThereAlreadyThisValue(string str){

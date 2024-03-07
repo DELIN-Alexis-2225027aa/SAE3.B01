@@ -14,11 +14,21 @@ public class YourScript : MonoBehaviour
     [SerializeField] string[] proofsName;
     [SerializeField] string[] proofsDescription;
     [SerializeField] string[] proofsIsCollected;
-    string filePath;
+    [SerializeField] string[] inventoryManagement;
+    [SerializeField] int index;
+    [SerializeField] Image descriptionImg;
+    [SerializeField] string imgName;
+    [SerializeField] RectTransform descriptionRect;
 
+    [SerializeField] Vector3 descriptionRectPos;
+    [SerializeField] Vector3 posOutOfUI;
 
     void Start()
     {
+        descriptionRectPos = descriptionRect.localPosition;
+        posOutOfUI = new Vector3(1000f, 1000f, 0f);
+        descriptionRect.localPosition = posOutOfUI;
+
         dbManager = new DBManager();
         valluesConvertor = new ValluesConvertor();
 
@@ -26,6 +36,7 @@ public class YourScript : MonoBehaviour
         proofsName = new string[] { ".", ".", ".", ".", ".", "." };
         proofsDescription = new string[] { ".", ".", ".", ".", ".", "." };
         proofsIsCollected = new string[] { ".", ".", ".", ".", ".", "." };
+        inventoryManagement = new string[] { ".", ".", ".", ".", ".", "." };
 
         getInfo(valluesConvertor, dbManager);  
         CheckAndApplyImages();
@@ -79,10 +90,11 @@ public class YourScript : MonoBehaviour
         string[] proofNameForFile = {"","","","","",""};
         for (int i = 0; i < proofsIsCollected.Length; i++)
         {
+            index = i;
             string itemName = "itemArea" + (i + 1);
             string proofName = proofsName[i];
             proofNameForFile[i] = putProofNameOnRightFormat(proofsName[i]);
-            CheckAndApplyImageForItemArea(GameObject.Find(itemName), proofsIsCollected[i], proofNameForFile[i], proofName);
+            CheckAndApplyImageForItemArea(GameObject.Find(itemName), proofsIsCollected[i], proofNameForFile[i], proofName, proofsID[i]);
         }
     }
 
@@ -94,7 +106,7 @@ public class YourScript : MonoBehaviour
         return strToReturn;
     }
 
-    private void CheckAndApplyImageForItemArea(GameObject itemArea, string value, string imageName, string proofName)
+    private void CheckAndApplyImageForItemArea(GameObject itemArea, string value, string imageName, string proofName , string id)
     {
         if (itemArea != null && value.Equals("T"))
         {
@@ -111,6 +123,7 @@ public class YourScript : MonoBehaviour
                 imageComponent.sprite = sprite;
 
                 ApplyText(itemArea, proofName);
+                storeItemInClass(id);
             }
         }
     }
@@ -119,4 +132,55 @@ public class YourScript : MonoBehaviour
         TextMeshProUGUI txt = itemArea.transform.Find("name").GetComponent<TextMeshProUGUI>();
         txt.text = name;
     }
+
+    public void storeItemInClass(string id){
+        if(inventoryManagement[index].Equals(".")){
+            inventoryManagement[index] = id;
+        }else Debug.LogError(inventoryManagement[index]);
+    }
+
+    public void ButtonClick()
+    {
+        Button clickedButton = UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject.GetComponent<Button>();
+        switch (clickedButton.name)
+        {
+            case "Button1":
+                imgName = "1";
+                break;
+            case "Button2":
+                imgName = "2";
+                break;
+            case "Button3":
+                imgName = "3";
+                break;
+            case "Button4":
+                imgName = "4";
+                break;
+            case "Button5":
+                imgName = "5";
+                break;
+            case "Button6":
+                imgName = "6";
+                break;
+        }
+        if (imgName != null)
+        {
+            if (inventoryManagement[int.Parse(imgName) - 1] != ("."))
+            {
+                descriptionRect.localPosition = descriptionRectPos;
+                string spriteName = $"{imgName}.png";
+                string imagePath = Path.Combine(Application.dataPath, "Images/Descriptions", spriteName);
+                if (File.Exists(imagePath))
+                    {
+                        byte[] fileData = File.ReadAllBytes(imagePath);
+                        Texture2D texture = new Texture2D(2, 2);
+                        texture.LoadImage(fileData);
+                        Sprite sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f));
+                        descriptionImg.sprite = sprite;
+                    }
+            }
+        }
+        
+    }
+
 }

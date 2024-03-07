@@ -115,7 +115,6 @@ public class DBManager
                     if (value != null && value.GetType() != typeof(string))
                     {
                         value = value.ToString();
-                        Debug.Log(value);
                     }
                 }
 

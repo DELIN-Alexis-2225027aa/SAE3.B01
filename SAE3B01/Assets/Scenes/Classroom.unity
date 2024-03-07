@@ -997,7 +997,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   posaver: {fileID: 1292872186}
   sceneToLoad: 
-  filePath: 
 --- !u!4 &1292872185
 Transform:
   m_ObjectHideFlags: 0
@@ -1025,7 +1024,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cbbc8468be0d764c84f4d2e2076919f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneToLoad: 
+  playerPos: {fileID: 0}
 --- !u!1 &1333129874
 GameObject:
   m_ObjectHideFlags: 0

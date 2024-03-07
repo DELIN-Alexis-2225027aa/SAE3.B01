@@ -165,6 +165,126 @@ public class TestSQLite : MonoBehaviour
         firstTime = "T";
         dbManager.Insert("Dialogues", values8);
 
+         iD = "12";
+        name = "MAKSSOUD";
+        posID = "2";
+        string dialogue17 = "Rends toi dans toutes les salles du bâtiment qui sont ouvertes. Tu peux regarder les aides après avoir appuyé sur “ , ”, si tu oublies les commandes.";
+        firstTime = "T";
+        string[] values17 = { iD, name, posID, dialogue17, firstTime };
+        dbManager.Insert("Dialogues", values17);
+
+        iD = "13";
+        name = "NEUVOT";
+        posID = "1";
+        string dialogue18 = "Bah alors ? Fais vite ! Sinon tu vas être en retard pour la réunion.";
+        firstTime = "T";
+        string[] values18 = { iD, name, posID, dialogue18, firstTime };
+        dbManager.Insert("Dialogues", values18);
+
+        iD = "14";
+        name = "$";
+        posID = "1";
+        string dialogue19 = "Ah ! Mais je n’avais pas déjà récupéré cette liste ?";
+        firstTime = "T";
+        string[] values19 = { iD, name, posID, dialogue19, firstTime };
+        dbManager.Insert("Dialogues", values19);
+
+        iD = "15";
+        name = "$";
+        posID = "1";
+        string dialogue20 = "Ah ! Mais je n’avais pas déjà récupéré cette liste ?";
+        firstTime = "T";
+        string[] values20 = { iD, name, posID, dialogue20, firstTime };
+        dbManager.Insert("Dialogues", values20);
+
+        iD = "16";
+        name = "MAKSSOUD";
+        posID = "1";
+        string dialogue21 = "Je t’ai déjà tout donné. À toi de jouer maintenant !";
+        firstTime = "T";
+        string[] values21 = { iD, name, posID, dialogue21, firstTime };
+        dbManager.Insert("Dialogues", values21);
+
+        iD = "17";
+        name = "Myke";
+        posID = "1";
+        string dialogue22 = "Repasse me voir après ta réunion si tu veux, ça nous fait toujours plaisir !";
+        firstTime = "T";
+        string[] values22 = { iD, name, posID, dialogue22, firstTime };
+        dbManager.Insert("Dialogues", values22);
+
+        iD = "18";
+        name = "Parrain";
+        posID = "1";
+        string dialogue23 = "Si t’as besoin d’autres conseils, repasse me voir plus tard. Je suis là pour ça !";
+        firstTime = "T";
+        string[] values23 = { iD, name, posID, dialogue23, firstTime };
+        dbManager.Insert("Dialogues", values23);
+
+        iD = "101";
+        name = "MAKSSOUD|MAKSSOUD";
+        posID = "1,2";
+        string dialogue9 = "Bonjour $ ! Je suis ravie que tu te sois porté volontaire pour la JPO. Je compte sur toi pour convaincre un maximum de lycéens de venir dans notre établissement l’année prochaine.|J’ai quelques consignes à te donner mais elles sont sur mon bureau, rejoins moi plus tard.";
+        firstTime = "T";
+        string[] values9 = { iD, name, posID, dialogue9, firstTime};
+        dbManager.Insert("Dialogues", values9);
+
+        iD = "102";
+        name = "PAPIER|PAPIER|PAPIER";
+        posID = "1,1,1";
+        string dialogue10 = "La réunion avec les lycéens va bientôt commencer!|Je suis désolé, je n’ai pas réussi à finaliser le livret d’informations à temps, il va falloir que tu t’en charges.|J’ai prévenu tes professeurs.|Rends toi dans toutes les salles du BUT qui sont ouvertes et n’oublie pas, pour voir le plan des salles, appuie sur “ , ”, et pour rentrer dans une salle appuie sur “ E ”. ";
+        firstTime = "T";
+        string[] values10 = { iD, name, posID, dialogue10, firstTime };
+        dbManager.Insert("Dialogues", values10);
+
+        iD = "103";
+        name = "NEUVOT|NEUVOT|NEUVOT|";
+        posID = "2,1,2,1";
+        string dialogue11 = "Bien le bonjour $, je t’attendais pour te remettre la liste des SAÉs réalisées cette année !|Si tu ne sais pas où tu l’as rangée, il te suffit d’appuyer sur “ echap ” pour la consulter !|Eh ! Je compte sur toi pour leur donner envie aux p’tits jeunes !| Liste des SAÉ obtenue";
+        firstTime = "T";
+        string[] values11 = { iD, name, posID, dialogue11, firstTime };
+        dbManager.Insert("Dialogues", values11);
+
+        iD = "104";
+        name = "$|";
+        posID = "1,1";
+        string dialogue12 = "Ah oui, il ne faut pas que j’oublie de parler des matières complémentaires !|Liste des matières complémentaires obtenue";
+        firstTime = "T";
+        string[] values12 = { iD, name, posID, dialogue12, firstTime};
+        dbManager.Insert("Dialogues", values12);
+        
+        iD = "105";
+        name = "$|";
+        posID = "1,1";
+        string dialogue13 = "Ça, j’le connais par cœur, mais bon, avec le trac, j’préfère l’avoir avec moi.|Liste des matières informatiques obtenue";
+        firstTime = "T";
+        string[] values13 = { iD, name, posID, dialogue13, firstTime };
+        dbManager.Insert("Dialogues", values13);
+
+        iD = "106";
+        name = "MAKSSOUD|MAKSSOUD|";
+        posID = "1,2,1";
+        string dialogue14 = "Ah ! $ tu tombes bien ! J’ai oublié de te dire, ce serait peut être bien de parler des débouchés durant la réunion.|Tiens, je te remets ce document, c’est la liste des métiers exercés par nos anciens élèves, ça devrait t’aider pour répondre aux questions des lycéens.|Liste des débouchés des anciens élèves obtenue";
+        firstTime = "T";
+        string[] values14 = { iD, name, posID, dialogue14, firstTime };
+        dbManager.Insert("Dialogues", values14);
+
+        iD = "107";
+        name = "Myke|$|Myke|";
+        posID = "1,1,2,1";
+        string dialogue15 = "Salut $, tu viens jouer à Smash Bros ?|Ah, non pas aujourd’hui Myke. Là, il faut vraiment que tu m’aides. T’aurais pas le programme des activités du BDE sous la main ?|Ouais bien sûr, pas de soucis. Et en plus, là on réfléchit à plein de nouveaux trucs.| Document des activités du BDE obtenu";
+        firstTime = "T";
+        string[] values15 = { iD, name, posID, dialogue15, firstTime };
+        dbManager.Insert("Dialogues", values15);
+
+        iD = "108";
+        name = "Parrain|$|Parrain|";
+        posID = "1,1,1,1";
+        string dialogue16 = "Salut la filleule ! Toi, t’as encore besoin d’un conseil de ton parrain préféré !|Et ouais, j’voudrais des infos concernant les stages et l’alternance.|Ah oui, la cheffe de dep m’avait dit que tu en aurais besoin ! Tiens, je t’ai préparé ça.| Document stage et alternance obtenu";
+        firstTime = "T";
+        string[] values16 = { iD, name, posID, dialogue16, firstTime };
+        dbManager.Insert("Dialogues", values16);
+
 
         // initialisation des preuves
 

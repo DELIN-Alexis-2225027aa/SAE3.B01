@@ -60,6 +60,14 @@ public class TestSQLite : MonoBehaviour
         string[] columns7 = { "iD", "name", "posID", "dialogue" };
         string[] types7 = { "INTEGER", "BLOB", "BLOB", "BLOB"};
         dbManager.CreateTable("DialoguesRepetition", columns7, types7);
+
+        string[] columns8 = { "iD", "name", "posID", "dialogue" };
+        string[] types8 = { "INTEGER", "BLOB", "BLOB", "BLOB"};
+        dbManager.CreateTable("Questions", columns8, types8);
+
+        string[] columns9 = { "iD", "name", "posID", "dialogue" };
+        string[] types9 = { "INTEGER", "BLOB", "BLOB", "BLOB"};
+        dbManager.CreateTable("Answers", columns9, types9);
     }
 
     public void deleteTables()
@@ -72,7 +80,8 @@ public class TestSQLite : MonoBehaviour
         dbManager.Droptable("PlayerData");
         dbManager.Droptable("Proof");
         dbManager.Droptable("SceneResume");
-
+        dbManager.Droptable("Questions");
+        dbManager.Droptable("Answers");
     }
 
     void resetTables()

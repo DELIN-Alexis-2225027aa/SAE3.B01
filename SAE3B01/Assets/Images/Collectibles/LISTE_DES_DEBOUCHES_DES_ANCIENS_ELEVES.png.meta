@@ -128,7 +128,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      LISTE_DES_DEBOUCHES_DES_ANCIENS_ELEVES_0: -2429274605396473825
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

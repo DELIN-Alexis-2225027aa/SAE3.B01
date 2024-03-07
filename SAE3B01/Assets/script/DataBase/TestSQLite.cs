@@ -176,12 +176,52 @@ public class TestSQLite : MonoBehaviour
         dbManager.Insert("Dialogues", values17);
 
         iD = "13";
-        name = "MAKSSOUD";
-        posID = "2";
+        name = "NEUVOT";
+        posID = "1";
         string dialogue18 = "Bah alors ? Fais vite ! Sinon tu vas être en retard pour la réunion.";
         string[] values18 = { iD, name, posID, dialogue18 };
         firstTime = "T";
         dbManager.Insert("Dialogues", values18);
+
+        iD = "14";
+        name = "$";
+        posID = "1";
+        string dialogue19 = "Ah ! Mais je n’avais pas déjà récupéré cette liste ?";
+        string[] values19 = { iD, name, posID, dialogue19 };
+        firstTime = "T";
+        dbManager.Insert("Dialogues", values19);
+
+        iD = "15";
+        name = "$";
+        posID = "1";
+        string dialogue20 = "Ah ! Mais je n’avais pas déjà récupéré cette liste ?";
+        string[] values20 = { iD, name, posID, dialogue20 };
+        firstTime = "T";
+        dbManager.Insert("Dialogues", values20);
+
+        iD = "16";
+        name = "MAKSSOUD";
+        posID = "1";
+        string dialogue21 = "Je t’ai déjà tout donné. À toi de jouer maintenant !";
+        string[] values21 = { iD, name, posID, dialogue21 };
+        firstTime = "T";
+        dbManager.Insert("Dialogues", values21);
+
+        iD = "17";
+        name = "Myke";
+        posID = "1";
+        string dialogue22 = "Repasse me voir après ta réunion si tu veux, ça nous fait toujours plaisir !";
+        string[] values22 = { iD, name, posID, dialogue22 };
+        firstTime = "T";
+        dbManager.Insert("Dialogues", values22);
+
+        iD = "18";
+        name = "Parrain";
+        posID = "1";
+        string dialogue23 = "Si t’as besoin d’autres conseils, repasse me voir plus tard. Je suis là pour ça !";
+        string[] values23 = { iD, name, posID, dialogue23 };
+        firstTime = "T";
+        dbManager.Insert("Dialogues", values23);
 
         iD = "101";
         name = "MAKSSOUD|MAKSSOUD";

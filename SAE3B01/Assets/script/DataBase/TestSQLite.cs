@@ -94,7 +94,8 @@ public class TestSQLite : MonoBehaviour
         dbManager.DeleteEverythingFromTable("PlayerData");
         dbManager.DeleteEverythingFromTable("Proof");
         dbManager.DeleteEverythingFromTable("SceneResume");
-
+        dbManager.Droptable("Questions");
+        dbManager.Droptable("Answers");
     }
 
     public void initTables()

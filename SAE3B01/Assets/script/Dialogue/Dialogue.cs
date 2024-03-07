@@ -68,7 +68,6 @@ public class Dialogue : MonoBehaviour
         valluesConvertor = new ValluesConvertor();
         dbManager = new DBManager();
 
-
         isTextInitialized = false;
         isDialogueLoaded = false;
         dialogueText.text = "";
@@ -90,18 +89,17 @@ public class Dialogue : MonoBehaviour
         outPos = new Vector3(1000f, 1000f, 0f);;
         inPos = new Vector3(0f, 0f, 0f);;
     }
-
     /// Méthode appelée à chaque frame fixe.
     /// </summary>
     void FixedUpdate()
     {
         wordSpeed = 0.02f;
     }
-
     /// Méthode appelée à chaque frame.
     /// </summary>
     void Update()
     {
+        wordSpeed = Mathf.Clamp(wordSpeed, 0.01f, 0.1f);
         if (Input.GetKeyDown(KeyCode.E))
         {
             if (!isDialogueActive)

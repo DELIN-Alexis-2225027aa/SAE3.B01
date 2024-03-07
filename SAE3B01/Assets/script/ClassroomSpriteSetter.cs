@@ -268,8 +268,8 @@ public class ClassroomSpriteSetter : MonoBehaviour
                 ySize = 1;
                 break;
             case "110":
-                xSize = 3;
-                ySize = 3;
+                xSize = 2;
+                ySize = 2;
                 break;
             case "208":
                 break;

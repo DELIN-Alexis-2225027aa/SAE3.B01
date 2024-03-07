@@ -379,7 +379,7 @@ GameObject:
   - component: {fileID: 120689677}
   - component: {fileID: 120689676}
   m_Layer: 0
-  m_Name: ButtonsManager (1)
+  m_Name: ButtonsManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1852,7 +1852,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 120689676}
         m_TargetAssemblyTypeName: SideMenuButton, Assembly-CSharp
-        m_MethodName: 
+        m_MethodName: onParametersButtonPressed
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2358,7 +2358,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 120689676}
         m_TargetAssemblyTypeName: SideMenuButton, Assembly-CSharp
-        m_MethodName: 
+        m_MethodName: onQuitButtonPressed
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2932,7 +2932,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 120689676}
         m_TargetAssemblyTypeName: SideMenuButton, Assembly-CSharp
-        m_MethodName: 
+        m_MethodName: onHelpButtonPressed
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

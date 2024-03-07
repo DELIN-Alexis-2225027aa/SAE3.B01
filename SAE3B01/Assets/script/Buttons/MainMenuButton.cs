@@ -40,6 +40,21 @@ public class MainMenuButton : MonoBehaviour
         playerInfoDispayScript.showOnUI();
     }
 
+    public void onParametersButtonPressed()
+    {
+        SceneManager.LoadScene("ParametersMainMenu");
+    }
+
+    public void onMainMenuButtonPressed()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
+
+    public void onHelpButtonPressed()
+    {
+        SceneManager.LoadScene("HelpMainMenu");
+    }
+
     /// <summary>
     /// Quitte l'application.
     /// </summary>

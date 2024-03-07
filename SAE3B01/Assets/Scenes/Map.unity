@@ -1399,7 +1399,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 967130022}
         m_TargetAssemblyTypeName: SideMenuButton, Assembly-CSharp
-        m_MethodName: 
+        m_MethodName: onHelpButtonPressed
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2858,7 +2858,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 967130022}
         m_TargetAssemblyTypeName: SideMenuButton, Assembly-CSharp
-        m_MethodName: 
+        m_MethodName: onParametersButtonPressed
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5773,7 +5773,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 967130022}
         m_TargetAssemblyTypeName: SideMenuButton, Assembly-CSharp
-        m_MethodName: 
+        m_MethodName: onQuitButtonPressed
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

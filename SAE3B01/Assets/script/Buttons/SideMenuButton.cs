@@ -25,6 +25,16 @@ public class SideMenuButton : MonoBehaviour
         SceneManager.LoadScene("Proof");
     }
 
+    public void onHelpButtonPressed()
+    {
+        SceneManager.LoadScene("Help");
+    }
+
+    public void onParametersButtonPressed()
+    {
+        SceneManager.LoadScene("Parameters");
+    }
+
     /// <summary>
     /// Charge la scène du menu principal.
     /// </summary>

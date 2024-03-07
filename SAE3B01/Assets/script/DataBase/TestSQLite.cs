@@ -60,6 +60,14 @@ public class TestSQLite : MonoBehaviour
         string[] columns7 = { "iD", "name", "posID", "dialogue" };
         string[] types7 = { "INTEGER", "BLOB", "BLOB", "BLOB"};
         dbManager.CreateTable("DialoguesRepetition", columns7, types7);
+
+        string[] columns8 = { "iD", "name", "posID", "dialogue" };
+        string[] types8 = { "INTEGER", "BLOB", "BLOB", "BLOB"};
+        dbManager.CreateTable("Questions", columns8, types8);
+
+        string[] columns9 = { "iD", "name", "posID", "dialogue" };
+        string[] types9 = { "INTEGER", "BLOB", "BLOB", "BLOB"};
+        dbManager.CreateTable("Answers", columns9, types9);
     }
 
     public void deleteTables()
@@ -72,7 +80,8 @@ public class TestSQLite : MonoBehaviour
         dbManager.Droptable("PlayerData");
         dbManager.Droptable("Proof");
         dbManager.Droptable("SceneResume");
-
+        dbManager.Droptable("Questions");
+        dbManager.Droptable("Answers");
     }
 
     void resetTables()
@@ -207,6 +216,94 @@ public class TestSQLite : MonoBehaviour
         yPos = "-12";
         string[] pos = { xPos, yPos};
         dbManager.Insert("PlayerPos", pos);
+
+        //Initialisation des questions
+
+        iD = "1";
+        name = "Lycéen";
+        posID = "1";
+        string question = "Est-ce que le BUT c’est pareil que le lycée ? Ou bien, on apprend autre chose que du Python.";
+        string[] questionValues = { iD, name, posID, question};
+        dbManager.Insert("Questions", questionValues);
+
+        iD = "2";
+        name = "Lycéen";
+        posID = "1";
+        string question2 = "Après le BUT, dans quels secteurs d’activités peut-on travailler ?";
+        string[] questionValues2 = { iD, name, posID, question2};
+        dbManager.Insert("Questions", questionValues2);
+
+        iD = "3";
+        name = "Lycéen";
+        posID = "1";
+        string question3 = "Je vois qu’il y a beaucoup de possibilités après le BUT mais comment je vais savoir quel domaine je préfère ?";
+        string[] questionValues3 = { iD, name, posID, question3};
+        dbManager.Insert("Questions", questionValues3);
+
+        iD = "4";
+        name = "Lycéen";
+        posID = "1";
+        string question4 = "Comment se passe l’intégration des “première année” ?";
+        string[] questionValues4 = { iD, name, posID, question4};
+        dbManager.Insert("Questions", questionValues4);
+
+        iD = "5";
+        name = "Lycéen";
+        posID = "1";
+        string question5 = "Comment se déroulent les évaluations ?";
+        string[] questionValues5 = { iD, name, posID, question5};
+        dbManager.Insert("Questions", questionValues5);
+
+        iD = "6";
+        name = "Lycéen";
+        posID = "1";
+        string question6 = "J’ai entendu dire que l’anglais était indispensable dans l’informatique. Est-ce qu’on aura encore des cours de cette matière ?";
+        string[] questionValues6 = { iD, name, posID, question6};
+        dbManager.Insert("Questions", questionValues6);
+
+        //Initialisation des réponses
+
+        iD = "1";
+        name = "$|$|$";
+        posID = "1,1,1";
+        string answer = "Non, vous apprendrez d’autres langages informatiques tels que le C++ et le Java pour la création de jeux et de logiciels|le SQL pour naviguer dans une base de données et le PHP, l’HTML, le CSS et le Javascript qui permettent la programmation de sites webs.|Mais je vous garantis que les bases du Python vous seront utiles durant votre apprentissage.";
+        string[] answerValues = { iD, name, posID, answer};
+        dbManager.Insert("Answers", answerValues);
+
+        iD = "2";
+        name = "$|$";
+        posID = "1,1";
+        string answer2 = "Les débouchés sont variés. Voici quelques exemples des métiers qu'ont exercés nos anciens élèves :|développeur web, ingénieur en informatique, analyste de données, administrateur de bases de données, concepteur de jeux vidéo, et designer d'interfaces utilisateur.";
+        string[] answerValues2 = { iD, name, posID, answer2};
+        dbManager.Insert("Answers", answerValues2);
+
+        iD = "3";
+        name = "$|$";
+        posID = "1,1";
+        string answer3 = "Dès la deuxième année, vous aurez le choix entre deux parcours : La cybersécurité ou le développement d’applications.|De plus, pour vous aider à choisir ce domaine, vous pourrez soit faire un stage à la fin de la deuxième année, soit une alternance dès le début.";
+        string[] answerValues3 = { iD, name, posID, answer3};
+        dbManager.Insert("Answers", answerValues3);
+
+        iD = "4";
+        name = "$|$";
+        posID = "1,1";
+        string answer4 = "Dès le début de votre année, le bureau des étudiants sera là pour vous. Vous aurez accès à une salle où vous pourrez discuter, jouer ou grignoter.|De plus, le BDE organise de nombreuses activités pour favoriser les rencontres entre étudiants.";
+        string[] answerValues4 = { iD, name, posID, answer4};
+        dbManager.Insert("Answers", answerValues4);
+
+        iD = "5";
+        name = "$|$|$";
+        posID = "1,1,1";
+        string answer5 = "Pour vous évaluer, le BUT met en place un système de contrôle continu ainsi que des SAE|qui consistent en des travaux de groupe sur plusieurs semaines et vous permettront d’approfondir vos connaissances.|Vous pourrez par exemple créer un Pac-Man, développer un réseau social, concevoir un escape game ou encore réaliser un jeu vidéo en lien avec le BUT.";
+        string[] answerValues5 = { iD, name, posID, answer5};
+        dbManager.Insert("Answers", answerValues5);
+
+        iD = "6";
+        name = "$|$|$";
+        posID = "1,1,1";
+        string answer6 = "L’informatique représente environ 50% des enseignements. Vous aurez également des cours de mathématiques qui vous serviront par exemple en cryptographie|mais également de droit, de gestion et de management, utiles en fonction du métier que vous choisirez.|Et effectivement les cours d’anglais sont dispensés à raison de 2 heures par semaine mais orientés davantage vers l’oral plutôt que l’écrit.";
+        string[] answerValues6 = { iD, name, posID, answer6};
+        dbManager.Insert("Answers", answerValues6);
     }
     
     void OnDestroy()

@@ -36,8 +36,9 @@ public class PosSaver : MonoBehaviour
 
         if (getSceneName().Equals("MovingPhase"))
         {
-            // Charge la position du joueur au démarrage
-            LoadPlayerPosition(valluesConvertor, dbManager);
+            float[] vector2Pos = loadPlayerPos();  // Renommez la variable pour éviter la confusion
+            Vector3 newPos = new Vector3(vector2Pos[0], vector2Pos[1], 0f);  // Correction de la virgule
+            playerPos.position = newPos;
         }
     }
 
@@ -83,7 +84,6 @@ public class PosSaver : MonoBehaviour
     public void SaveScneToLoadWhenReturn(string scneneName)
     {
         dbManager.DeleteEverythingFromTable("SceneResume");
-        Debug.Log(scneneName);
         dbManager.InsertOneValue("SceneResume", scneneName);
     }
 
@@ -112,13 +112,11 @@ public class PosSaver : MonoBehaviour
         dbManager = new DBManager();
 
         dbManager.DeleteEverythingFromTable("PlayerPos");
-        
         string xPosStr = xPos.ToString();
         string yPosStr = yPos.ToString();
         string yPosChecked = ReplaceF(yPosStr);
         string xPosChecked = ReplaceF(xPosStr);
         string[] posToSave = { xPosChecked, yPosChecked};
-        //Assets\script\PosSaver.cs(134,39): error CS1503: Argument 1: cannot convert from 'float' to 'string'
         dbManager.Insert("PlayerPos", posToSave);
     }
 
@@ -132,7 +130,7 @@ public class PosSaver : MonoBehaviour
         foreach (List<object> row in resultX)
         {
             strXValue = valluesConvertor.convertRowToString(row);
-            strXValue = strXValue.Replace(" ", "");
+            strXValue = strXValue.Replace(",", ".");
             xValue = float.Parse(strXValue, CultureInfo.InvariantCulture);
         }
 
@@ -142,13 +140,12 @@ public class PosSaver : MonoBehaviour
         foreach (List<object> row in resultY)
         {
             strYValue = valluesConvertor.convertRowToString(row);
-            strYValue = strYValue.Replace(" ", "");
+            strYValue = strYValue.Replace(",", ".");
             yValue = float.Parse(strYValue, CultureInfo.InvariantCulture);
         }
-
         float yPosReturn = yValue/1000000;
         float xPosReturn = xValue/100000;
-        float[] posToReturn = {xPosReturn,yPosReturn};
+        float[] posToReturn = {xValue,yValue};
         return posToReturn;
     }
 }

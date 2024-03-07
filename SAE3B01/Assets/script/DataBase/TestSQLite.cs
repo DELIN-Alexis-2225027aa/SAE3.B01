@@ -22,7 +22,7 @@ public class TestSQLite : MonoBehaviour
     {
         dbManager = new DBManager();
 
-        deleteTables();
+        //deleteTables();
         createTables();
         resetTables();
         initTables();
@@ -32,8 +32,8 @@ public class TestSQLite : MonoBehaviour
     {
         dbManager = new DBManager();
 
-        string[] columns = { "iD", "name", "posID", "dialogue" };
-        string[] types = { "INTEGER", "BLOB", "BLOB", "BLOB" };
+        string[] columns = { "iD", "name", "posID", "dialogue", "isFirstTime" };
+        string[] types = { "INTEGER", "BLOB", "BLOB", "BLOB", "BLOB" };
         dbManager.CreateTable("Dialogues", columns, types);
 
         string[] columns2 = { "classroomName" };
@@ -92,7 +92,8 @@ public class TestSQLite : MonoBehaviour
         name = "MAKSSOUD|MAKSSOUD";
         posID = "1,2";
         string dialogue = "Bonjour $ ! Je suis ravi que tu te sois porté volontaire pour la JPO. Je compte sur toi pour convaincre un maximum de lycéens de venir dans notre établissement l’année prochaine.|J’ai quelques consignes à te donner mais elles sont sur mon bureau, rejoins moi plus tard.";
-        string[] values = { iD, name, posID, dialogue };
+        firstTime = "T";
+        string[] values = { iD, name, posID, dialogue, firstTime};
         dbManager.Insert("Dialogues", values);
 
         iD = "2";

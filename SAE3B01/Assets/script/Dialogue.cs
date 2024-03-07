@@ -287,7 +287,10 @@ public class Dialogue : MonoBehaviour
         {
             return "Mme ";
         }
-        else return "M. ";
+        else if(nameSprite[index].Equals("NEUVOT"))
+        {
+            return "M. ";
+        }else return "";
     
     }
     public int getIdByClassroomNumber(string numb)

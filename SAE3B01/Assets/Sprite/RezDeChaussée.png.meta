@@ -128,7 +128,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      "RezDeChauss\xE9e_0": -8836238763928161778
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 14232ddcf9c84ab4dac20691962c22a5
+guid: 5a545283b35ec374abf9323e97300231
 TextureImporter:
   internalIDToNameTable:
   - first:
@@ -101,10 +101,10 @@ TextureImporter:
       name: downIcon_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 200
-        height: 200
+        x: 15
+        y: 15
+        width: 482
+        height: 482
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,7 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable:
-      downIcon_0: -4479411907360459375
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

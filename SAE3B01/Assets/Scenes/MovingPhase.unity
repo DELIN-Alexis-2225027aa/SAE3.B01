@@ -9415,7 +9415,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cbbc8468be0d764c84f4d2e2076919f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneToLoad: 
+  playerPos: {fileID: 1178037273}
 --- !u!114 &1178037275
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -210,7 +210,6 @@ public class Dialogue : MonoBehaviour
         }
         else
         {
-            Debug.Log("1");
             zeroText();
         }
     }
@@ -247,7 +246,7 @@ public class Dialogue : MonoBehaviour
 
         foreach (List<object> row in resultat)
         {
-            dialogueToShow = valluesConvertor.ConvertrowToStringArray(row);
+            dialogueToShow = valluesConvertor.ConvertRowToStringArray(row);
         }
     }
 
@@ -258,7 +257,7 @@ public class Dialogue : MonoBehaviour
         foreach (List<object> row in resultat)
         {
             //string str = valluesConvertor.convertRowToString(row);
-            nameSprite = valluesConvertor.ConvertrowToStringArray(row);
+            nameSprite = valluesConvertor.ConvertRowToStringArray(row);
         }
     }
 
@@ -272,7 +271,6 @@ public class Dialogue : MonoBehaviour
             sprites = valluesConvertor.convertDBstringToIntArray(str);
         }
     }
-
 
     bool isIntro()
     {

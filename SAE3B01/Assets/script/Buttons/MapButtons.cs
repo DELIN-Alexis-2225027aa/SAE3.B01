@@ -9,7 +9,11 @@ using System.IO;
 /// </summary>
 public class MapButtons : MonoBehaviour
 {
-    string json;
+    DBManager dbManager;
+    ValluesConvertor valluesConvertor;
+
+    string strYValue;
+    float yPos;
 
     /// <summary>
     /// Chemin du fichier JSON pour les données du joueur.
@@ -28,7 +32,9 @@ public class MapButtons : MonoBehaviour
     /// </summary>
     void Start()
     {
-        filePath = Application.dataPath + "/SaveJson/playerData.json";
+        dbManager = new DBManager();
+        valluesConvertor = new ValluesConvertor();
+
         VerifyStartFloor();
     }
 
@@ -39,13 +45,11 @@ public class MapButtons : MonoBehaviour
     {
         if (File.Exists(filePath))
         {
-            string json = File.ReadAllText(filePath);
-            PlayerData loadedPlayerData = JsonUtility.FromJson<PlayerData>(json);
             // Trouver l'etage en fonction de la position y du joueur
-            if (loadedPlayerData.y > -50f)
+            if (yPos > -50f)
             {
                 floor = 1;
-            }else if (loadedPlayerData.y < -150f)
+            }else if (yPos < -150f)
             {
                 floor = 3;
             }
@@ -108,5 +112,19 @@ public class MapButtons : MonoBehaviour
     {
         Vector3 CrosshairPos = new Vector3(-45f, -0f, 0f);
         tr.position = CrosshairPos;
+    }
+
+    public void getPlayeYPos()
+    {
+        List<List<object>> resultY = dbManager.Select("PlayerPos", "yPos", "1");
+
+            
+        foreach (List<object> row in resultY)
+        {
+            strYValue = valluesConvertor.convertRowToString(row);
+            yPos = float.Parse(strYValue);
+        }
+
+
     }
 }

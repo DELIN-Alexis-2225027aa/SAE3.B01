@@ -9,9 +9,12 @@ using System.IO;
 /// </summary>
 public class TriggerTP : MonoBehaviour
 {
+    DBManager dbManager;
+    ValluesConvertor valluesConvertor;
+    PosSaver posSaver;
+    
     public float xTP;
     public float yTP;
-    public float zTP;
     public string colName;
     [SerializeField] private Collider2D myCollider;
 
@@ -22,7 +25,10 @@ public class TriggerTP : MonoBehaviour
     /// </summary>
     void Start()
     {
-        filePath = Application.dataPath + "/SaveJson/playerData.json";
+        posSaver = new PosSaver();
+        dbManager = new DBManager();
+        valluesConvertor = new ValluesConvertor();
+
         myCollider = GetComponent<Collider2D>();
     }
 
@@ -48,84 +54,72 @@ public class TriggerTP : MonoBehaviour
             {
                 xTP = -16.1f;
                 yTP = 0f;
-                zTP = 0f;
                 TPPlayer();
             }
             if (colName.Equals("002TPTrigger")) 
             {
                 xTP = -31.5f;
                 yTP = 0f;
-                zTP = 0f;
                 TPPlayer();
             }
             if (colName.Equals("009TPTrigger"))
             {
                 xTP = 19.6f;
                 yTP = 0f;
-                zTP = 0f;
                 TPPlayer();
             }
             if (colName.Equals("010TPTrigger")) 
             {
                 xTP = 36f;
                 yTP = 0f;
-                zTP = 0f;
                 TPPlayer();
             }
             if (colName.Equals("hallwayTPTrigger")) 
             {
                 xTP = -34f;
                 yTP = -1f;
-                zTP = 0f;
                 TPPlayer();
             }
             if (colName.Equals("104TPTrigger")) 
             {
                 xTP = -19.7f;
                 yTP = -100f;
-                zTP = 0f;
                 TPPlayer();
             }
             if (colName.Equals("109TPTrigger")) 
             {
                 xTP = 3.6f;
                 yTP = -100f;
-                zTP = 0f;
                 TPPlayer();
             }
             if (colName.Equals("110TPTrigger")) 
             {
                 xTP = 27.8f;
                 yTP = -100f;
-                zTP = 0f;
                 TPPlayer();
             }
             if (colName.Equals("hallway2ndFloorTPTrigger")) 
             {
                 xTP = 0f;
                 yTP = -100f;
-                zTP = 0f;
                 TPPlayer();
             }
             if (colName.Equals("BDETPTrigger"))
             {
                 xTP = -27.2f;
                 yTP = -200f;
-                zTP = 0f;
                 TPPlayer();
             }
             if (colName.Equals("208TPTrigger"))
             {
                 xTP = -3.8f;
                 yTP = -200f;
-                zTP = 0f;
                 TPPlayer();
             }
             if (colName.Equals("hallway3rdFloorTPTrigger"))
             {
                 xTP = 0f;
                 yTP = -200f;
-                zTP = 0f;
                 TPPlayer();
             }
         }
@@ -145,17 +139,7 @@ public class TriggerTP : MonoBehaviour
     /// </summary>
     void TPPlayer()
     {
-        PlayerData playerData = new PlayerData
-        {
-            x = xTP,
-            y = yTP,
-            z = zTP
-        };
-
-        // Convertir la classe en JSON et écrire dans le fichier
-        string updatedJson = JsonUtility.ToJson(playerData);
-        File.WriteAllText(filePath, updatedJson);
-
+        posSaver.savePlayerPos(xTP,yTP);
         SceneManager.LoadScene("MovingPhase");
     }
 }

@@ -148,6 +148,8 @@ public class ClassroomSpriteSetter : MonoBehaviour
                 interactiveObjectSprite = "Papier1";
                 break;
             case "109":
+                break;
+            case "102":
                 interactiveObjectSprite = "Papier2";
                 break;
             case "110":

@@ -28,7 +28,6 @@ public class MainMenuButton : MonoBehaviour
     private void Start()
     {
         // Configuration des positions et du dialogue avant de charger la scène
-        posSetup();
         dialogueSetup();
         classRoomSetup();
     }
@@ -39,7 +38,6 @@ public class MainMenuButton : MonoBehaviour
     public void onPlayButtonPressed()
     {
         playerInfoDispayScript.showOnUI();
-        //SceneManager.LoadScene("IntroMmeMakssoud");
     }
 
     /// <summary>
@@ -48,23 +46,6 @@ public class MainMenuButton : MonoBehaviour
     public void onQuitButtonPressed()
     {
         Application.Quit();
-    }
-
-    /// <summary>
-    /// Configure les positions initiales du joueur et enregistre les données dans un fichier JSON.
-    /// </summary>
-    public void posSetup()
-    {
-        filePath = Application.dataPath + "/SaveJson/playerData.json";
-        PlayerData playerData = new PlayerData
-        {
-            x = -33.7f,
-            y = -12f,
-            z = 0f
-        };
-
-        string updatedJson = JsonUtility.ToJson(playerData);
-        File.WriteAllText(filePath, updatedJson);
     }
 
     /// <summary>

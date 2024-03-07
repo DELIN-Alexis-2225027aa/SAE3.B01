@@ -6,7 +6,8 @@ using System.Linq;
 public class ValluesConvertor
 {
     private DBManager dbManager;
-
+    
+    int resultInt;
     string resultString;
     public string name;
 
@@ -21,7 +22,7 @@ public class ValluesConvertor
         // Constructor logic, if needed
     }
 
-    public string[] ConvertrowToStringArray(List<object> row)
+    public string[] ConvertRowToStringArray(List<object> row)
     {
         string str = convertRowToString(row);
         if (str.Any(char.IsLetter))

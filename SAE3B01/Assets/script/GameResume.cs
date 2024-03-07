@@ -6,28 +6,22 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.IO;
 
-public class LastMainScene
-{
-    public string lastScene;
-}
+
 
 /// <summary>
 /// Gère la reprise du jeu en chargeant la scènne "MovingPhase" lorsque la touche ﾉchap est pressée.
 /// </summary>
 public class GameResume : MonoBehaviour
 {
+    DBManager dbManager;
+    ValluesConvertor valluesConvertor;
     public PosSaver posaver;
     public string sceneToLoad;
-    public string filePath;
+    string str;
 
     void Start()
     {
-        filePath = Application.dataPath + "/SaveJson/sceneToLoad.json";
-        //loadSceneToLoad();
-        if (mapReturner().Equals("Classroom"))
-        {
-            posaver.SaveScneToLoadWhenReturn();
-        }
+
     }
 
     /// <summary>
@@ -35,17 +29,18 @@ public class GameResume : MonoBehaviour
     /// </summary>
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape))   
+        {
+            getSceneToLoadName();
             if (mapReturner().Equals("Classroom"))
             {
+                Debug.Log("1");
                 SceneManager.LoadScene("Proof");
             }
             else
             {
                 SceneManager.LoadScene(sceneToLoad);
             }
-        {
-            SceneManager.LoadScene(sceneToLoad);
         }
         if (Input.GetKeyDown("m"))
         {
@@ -72,14 +67,34 @@ public class GameResume : MonoBehaviour
         SceneManager.LoadScene("MovingPhase");
     }
 
-    public void loadSceneToLoad()
+    public string loadSceneToLoad()
     {
-        if (File.Exists(filePath))
+        List<List<object>> resultat = dbManager.Select("SceneResume", "sceneToResume", "1" );
+        
+        foreach (List<object> row in resultat)
         {
-            string json = File.ReadAllText(filePath);
-            LastMainScene lastMainScene = JsonUtility.FromJson<LastMainScene>(json);
-            sceneToLoad = lastMainScene.lastScene;
+            str = valluesConvertor.convertRowToString(row);
         }
+        return str;
+    }
 
+    public string getSceneName()
+    {
+        Scene currentScene = SceneManager.GetActiveScene();
+
+        return currentScene.name;
+    }
+
+    public void getSceneToLoadName(){
+
+        dbManager = new DBManager();
+        valluesConvertor = new ValluesConvertor();
+        List<List<object>> resultX = dbManager.Select("SceneResume", "sceneToResume", "1");
+
+            
+        foreach (List<object> row in resultX)
+        {
+            sceneToLoad = valluesConvertor.convertRowToString(row);
+        }
     }
 }

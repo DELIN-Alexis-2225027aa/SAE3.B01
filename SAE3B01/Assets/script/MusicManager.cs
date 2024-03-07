@@ -62,4 +62,9 @@ public class MusicManager : MonoBehaviour
             musicSource.Stop();
         }
     }
+    public void DestroyMusicManager()
+    {
+        Destroy(gameObject);
+    }
+
 }

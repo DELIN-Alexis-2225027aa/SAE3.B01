@@ -22,6 +22,7 @@ public class ClassroomSpriteSetter : MonoBehaviour
     [SerializeField] RectTransform returnButtonRect;
     [SerializeField] Transform isDialogueFinished;
     [SerializeField] RectTransform interactiveObjectPos;
+    [SerializeField] RectTransform leo;
 
 
     string json;
@@ -33,6 +34,9 @@ public class ClassroomSpriteSetter : MonoBehaviour
     float xSize;
     float ySize;
 
+    int randomNuber;
+    
+    Vector3 leoPos;
     Vector3 dialogueButtonRectPos;
     Vector3 nameDialogueRectPos;
     Vector3 dialogueRectPos;
@@ -50,8 +54,8 @@ public class ClassroomSpriteSetter : MonoBehaviour
         saveDialogueObjectPos();
         LoadClassroomSprites();
         SetupInteractibleObject();
-        loadInteractiveObjectSprite();
         removeDialogueObjectFromUI();
+        loadInteractiveObjectSprite();
         resizeInteractiveObjectByNameOfTheClassroom();
         PosChecker = new Vector3(0f, 0f, 0f);
         posOutOfUI = new Vector3(1000f, 1000f, 0f);
@@ -152,6 +156,9 @@ public class ClassroomSpriteSetter : MonoBehaviour
             case "002":
                 interactiveObjectSprite = "NEUVOT1";
                 break;
+            case "004":
+                easter();
+                break;
             case "010":
                 interactiveObjectSprite = "Papier1";
                 break;
@@ -188,6 +195,7 @@ public class ClassroomSpriteSetter : MonoBehaviour
 
     void saveDialogueObjectPos()
     {
+        leoPos = leo.localPosition; 
         dialogueButtonRectPos = dialogueButtonRect.localPosition;
         nameDialogueRectPos = nameDialogueRect.localPosition;
         dialogueRectPos = dialogueRect.localPosition;
@@ -205,6 +213,18 @@ public class ClassroomSpriteSetter : MonoBehaviour
         caracterSpriteRect.localPosition = posOutOfUI;
         returnButtonRect.localPosition = returnButtonRectPos;
         dialogueButtonRect.localPosition = posOutOfUI;
+        leo.localPosition = posOutOfUI;
+        
+    }
+
+    public void easter()
+    {
+        randomNuber = Random.Range(1,11);
+        if(randomNuber == 1)
+        {
+            leo.localPosition = leoPos;
+        }
+
     }
 
     void putBackDialogueObjectToUI()

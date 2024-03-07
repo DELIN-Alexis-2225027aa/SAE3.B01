@@ -26,5 +26,17 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/IntroVideo.unity
     guid: c5d3cbb8cf2d38d45a87048182b85518
+  - enabled: 1
+    path: Assets/Scenes/Help.unity
+    guid: 41610456417286d4e800051312ecccb6
+  - enabled: 1
+    path: Assets/Scenes/Parameters.unity
+    guid: 794ab01a6e3df654298d0b534e961e84
+  - enabled: 1
+    path: Assets/Scenes/HelpMainMenu.unity
+    guid: 19419f0315953c943aa25ddd42eb8560
+  - enabled: 1
+    path: Assets/Scenes/ParametersMainMenu.unity
+    guid: e38f6ba00f434c5408e990c45f20bd8a
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0

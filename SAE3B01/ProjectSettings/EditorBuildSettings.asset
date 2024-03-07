@@ -6,37 +6,37 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/MainMenu.unity
+    path: Assets/Scenes/MainMenu/MainMenu.unity
     guid: 3c3fcc930d41f514d932623c6449c467
   - enabled: 1
     path: Assets/Scenes/Classroom.unity
     guid: 2ca1c23363341e34e98e6e5532dbd083
   - enabled: 1
-    path: Assets/Scenes/IntroMmeMakssoud.unity
+    path: Assets/Scenes/Introduction/IntroMmeMakssoud.unity
     guid: e8f8e4db4d225bf45a80ef3f7539069f
   - enabled: 1
-    path: Assets/Scenes/Map.unity
+    path: Assets/Scenes/Inventaire/Map.unity
     guid: bfdcb50769b0d1549b8705485d5fd64a
   - enabled: 1
     path: Assets/Scenes/MovingPhase.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
-    path: Assets/Scenes/Proof.unity
+    path: Assets/Scenes/Inventaire/Proof.unity
     guid: 5c5bd31eee62c644e8c24fdf938612b1
   - enabled: 1
-    path: Assets/Scenes/IntroVideo.unity
+    path: Assets/Scenes/Introduction/IntroVideo.unity
     guid: c5d3cbb8cf2d38d45a87048182b85518
   - enabled: 1
-    path: Assets/Scenes/Help.unity
+    path: Assets/Scenes/Inventaire/Help.unity
     guid: 41610456417286d4e800051312ecccb6
   - enabled: 1
-    path: Assets/Scenes/Parameters.unity
+    path: Assets/Scenes/Inventaire/Parameters.unity
     guid: 794ab01a6e3df654298d0b534e961e84
   - enabled: 1
-    path: Assets/Scenes/HelpMainMenu.unity
+    path: Assets/Scenes/MainMenu/HelpMainMenu.unity
     guid: 19419f0315953c943aa25ddd42eb8560
   - enabled: 1
-    path: Assets/Scenes/ParametersMainMenu.unity
+    path: Assets/Scenes/MainMenu/ParametersMainMenu.unity
     guid: e38f6ba00f434c5408e990c45f20bd8a
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0

@@ -306,7 +306,7 @@ public class Dialogue : MonoBehaviour
             case "010":
                 id = 4;
                 break;
-            case "102":
+            case "109":
                 id = 5;
                 break;
             case "110":

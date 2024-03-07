@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: de6c94164d04b3749b266695cfdd47bc
+guid: c678aacf86b70464b8ebd77cd94b6931
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8658292870564267671
-    second: 2emeEtage_0
+      213: 2868674670803732655
+    second: 2emeEtage2_0
   externalObjects: {}
   serializedVersion: 12
   mipmaps:
@@ -98,22 +98,22 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: 2emeEtage_0
+      name: 2emeEtage2_0
       rect:
         serializedVersion: 2
-        x: 43
-        y: 23
-        width: 5150
-        height: 2110
+        x: 129
+        y: 47
+        width: 10243
+        height: 4221
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 796c74ffd7f682870800000000000000
-      internalID: 8658292870564267671
+      spriteID: fa8ca690a649fc720800000000000000
+      internalID: 2868674670803732655
       vertices: []
       indices: 
       edges: []
@@ -121,7 +121,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: a0b8f9f89ba794144aec52b3606fbf16
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -129,7 +129,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      2emeEtage_0: 8658292870564267671
+      2emeEtage2_0: 2868674670803732655
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

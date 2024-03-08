@@ -6,20 +6,16 @@ using UnityEngine.UI;
 using System.IO;
 using System.Linq;
 
+
+
 /// <summary>
 /// Représente la sélection d'un ensemble de dialogues par son répertoire.
 /// </summary>
 public class DialogueSelector
 {
-    /// <summary>
-    /// Le répertoire du dialogue.
-    /// </summary>
     public string repertory;
 }
 
-/// <summary>
-/// Gère les dialogues et leurs interactions.
-/// </summary>
 public class Dialogue : MonoBehaviour
 {
     private InventoryManager inventoryManager;
@@ -56,7 +52,6 @@ public class Dialogue : MonoBehaviour
     Vector3 inPos;
     [SerializeField] ClassroomSpriteSetter classroomSpriteSetter;
 
-    /// <summary>
     /// Méthode appelée au démarrage.
     /// </summary>
     void Start()
@@ -89,16 +84,12 @@ public class Dialogue : MonoBehaviour
     outPos = new Vector3(1000f, 1000f, 0f);
     inPos = new Vector3(0f, 0f, 0f);
 }
-
-    /// <summary>
     /// Méthode appelée à chaque frame fixe.
     /// </summary>
     void FixedUpdate()
     {
         wordSpeed = 0.02f;
     }
-
-    /// <summary>
     /// Méthode appelée à chaque frame.
     /// </summary>
     void Update()
@@ -134,7 +125,6 @@ public class Dialogue : MonoBehaviour
         }
     }
 
-    /// <summary>
     /// Réinitialise le texte du dialogue.
     /// </summary>
     public void zeroText()
@@ -156,7 +146,6 @@ public class Dialogue : MonoBehaviour
         }
     }
 
-    /// <summary>
     /// Effectue l'effet de dactylographie pour afficher le dialogue lettre par lettre.
     /// </summary>
     /// <returns>Coroutine.</returns>
@@ -172,9 +161,6 @@ public class Dialogue : MonoBehaviour
         newDialogueCheck = true;
     }
 
-    /// <summary>
-    /// Charge le dialogue.
-    /// </summary>
     public void loadDialogue()
     {
         if (isDialogueLoaded)
@@ -197,8 +183,6 @@ public class Dialogue : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Démarre le dialogue.
     /// </summary>
     void startDialogue()
     {
@@ -213,7 +197,6 @@ public class Dialogue : MonoBehaviour
 
     /// <summary>
     /// Passe à la ligne suivante du dialogue.
-    /// </summary>
     public void nextLine()
     {
         if (isDialogueFinished != null)
@@ -235,11 +218,6 @@ public class Dialogue : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Change l'image affichée.
-    /// </summary>
-    /// <param name="name">Nom du sprite.</param>
-    /// <param name="poseID">ID de la pose.</param>
     public void changImg(string name, int poseID)
     {
         string spriteName = $"{name}{poseID}.png";
@@ -255,11 +233,6 @@ public class Dialogue : MonoBehaviour
     }
 
 
-    /// <summary>
-    /// Récupère les informations du dialogue en fonction de son ID.
-    /// </summary>
-    /// <param name="dbManager">Gestionnaire de base de données.</param>
-    /// <param name="id">ID du dialogue.</param>
     public void getDialogueInfoByID(DBManager dbManager, int id)
     {
         int checkId = id;
@@ -283,10 +256,6 @@ public class Dialogue : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Récupère le texte du dialogue en fonction de son ID.
-    /// </summary>
-    /// <param name="ID">ID du dialogue.</param>
     public void getDialogueByID(string ID)
     {
         
@@ -297,11 +266,7 @@ public class Dialogue : MonoBehaviour
             dialogueToShow = valluesConvertor.ConvertRowToStringArray(row);
         }
     }
-
-    /// <summary>
-    /// Récupère le nom du personnage en fonction de son ID.
-    /// </summary>
-    /// <param name="ID">ID du dialogue.</param>
+    
     public void getNameByID(string ID)
     {
         List<List<object>> resultat = dbManager.Select("Dialogues", "name", "ID = " + ID);
@@ -312,10 +277,6 @@ public class Dialogue : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Récupère si le dialogue est la première fois en fonction de son ID.
-    /// </summary>
-    /// <param name="ID">ID du dialogue.</param>
     public void getIsFirstTimeByID(string ID)
     {
         List<List<object>> resultat = dbManager.Select("Dialogues", "isFirstTime", "ID = " + ID);
@@ -326,10 +287,6 @@ public class Dialogue : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Récupère les IDs de position du personnage en fonction de son ID.
-    /// </summary>
-    /// <param name="ID">ID du dialogue.</param>
     public void getPosIDsByID(string ID)
     {
         List<List<object>> resultat = dbManager.Select("Dialogues", "posID", "ID = " + ID);
@@ -341,10 +298,6 @@ public class Dialogue : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Vérifie si c'est une introduction.
-    /// </summary>
-    /// <returns>True si c'est une introduction, sinon false.</returns>
     bool isIntro()
     {
         if (isIntroObject != null)
@@ -354,10 +307,6 @@ public class Dialogue : MonoBehaviour
         return false;
     }
 
-    /// <summary>
-    /// Retourne "Mme" ou "M." en fonction du nom du personnage.
-    /// </summary>
-    /// <returns>"Mme" ou "M."</returns>
     public string mmeOrM()
     {
         if (nameSprite[index].Equals("MAKSSOUD"))
@@ -370,12 +319,6 @@ public class Dialogue : MonoBehaviour
         }else return "";
     
     }
-
-    /// <summary>
-    /// Récupère l'ID du dialogue en fonction du numéro de salle de classe.
-    /// </summary>
-    /// <param name="numb">Numéro de salle de classe.</param>
-    /// <returns>ID du dialogue.</returns>
     public int getIdByClassroomNumber(string numb)
     {
         switch(numb)
@@ -404,19 +347,13 @@ public class Dialogue : MonoBehaviour
         }
             return id;
     }
+    
 
-    /// <summary>
-    /// Met à jour la base de données du dialogue.
-    /// </summary>
-    /// <param name="dbManager">Gestionnaire de base de données.</param>
     public void UpdateDialogueDB(DBManager dbManager)
     {
         dbManager.UpdateTuple(dbManager, "Dialogues", "isFirstTime", "F", "ID" , id.ToString());
     }
 
-    /// <summary>
-    /// Fonction spéciale "zebiFonctionne".
-    /// </summary>
     public void zebiFonctionne()
     {
         spriteName = classroomSpriteSetter.getClassroomName(dbManager, valluesConvertor);
@@ -424,21 +361,12 @@ public class Dialogue : MonoBehaviour
         ChangeProofState(proofID);
     }
 
-    /// <summary>
-    /// Change l'état de la preuve.
-    /// </summary>
-    /// <param name="ID">ID de la preuve.</param>
     public void ChangeProofState(int ID)
     {
         dbManager.UpdateTuple(dbManager, "Proof", "isCollected", "T", "ID" , ID.ToString());
     }
 
-    /// <summary>
-    /// Récupère l'état de la preuve en fonction de son ID.
-    /// </summary>
-    /// <param name="ID">ID de la preuve.</param>
-    /// <returns>État de la preuve.</returns>
-    public string GetProofByID(string ID)
+     public string GetProofByID(string ID)
     {
         List<List<object>> resultat = dbManager.Select("Proof", "isCollected", "ID = " + ID);
 
@@ -449,11 +377,7 @@ public class Dialogue : MonoBehaviour
         return isProofCollected;
     }
 
-    /// <summary>
-    /// Récupère l'ID de la preuve en fonction du numéro de salle de classe.
-    /// </summary>
-    /// <param name="numb">Numéro de salle de classe.</param>
-    /// <returns>ID de la preuve.</returns>
+
     public int getIdByClassroomNumberForProof(string numb)
     {
         switch(numb)

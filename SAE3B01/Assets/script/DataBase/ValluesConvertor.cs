@@ -25,6 +25,7 @@ public class ValluesConvertor
     public string[] ConvertRowToStringArray(List<object> row)
     {
         string str = convertRowToString(row);
+   
         if (str.Any(char.IsLetter))
         {
             if (checkIfStringNeedToSplit(str))

@@ -6,6 +6,9 @@ using System.IO;
 using System.Linq;
 using TMPro;
 
+/// <summary>
+/// Gère la gestion et l'affichage de l'inventaire du joueur.
+/// </summary>
 public class InventoryManager : MonoBehaviour
 {
     ClassroomSpriteSetter classroomSpriteSetter;
@@ -28,26 +31,33 @@ public class InventoryManager : MonoBehaviour
     private string isProofCollected;
     private string spriteName;
 
-
     void Start()
     {
+        // Initialisation des positions pour l'affichage des descriptions
         descriptionRectPos = descriptionRect.localPosition;
         posOutOfUI = new Vector3(1000f, 1000f, 0f);
         descriptionRect.localPosition = posOutOfUI;
 
+        // Initialisation des gestionnaires
         dbManager = new DBManager();
         valluesConvertor = new ValluesConvertor();
 
+        // Initialisation des tableaux de preuves
         proofsID = new string[] { ".", ".", ".", ".", ".", "." };
         proofsName = new string[] { ".", ".", ".", ".", ".", "." };
         proofsDescription = new string[] { ".", ".", ".", ".", ".", "." };
         proofsIsCollected = new string[] { ".", ".", ".", ".", ".", "." };
         inventoryManagement = new string[] { ".", ".", ".", ".", ".", "." };
 
-        getInfo(valluesConvertor, dbManager);  
+        // Récupération des informations des preuves depuis la base de données
+        getInfo(valluesConvertor, dbManager);
+        // Vérification et application des images dans l'inventaire
         CheckAndApplyImages();
     }
 
+    /// <summary>
+    /// Récupère les informations des preuves depuis la base de données.
+    /// </summary>
     public void getInfo(ValluesConvertor valluesConvertor, DBManager dbManager)
     {
         for (int i = 0; i < 6; ++i)
@@ -64,6 +74,7 @@ public class InventoryManager : MonoBehaviour
                 List<object> descriptionRow = descriptionResult[i];
                 List<object> isCollectedRow = isCollectedResult[i];
 
+                // Vérifie si la preuve n'a pas déjà été ajoutée
                 if (!isThereAlreadyThisValue(valluesConvertor.convertRowToString(idRow)))
                 {
                     proofsID[i] = valluesConvertor.convertRowToString(idRow);
@@ -71,13 +82,15 @@ public class InventoryManager : MonoBehaviour
                     proofsDescription[i] = valluesConvertor.convertRowToString(descriptionRow);
                     proofsIsCollected[i] = valluesConvertor.convertRowToString(isCollectedRow);
                 }
-
             }
         }
-    }   
+    }
 
-
-    public bool isThereAlreadyThisValue(string str){
+    /// <summary>
+    /// Vérifie si une valeur existe déjà dans le tableau.
+    /// </summary>
+    public bool isThereAlreadyThisValue(string str)
+    {
         bool result = false;
         for (int i = 0; i < 6; ++i)
         {
@@ -90,10 +103,12 @@ public class InventoryManager : MonoBehaviour
         return result;
     }
 
-
+    /// <summary>
+    /// Vérifie et applique les images pour les zones d'objets dans l'inventaire.
+    /// </summary>
     public void CheckAndApplyImages()
     {
-        string[] proofNameForFile = {"","","","","",""};
+        string[] proofNameForFile = { "", "", "", "", "", "" };
         for (int i = 0; i < proofsIsCollected.Length; i++)
         {
             index = i;
@@ -104,7 +119,11 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
-    public string putProofNameOnRightFormat (string str){
+    /// <summary>
+    /// Met le nom de la preuve dans le bon format pour le fichier image.
+    /// </summary>
+    public string putProofNameOnRightFormat(string str)
+    {
         string strFirstModification = str.Replace(' ', '_');
         string strSecondModification = strFirstModification.Replace('é', 'e');
         string strThirdModification = strSecondModification.Replace('è', 'e');
@@ -112,7 +131,10 @@ public class InventoryManager : MonoBehaviour
         return strToReturn;
     }
 
-    private void CheckAndApplyImageForItemArea(GameObject itemArea, string value, string imageName, string proofName , string id)
+    /// <summary>
+    /// Vérifie et applique l'image pour la zone d'objet spécifiée.
+    /// </summary>
+    private void CheckAndApplyImageForItemArea(GameObject itemArea, string value, string imageName, string proofName, string id)
     {
         if (itemArea != null && value.Equals("T"))
         {
@@ -133,18 +155,31 @@ public class InventoryManager : MonoBehaviour
             }
         }
     }
+
+    /// <summary>
+    /// Applique le texte pour la zone d'objet spécifiée.
+    /// </summary>
     private void ApplyText(GameObject itemArea, string name)
     {
         TextMeshProUGUI txt = itemArea.transform.Find("name").GetComponent<TextMeshProUGUI>();
         txt.text = name;
     }
 
-    public void storeItemInClass(string id){
-        if(inventoryManagement[index].Equals(".")){
+    /// <summary>
+    /// Stocke l'objet dans la classe d'inventaire.
+    /// </summary>
+    public void storeItemInClass(string id)
+    {
+        if (inventoryManagement[index].Equals("."))
+        {
             inventoryManagement[index] = id;
-        }else Debug.LogError(inventoryManagement[index]);
+        }
+        else Debug.LogError(inventoryManagement[index]);
     }
 
+    /// <summary>
+    /// Gestion du clic sur les boutons de description.
+    /// </summary>
     public void ButtonClick()
     {
         Button clickedButton = UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject.GetComponent<Button>();
@@ -177,16 +212,14 @@ public class InventoryManager : MonoBehaviour
                 string spriteName = $"{imgName}.png";
                 string imagePath = Path.Combine(Application.dataPath, "Images/Descriptions", spriteName);
                 if (File.Exists(imagePath))
-                    {
-                        byte[] fileData = File.ReadAllBytes(imagePath);
-                        Texture2D texture = new Texture2D(2, 2);
-                        texture.LoadImage(fileData);
-                        Sprite sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f));
-                        descriptionImg.sprite = sprite;
-                    }
+                {
+                    byte[] fileData = File.ReadAllBytes(imagePath);
+                    Texture2D texture = new Texture2D(2, 2);
+                    texture.LoadImage(fileData);
+                    Sprite sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f));
+                    descriptionImg.sprite = sprite;
+                }
             }
         }
-        
     }
-
 }

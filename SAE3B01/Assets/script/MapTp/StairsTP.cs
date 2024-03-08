@@ -12,14 +12,15 @@ public class StairsTP : MonoBehaviour
     public string colName;
 
     /// <summary>
-    /// Méthode appelée lorsque le téléorteur entre en collision avec un objet.
+    /// Méthode appelée lorsque le téléporteur entre en collision avec un objet.
     /// </summary>
-    /// <param /name = //collision> Collider de l'objet en collision.</param>
+    /// <param name="collision">Collider de l'objet en collision.</param>
     private void OnTriggerEnter2D(Collider2D collision)
     {
         // Détermine la destination du téléporteur en fonction du nom de l'objet en collision
         colName = collision.gameObject.name;
 
+        // Téléporte le joueur en fonction de la destination déterminée
         if (colName.Equals("LeftStairs1stFloor"))
         {
             x = -41.7f;
@@ -71,7 +72,7 @@ public class StairsTP : MonoBehaviour
     }
 
     /// <summary>
-    /// Téléporte le joueur ・la position spécifiée.
+    /// Téléporte le joueur à la position spécifiée.
     /// </summary>
     private void TPPlayer()
     {

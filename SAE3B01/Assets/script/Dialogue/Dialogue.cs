@@ -299,10 +299,10 @@ public class Dialogue : MonoBehaviour
     {
         switch(numb)
         {
-            case "BDE":
+            case "Bde":
                 id = 7;
                 break;
-            case "MAK":
+            case "Mak":
                 id = 2;
                 break;
             case "002":

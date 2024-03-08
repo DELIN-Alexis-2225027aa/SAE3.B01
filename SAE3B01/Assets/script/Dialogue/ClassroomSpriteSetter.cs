@@ -98,14 +98,14 @@ public class ClassroomSpriteSetter : MonoBehaviour
                 x = 1000f;
                 y = 1000f;
                 break;
-            case "MAK":
+            case "Mak":
                 x = Screen.width / 3;
                 y = -Screen.height / 5;
                 width = 320f;
                 height = 400f;
                 break;
-            case "BDE":
-                x = Screen.width / 100;
+            case "Bde":
+                x = Screen.width / 10;
                 y = Screen.height / 5;
                 width = 320f;
                 height = 400f;
@@ -135,6 +135,10 @@ public class ClassroomSpriteSetter : MonoBehaviour
                 height = 400f;
                 break;
             case "208":
+                x = Screen.width / 3;
+                y = -Screen.height / 5;
+                width = 320f;
+                height = 400f;
                 break;
         }
 
@@ -152,11 +156,11 @@ public class ClassroomSpriteSetter : MonoBehaviour
         string interactiveObjectSprite = null;
         switch (strClassroomName)
         {
-            case "BDE":
+            case "Bde":
                 interactiveObjectSprite = "Myke1";
                 break;
-            case "MAK":
-                interactiveObjectSprite = "Papier1";
+            case "Mak":
+                interactiveObjectSprite = "MAKSSOUD1";
                 break;
             case "002":
                 interactiveObjectSprite = "NEUVOT1";
@@ -168,8 +172,6 @@ public class ClassroomSpriteSetter : MonoBehaviour
                 interactiveObjectSprite = "Papier1";
                 break;
             case "109":
-                break;
-            case "102":
                 interactiveObjectSprite = "Papier2";
                 break;
             case "110":
@@ -266,13 +268,13 @@ public class ClassroomSpriteSetter : MonoBehaviour
     {
         switch(strClassroomName)
         {
-            case "MAK":
+            case "Mak":
                 xSize = 2;
                 ySize = 2;
                 break;
-            case "BDE":
-                xSize = 2;
-                ySize = 2;
+            case "Bde":
+                xSize = 1;
+                ySize = 1;
                 break;
             case "002":
                 xSize = 2;
@@ -291,6 +293,8 @@ public class ClassroomSpriteSetter : MonoBehaviour
                 ySize = 2;
                 break;
             case "208":
+                xSize = 2;
+                ySize = 2;
                 break;
         }
 

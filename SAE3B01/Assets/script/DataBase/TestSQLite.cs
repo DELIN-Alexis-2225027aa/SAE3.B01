@@ -161,7 +161,7 @@ public class TestSQLite : MonoBehaviour
 
         iD = "8";
         name = "Parrain|$|Parrain|.";
-        posID = "1,1,1,1";
+        posID = "2,1,3,1";
         string dialogue8 = "Salut le filleul ! Toi, t’as encore besoin d’un conseil de ton parrain préféré !|Eh ouais, j’voudrais des infos concernant les stages et l’alternance.|Ah oui, la cheffe de dep m’avait dit que tu en aurais besoin ! Tiens, je t’ai préparé ça.| Document stage et alternance obtenu";
         firstTime = "T";
         string[] values8 = { iD, name, posID, dialogue8, firstTime };

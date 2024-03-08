@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 000590597ea303f418ce0cfb1bec3ad0
+guid: f5cf14791b464f447a6c5ed5e8b61bc6
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1401865098282566373
-    second: Myke3_0
+      213: -8437055410384246151
+    second: Parrain3_0
   externalObjects: {}
   serializedVersion: 12
   mipmaps:
@@ -98,13 +98,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Myke3_0
+      name: Parrain3_0
       rect:
         serializedVersion: 2
-        x: 137
-        y: 19
-        width: 130
-        height: 428
+        x: 0
+        y: 0
+        width: 446
+        height: 536
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -112,8 +112,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5e2862621ec647310800000000000000
-      internalID: 1401865098282566373
+      spriteID: 97a62c14ece89ea80800000000000000
+      internalID: -8437055410384246151
       vertices: []
       indices: 
       edges: []
@@ -128,8 +128,7 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable:
-      Myke3_0: 1401865098282566373
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

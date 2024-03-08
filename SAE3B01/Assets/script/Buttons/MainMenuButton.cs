@@ -27,9 +27,7 @@ public class MainMenuButton : MonoBehaviour
 
     private void Start()
     {
-        // Configuration des positions et du dialogue avant de charger la scène
-        dialogueSetup();
-        classRoomSetup();
+
     }
 
     /// <summary>
@@ -66,33 +64,6 @@ public class MainMenuButton : MonoBehaviour
     /// <summary>
     /// Configure le gestionnaire de dialogue et enregistre les données dans un fichier JSON.
     /// </summary>
-    public void dialogueSetup()
-    {
-        filePath = Application.dataPath + "/SaveJson/dialogueManager.json";
-        DialogueSelector dialogueSelector = new DialogueSelector
-        {
-            repertory = "MakssoudIntro"
-        };
-
-        string updatedJson = JsonUtility.ToJson(dialogueSelector);
-
-        // écriture du fichier JSON dans le chemin splifié・
-        File.WriteAllText(filePath, updatedJson);
-    }
-
-    public void classRoomSetup()
-    {
-        filePath = Application.dataPath + "/SaveJson/classroom.json";
-        Classroom classroom = new Classroom
-        {
-            classroomName = "000"
-        };
-
-        string updatedJson = JsonUtility.ToJson(classroom);
-
-        // écriture du fichier JSON dans le chemin spécifique・
-        File.WriteAllText(filePath, updatedJson);
-    }
 
     public void eraseDB()
     {

@@ -59,6 +59,7 @@ public class ClassroomSpriteSetter : MonoBehaviour
         resizeInteractiveObjectByNameOfTheClassroom();
         PosChecker = new Vector3(0f, 0f, 0f);
         posOutOfUI = new Vector3(1000f, 1000f, 0f);
+        putBackDialogueObjectToUI();
     }
     void Update()
     {
@@ -240,13 +241,7 @@ public class ClassroomSpriteSetter : MonoBehaviour
 
     public void button()
     {
-
-        if (nameDialogueRectPos != nameDialogueRect.localPosition)
-        //Vérifie si les objets sont positioné en mode "dialogue"
-        {
-            putBackDialogueObjectToUI();
-        }
-
+        putBackDialogueObjectToUI();
     }
 
     public string getClassroomName(DBManager dbManager, ValluesConvertor valluesConvertor)

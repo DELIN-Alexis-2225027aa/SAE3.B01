@@ -102,23 +102,6 @@ public class Dialogue : MonoBehaviour
         }
     }
 
-
-
-
-    /// </summary>
-    void startDialogue()
-    {
-        contButton.SetActive(false);
-        if (dialogueToShow.Length > 0 && index < dialogueToShow.Length)
-        {
-            contButton.SetActive(false);
-            isTextInitialized = true;
-            isDialogueActive = true;
-            StartCoroutine(typing());
-        }
-    }
-
-
     /// Réinitialise le texte du dialogue.
     /// </summary>
     public void zeroText()
@@ -170,12 +153,19 @@ public class Dialogue : MonoBehaviour
         }
         else
         {
-            /*if (getWichDialogue() != false)
-            {
-                getWichDialogue();
-                startDialogue();
-                dialogueName.text = mmeOrMr() + nameSprite;
-            }*/
+
+        }
+    }
+
+    /// </summary>
+    void startDialogue()
+    {
+        contButton.SetActive(false);
+        if (dialogueToShow.Length > 0 && index < dialogueToShow.Length)
+        {
+            isTextInitialized = true;
+            isDialogueActive = true;
+            StartCoroutine(typing());
         }
     }
 
@@ -228,6 +218,7 @@ public class Dialogue : MonoBehaviour
         getIsFirstTimeByID(strID);
         if (id < 10 && isFirstTime.Equals("F"))
         {
+            
             id += 10;
             strID = id.ToString();
             getDialogueByID(strID);

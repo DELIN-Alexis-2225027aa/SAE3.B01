@@ -61,7 +61,7 @@ public class MapButtons : MonoBehaviour
         }
         else
         {
-            Debug.Log("No saved player position found.");
+            
         }
     }
 

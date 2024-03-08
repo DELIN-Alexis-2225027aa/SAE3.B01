@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Contreur du joueur.
+/// Contrôleur du joueur en 2D.
 /// </summary>
 public class Player2DController : MonoBehaviour
 {
@@ -18,26 +18,25 @@ public class Player2DController : MonoBehaviour
     /// </summary>
     void Start()
     {
-
+        // Aucune initialisation nécessaire pour le moment.
     }
 
-
-
     /// <summary>
-    /// Méthode appelée ・chaque frame.
+    /// Méthode appelée à chaque frame.
     /// </summary>
     void Update()
     {
+        // Récupère les axes horizontaux et verticaux de l'entrée du joueur.
         horizontal = Input.GetAxisRaw("Horizontal");
         vertical = Input.GetAxisRaw("Vertical");
     }
 
     /// <summary>
-    /// Méthode appelée ・chaque intervalle fixe de temps.
+    /// Méthode appelée à chaque intervalle fixe de temps.
     /// </summary>
     private void FixedUpdate()
     {
-        // Applique une vélocit・au Rigidbody pour déplacer le joueur
+        // Applique une vélocité au Rigidbody pour déplacer le joueur.
         rb.velocity = new Vector3(horizontal * speed, vertical * speed);
     }
 }

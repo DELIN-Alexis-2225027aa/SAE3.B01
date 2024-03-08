@@ -18,6 +18,7 @@ public class DialogueSelector
 
 public class Dialogue : MonoBehaviour
 {
+    private InventoryManager inventoryManager;
     private TestSQLite testSQLite;
     private ValluesConvertor valluesConvertor;
     private DBManager dbManager;
@@ -39,50 +40,50 @@ public class Dialogue : MonoBehaviour
     public string isFirstTime;
     [SerializeField] GameObject isIntroObject;
     public bool isTextInitialized;
-    string spriteName;
-
+    public string spriteName;
+    public int proofID;
     public bool isOneDialogueAsBeenFinished;
     public bool newDialogueCheck;
     public int id;
-
+    public int dialogueInt;
+    public string isProofCollected;
     public bool isDialogueLoaded;
-
     Vector3 outPos;
     Vector3 inPos;
-
     [SerializeField] ClassroomSpriteSetter classroomSpriteSetter;
 
     /// Méthode appelée au démarrage.
     /// </summary>
     void Start()
+{
+    isOneDialogueAsBeenFinished = false;
+    newDialogueCheck = false;
+    inventoryManager = FindObjectOfType<InventoryManager>();
+    classroomSpriteSetter = new ClassroomSpriteSetter();
+    valluesConvertor = new ValluesConvertor();
+    dbManager = new DBManager();
+
+    isTextInitialized = false;
+    isDialogueLoaded = false;
+    dialogueText.text = "";
+
+    spriteName = classroomSpriteSetter.getClassroomName(dbManager, valluesConvertor);
+    if (spriteName != null)
     {
-        isOneDialogueAsBeenFinished = false;
-        newDialogueCheck = false;
-        classroomSpriteSetter = new ClassroomSpriteSetter();
-        valluesConvertor = new ValluesConvertor();
-        dbManager = new DBManager();
-
-        isTextInitialized = false;
-        isDialogueLoaded = false;
-        dialogueText.text = "";
-
-        spriteName = classroomSpriteSetter.getClassroomName(dbManager, valluesConvertor);
-        if (spriteName != null)
-        {
-            id = getIdByClassroomNumber(spriteName);
-        }
-        else id = 1;
-        
-        getDialogueInfoByID(dbManager, id);
-
-        if (isIntro() == true)
-        {
-            loadDialogue();
-        }
-
-        outPos = new Vector3(1000f, 1000f, 0f);;
-        inPos = new Vector3(0f, 0f, 0f);;
+        id = getIdByClassroomNumber(spriteName);
     }
+    else id = 1;
+
+    getDialogueInfoByID(dbManager, id);
+
+    if (isIntro() == true)
+    {
+        loadDialogue();
+    }
+
+    outPos = new Vector3(1000f, 1000f, 0f);
+    inPos = new Vector3(0f, 0f, 0f);
+}
     /// Méthode appelée à chaque frame fixe.
     /// </summary>
     void FixedUpdate()
@@ -110,9 +111,16 @@ public class Dialogue : MonoBehaviour
         }
         if(isOneDialogueAsBeenFinished)
         {
+            
             if (id < 10){
                 id += 10;
                 UpdateDialogueDB(dbManager);
+            }
+            if (isOneDialogueAsBeenFinished)
+            {
+                
+
+                zebiFonctionne();
             }
         }
     }
@@ -258,7 +266,6 @@ public class Dialogue : MonoBehaviour
             dialogueToShow = valluesConvertor.ConvertRowToStringArray(row);
         }
     }
-
     
     public void getNameByID(string ID)
     {
@@ -340,9 +347,60 @@ public class Dialogue : MonoBehaviour
         }
             return id;
     }
+    
 
     public void UpdateDialogueDB(DBManager dbManager)
     {
         dbManager.UpdateTuple(dbManager, "Dialogues", "isFirstTime", "F", "ID" , id.ToString());
+    }
+
+    public void zebiFonctionne()
+    {
+        spriteName = classroomSpriteSetter.getClassroomName(dbManager, valluesConvertor);
+        proofID = getIdByClassroomNumberForProof(spriteName);
+        ChangeProofState(proofID);
+    }
+
+    public void ChangeProofState(int ID)
+    {
+        dbManager.UpdateTuple(dbManager, "Proof", "isCollected", "T", "ID" , ID.ToString());
+    }
+
+     public string GetProofByID(string ID)
+    {
+        List<List<object>> resultat = dbManager.Select("Proof", "isCollected", "ID = " + ID);
+
+        foreach (List<object> row in resultat)
+        {
+            isProofCollected = valluesConvertor.convertRowToString(row);
+        }
+        return isProofCollected;
+    }
+
+
+    public int getIdByClassroomNumberForProof(string numb)
+    {
+        switch(numb)
+        {
+            case "BDE":
+                proofID = 3;
+                break;
+            case "002":
+                proofID = 1;
+                break;
+            case "010":
+                proofID = 4;
+                break;
+            case "109":
+                proofID = 6;
+                break;
+            case "110":
+                proofID = 5;
+                break;
+            case "208":
+                proofID = 2;
+                break;
+        }
+            return proofID;
     }
 }

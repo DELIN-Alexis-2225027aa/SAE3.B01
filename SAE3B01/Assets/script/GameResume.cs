@@ -34,7 +34,6 @@ public class GameResume : MonoBehaviour
             getSceneToLoadName();
             if (mapReturner().Equals("Classroom"))
             {
-                Debug.Log("1");
                 SceneManager.LoadScene("Proof");
             }
             else

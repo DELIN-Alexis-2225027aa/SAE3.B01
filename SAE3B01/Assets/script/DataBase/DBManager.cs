@@ -46,7 +46,6 @@ public class DBManager
     {
         if (valeurs == null || valeurs.Length == 0)
         {
-            Debug.LogError("Aucune valeur à insérer.");
             return;
         }
 
@@ -76,7 +75,6 @@ public class DBManager
     {
         if (string.IsNullOrEmpty(valeur))
         {
-            Debug.LogError("Aucune valeur à insérer.");
             return;
         }
 
@@ -97,6 +95,7 @@ public class DBManager
     {
         List<List<object>> resultat = new List<List<object>>();
         string requete = "SELECT " + cle + " FROM " + table + " WHERE " + condition;
+
         IDataReader lecteur = RequeteDeBase(requete);
 
         while (lecteur.Read())

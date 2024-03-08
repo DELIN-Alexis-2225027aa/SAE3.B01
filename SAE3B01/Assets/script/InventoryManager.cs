@@ -6,8 +6,9 @@ using System.IO;
 using System.Linq;
 using TMPro;
 
-public class YourScript : MonoBehaviour
+public class InventoryManager : MonoBehaviour
 {
+    ClassroomSpriteSetter classroomSpriteSetter;
     DBManager dbManager;
     ValluesConvertor valluesConvertor;
     [SerializeField] string[] proofsID;
@@ -22,6 +23,11 @@ public class YourScript : MonoBehaviour
 
     [SerializeField] Vector3 descriptionRectPos;
     [SerializeField] Vector3 posOutOfUI;
+
+    private int proofID;
+    private string isProofCollected;
+    private string spriteName;
+
 
     void Start()
     {

@@ -23,7 +23,7 @@ public class TestSQLite : MonoBehaviour
     {
         dbManager = new DBManager();
 
-        //deleteTables();
+        deleteTables();
         createTables();
         resetTables();
         initTables();
@@ -102,7 +102,14 @@ public class TestSQLite : MonoBehaviour
     public void initTables()
     {
         dbManager = new DBManager();
-
+        initProofs(dbManager);
+        initPos(dbManager);
+        initQuestions(dbManager);
+        initAnswers(dbManager);
+        initDialogues(dbManager);
+    }
+    void initDialogues(DBManager dbManager)
+    {
         iD = "1";
         name = "MAKSSOUD|MAKSSOUD";
         posID = "1,2";
@@ -286,14 +293,16 @@ public class TestSQLite : MonoBehaviour
         firstTime = "T";
         string[] values16 = { iD, name, posID, dialogue16, firstTime };
         dbManager.Insert("Dialogues", values16);
-
+    }
 
         // initialisation des preuves
+
+    void initProofs(DBManager dbManager){
 
         iDProof = "1";
         pName = "Liste des SAE";
         description = "Il y a de nombreuses SAE, toutes plus intéressantes les unes que les autres. Voici certains projets que vous pourrez avoir en 2 années de BUT : Programmation d’un PacMan. Production d’un escape game. Conception d’un jeu vidéo en rapport avec le BUT. Création d’un code pour visualiser les catastrophes naturelles en France. Création d’un réseau social inédit. ";
-        isEarned = "T";
+        isEarned = "F";
         string[] Proofvalues = { iDProof, pName, description, isEarned};
         dbManager.Insert("Proof", Proofvalues);
 
@@ -331,15 +340,21 @@ public class TestSQLite : MonoBehaviour
         isEarned = "T";
         string[] Proofvalues6 = { iDProof, pName, description, isEarned};
         dbManager.Insert("Proof", Proofvalues6);
-    
+    }
         //initialisation de la position de Départ
+
+    void initPos(DBManager dbManager)
+    {
 
         xPos = "-33.7";
         yPos = "-12";
         string[] pos = { xPos, yPos};
         dbManager.Insert("PlayerPos", pos);
-
+    }
         //Initialisation des questions
+
+    void initQuestions(DBManager dbManager)
+    {
 
         iD = "1";
         name = "Lycéen";
@@ -382,9 +397,10 @@ public class TestSQLite : MonoBehaviour
         string question6 = "J’ai entendu dire que l’anglais était indispensable dans l’informatique. Est-ce qu’on aura encore des cours de cette matière ?";
         string[] questionValues6 = { iD, name, posID, question6};
         dbManager.Insert("Questions", questionValues6);
-
+    }
         //Initialisation des réponses
-
+    void initAnswers(DBManager dbManager)
+    {
         iD = "1";
         name = "$|$|$";
         posID = "1,1,1";

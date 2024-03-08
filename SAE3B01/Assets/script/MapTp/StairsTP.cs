@@ -12,9 +12,9 @@ public class StairsTP : MonoBehaviour
     public string colName;
 
     /// <summary>
-    /// Méthode appelée lorsque le téléporteur entre en collision avec un objet.
+    /// Méthode appelée lorsque le téléorteur entre en collision avec un objet.
     /// </summary>
-    /// <param name="collision">Collider de l'objet en collision.</param>
+    /// <param /name = //collision> Collider de l'objet en collision.</param>
     private void OnTriggerEnter2D(Collider2D collision)
     {
         // Détermine la destination du téléporteur en fonction du nom de l'objet en collision
@@ -71,11 +71,12 @@ public class StairsTP : MonoBehaviour
     }
 
     /// <summary>
-    /// Téléporte le joueur à la position spécifiée.
+    /// Téléporte le joueur ・la position spécifiée.
     /// </summary>
     private void TPPlayer()
     {
         Vector3 loadedPlayerPos = new Vector3(x, y, 0f);
+
         transform.position = loadedPlayerPos;
     }
 }

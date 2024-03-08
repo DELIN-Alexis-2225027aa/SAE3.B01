@@ -1,12 +1,15 @@
-﻿using System.Collections;
+﻿
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
 using UnityEngine.UI;
 using System.IO;
 
+
+
 /// <summary>
-/// Gère la reprise du jeu en chargeant la scène "MovingPhase" lorsque la touche Échap est pressée.
+/// Gère la reprise du jeu en chargeant la scènne "MovingPhase" lorsque la touche ﾉchap est pressée.
 /// </summary>
 public class GameResume : MonoBehaviour
 {
@@ -22,19 +25,15 @@ public class GameResume : MonoBehaviour
     }
 
     /// <summary>
-    /// Méthode appelée à chaque frame.
+    /// Méthode appelée ・chaque frame.
     /// </summary>
     void Update()
     {
-        // Gestion du chargement de la scène "MovingPhase" lors de l'appui sur la touche Échap
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape))   
         {
             getSceneToLoadName();
-
-            // Vérification si la scène à charger est "Classroom"
             if (mapReturner().Equals("Classroom"))
             {
-                Debug.Log("1");
                 SceneManager.LoadScene("Proof");
             }
             else
@@ -42,8 +41,6 @@ public class GameResume : MonoBehaviour
                 SceneManager.LoadScene(sceneToLoad);
             }
         }
-
-        // Gestion du chargement de la scène "Map" lors de l'appui sur la touche 'm'
         if (Input.GetKeyDown("m"))
         {
             if (mapReturner().Equals("Map"))
@@ -57,32 +54,22 @@ public class GameResume : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Retourne le nom de la scène actuelle.
-    /// </summary>
-    /// <returns>Le nom de la scène actuelle.</returns>
     public string mapReturner()
     {
         Scene currentScene = SceneManager.GetActiveScene();
         return currentScene.name;
+
     }
 
-    /// <summary>
-    /// Charge la scène "MovingPhase" lorsqu'un bouton est cliqué.
-    /// </summary>
     public void onClick()
     {
         SceneManager.LoadScene("MovingPhase");
     }
 
-    /// <summary>
-    /// Charge le nom de la scène à reprendre depuis la base de données.
-    /// </summary>
-    /// <returns>Le nom de la scène à reprendre.</returns>
     public string loadSceneToLoad()
     {
-        List<List<object>> resultat = dbManager.Select("SceneResume", "sceneToResume", "1");
-
+        List<List<object>> resultat = dbManager.Select("SceneResume", "sceneToResume", "1" );
+        
         foreach (List<object> row in resultat)
         {
             str = valluesConvertor.convertRowToString(row);
@@ -90,26 +77,20 @@ public class GameResume : MonoBehaviour
         return str;
     }
 
-    /// <summary>
-    /// Retourne le nom de la scène actuelle.
-    /// </summary>
-    /// <returns>Le nom de la scène actuelle.</returns>
     public string getSceneName()
     {
         Scene currentScene = SceneManager.GetActiveScene();
+
         return currentScene.name;
     }
 
-    /// <summary>
-    /// Obtient le nom de la scène à charger depuis la base de données.
-    /// </summary>
-    public void getSceneToLoadName()
-    {
+    public void getSceneToLoadName(){
 
         dbManager = new DBManager();
         valluesConvertor = new ValluesConvertor();
         List<List<object>> resultX = dbManager.Select("SceneResume", "sceneToResume", "1");
 
+            
         foreach (List<object> row in resultX)
         {
             sceneToLoad = valluesConvertor.convertRowToString(row);

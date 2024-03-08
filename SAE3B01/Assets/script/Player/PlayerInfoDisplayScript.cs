@@ -88,7 +88,7 @@ public class PlayerInfoDispayScript : MonoBehaviour
     /// <returns>True si un texte est inséré, sinon False.</returns>
     public bool isTextInsertInTextField()
     {
-        if (!string.IsNullOrEmpty(textFieldName.text))
+        if (textFieldName.text != null)
         {
             return true;
         }

@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Globalization;
 
+
 /// <summary>
 /// Gère la sauvegarde et le chargement de la position du joueur.
 /// </summary>
@@ -30,11 +31,9 @@ public class PosSaver : MonoBehaviour
     /// </summary>
     void Start()
     {
-        // Initialise les gestionnaires de base de données et de conversion de valeurs.
         dbManager = new DBManager();
         valluesConvertor = new ValluesConvertor();
 
-        // Si la scène active est "MovingPhase", charge la position du joueur.
         if (getSceneName().Equals("MovingPhase"))
         {
             float[] vector2Pos = loadPlayerPos();  // Renommez la variable pour éviter la confusion
@@ -48,7 +47,6 @@ public class PosSaver : MonoBehaviour
     /// </summary>
     void Update()
     {
-        // Si la scène active est "MovingPhase", permet au joueur de sauvegarder sa position en appuyant sur 'm' ou de revenir au menu principal en appuyant sur la touche Échap.
         if (getSceneName().Equals("MovingPhase"))
         {
             if (Input.GetKeyDown("m"))
@@ -68,12 +66,10 @@ public class PosSaver : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Récupère le nom de la scène active.
-    /// </summary>
     public string getSceneName()
     {
         Scene currentScene = SceneManager.GetActiveScene();
+
         return currentScene.name;
     }
 
@@ -85,9 +81,6 @@ public class PosSaver : MonoBehaviour
         savePlayerPos(playerPos.position.x, playerPos.position.y);
     }
 
-    /// <summary>
-    /// Sauvegarde la scène vers laquelle le joueur retournera lors de la prochaine session.
-    /// </summary>
     public void SaveScneToLoadWhenReturn(string scneneName)
     {
         dbManager.DeleteEverythingFromTable("SceneResume");
@@ -95,31 +88,25 @@ public class PosSaver : MonoBehaviour
     }
 
     /// <summary>
-    /// Charge la position du joueur depuis la base de données.
+    /// Charge la position du joueur depuis le fichier JSON.
     /// </summary>
     void LoadPlayerPosition(ValluesConvertor valluesConvertor, DBManager dbManager)
     {
         float[] pos = loadPlayerPos();
 
-        // Crée un Vector3 à partir des données chargées
-        Vector3 loadedPlayerPos = new Vector3(pos[0], pos[1], 0f);
+        // Créer un Vector3 ・partir des données chargées
+        Vector3 loadedPlayerPos = new Vector3(pos[0], pos[1] , 0f);
 
-        // Applique la position chargée au joueur
+        // Appliquer la position chargée au joueur
         transform.position = loadedPlayerPos;
     }
 
-    /// <summary>
-    /// Remplace toutes les occurrences de 'f' dans la chaîne d'entrée par une chaîne vide.
-    /// </summary>
     public static string ReplaceF(string input)
     {
         // Remplace toutes les occurrences de 'f' par une chaîne vide
         return input.Replace("f", "");
     }
 
-    /// <summary>
-    /// Sauvegarde la position du joueur dans la base de données.
-    /// </summary>
     public void savePlayerPos(float xPos, float yPos)
     {
         dbManager = new DBManager();
@@ -129,19 +116,17 @@ public class PosSaver : MonoBehaviour
         string yPosStr = yPos.ToString();
         string yPosChecked = ReplaceF(yPosStr);
         string xPosChecked = ReplaceF(xPosStr);
-        string[] posToSave = { xPosChecked, yPosChecked };
+        string[] posToSave = { xPosChecked, yPosChecked};
         dbManager.Insert("PlayerPos", posToSave);
     }
 
-    /// <summary>
-    /// Charge la position du joueur depuis la base de données.
-    /// </summary>
     public float[] loadPlayerPos()
     {
         dbManager = new DBManager();
 
-        // Récupère la position X du joueur depuis la base de données
         List<List<object>> resultX = dbManager.Select("PlayerPos", "xPos", "1");
+
+            
         foreach (List<object> row in resultX)
         {
             strXValue = valluesConvertor.convertRowToString(row);
@@ -149,19 +134,18 @@ public class PosSaver : MonoBehaviour
             xValue = float.Parse(strXValue, CultureInfo.InvariantCulture);
         }
 
-        // Récupère la position Y du joueur depuis la base de données
         List<List<object>> resultY = dbManager.Select("PlayerPos", "yPos", "1");
+
+            
         foreach (List<object> row in resultY)
         {
             strYValue = valluesConvertor.convertRowToString(row);
             strYValue = strYValue.Replace(",", ".");
             yValue = float.Parse(strYValue, CultureInfo.InvariantCulture);
         }
-
-        // Convertit les valeurs de la base de données pour obtenir les coordonnées correctes
-        float yPosReturn = yValue / 1000000;
-        float xPosReturn = xValue / 100000;
-        float[] posToReturn = { xPosReturn, yPosReturn };
+        float yPosReturn = yValue/1000000;
+        float xPosReturn = xValue/100000;
+        float[] posToReturn = {xValue,yValue};
         return posToReturn;
     }
 }

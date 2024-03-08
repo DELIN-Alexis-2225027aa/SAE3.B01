@@ -106,7 +106,7 @@ public class TestSQLite : MonoBehaviour
         iD = "1";
         name = "MAKSSOUD|MAKSSOUD";
         posID = "1,2";
-        string dialogue = "Bonjour $ ! Je suis ravi que tu te sois porté volontaire pour la JPO. Je compte sur toi pour convaincre un maximum de lycéens de venir dans notre établissement l’année prochaine.|J’ai quelques consignes à te donner mais elles sont sur mon bureau, rejoins moi plus tard.";
+        string dialogue = "Bonjour $ ! Je suis ravie que tu te sois porté volontaire pour la JPO. Je compte sur toi pour convaincre un maximum de lycéens de venir dans notre établissement l’année prochaine.|J’ai quelques consignes à te donner mais elles sont sur mon bureau, rejoins moi plus tard, et appuie sur “ E ” pour entrer.";
         firstTime = "T";
         string[] values = { iD, name, posID, dialogue, firstTime};
         dbManager.Insert("Dialogues", values);
@@ -114,7 +114,7 @@ public class TestSQLite : MonoBehaviour
         iD = "2";
         name = "PAPIER|PAPIER|PAPIER";
         posID = "1,1,1";
-        string dialogue2 = "La réunion avec les lycéens va bientôt commencer!|Je suis désolé, je n’ai pas réussi à finaliser le livret d’informations à temps, il va falloir que tu t’en charges.|J’ai prévenu tes professeurs.|Rends toi dans toutes les salles du BUT qui sont ouvertes et n’oublie pas, pour voir le plan des salles, appuie sur “ , ”, et pour rentrer dans une salle appuie sur “ E ”. ";
+        string dialogue2 = "La réunion avec les lycéens va bientôt commencer!|Je suis désolé, je n’ai pas réussi à finaliser le livret d’informations à temps, il va falloir que tu t’en charges.|J’ai prévenu tes professeurs.|Rends toi dans toutes les salles du BUT qui sont ouvertes et n’oublie pas, pour voir le plan des salles, appuie sur “ , ”. ";
         firstTime = "T";
         string[] values2 = { iD, name, posID, dialogue2, firstTime };
         dbManager.Insert("Dialogues", values2);
@@ -226,7 +226,7 @@ public class TestSQLite : MonoBehaviour
         iD = "101";
         name = "MAKSSOUD|MAKSSOUD";
         posID = "1,2";
-        string dialogue9 = "Bonjour $ ! Je suis ravie que tu te sois porté volontaire pour la JPO. Je compte sur toi pour convaincre un maximum de lycéens de venir dans notre établissement l’année prochaine.|J’ai quelques consignes à te donner mais elles sont sur mon bureau, rejoins moi plus tard.";
+        string dialogue9 = "Bonjour $ ! Je suis ravie que tu te sois portée volontaire pour la JPO. Je compte sur toi pour convaincre un maximum de lycéens de venir dans notre établissement l’année prochaine.|J’ai quelques consignes à te donner mais elles sont sur mon bureau, rejoins moi plus tard, et appuie sur “ E ” pour entrer.";
         firstTime = "T";
         string[] values9 = { iD, name, posID, dialogue9, firstTime};
         dbManager.Insert("Dialogues", values9);
@@ -234,7 +234,7 @@ public class TestSQLite : MonoBehaviour
         iD = "102";
         name = "PAPIER|PAPIER|PAPIER";
         posID = "1,1,1";
-        string dialogue10 = "La réunion avec les lycéens va bientôt commencer!|Je suis désolé, je n’ai pas réussi à finaliser le livret d’informations à temps, il va falloir que tu t’en charges.|J’ai prévenu tes professeurs.|Rends toi dans toutes les salles du BUT qui sont ouvertes et n’oublie pas, pour voir le plan des salles, appuie sur “ , ”, et pour rentrer dans une salle appuie sur “ E ”. ";
+        string dialogue10 = "La réunion avec les lycéens va bientôt commencer!|Je suis désolé, je n’ai pas réussi à finaliser le livret d’informations à temps, il va falloir que tu t’en charges.|J’ai prévenu tes professeurs.|Rends toi dans toutes les salles du BUT qui sont ouvertes et n’oublie pas, pour voir le plan des salles, appuie sur “ , ”. ";
         firstTime = "T";
         string[] values10 = { iD, name, posID, dialogue10, firstTime };
         dbManager.Insert("Dialogues", values10);

@@ -104,7 +104,7 @@ public class ClassroomSpriteSetter : MonoBehaviour
                 width = 320f;
                 height = 400f;
                 break;
-            case "Bde":
+            case "BDE":
                 x = -Screen.width / 200;
                 y = -Screen.height / 1000;
                 width = 1900f;
@@ -156,7 +156,7 @@ public class ClassroomSpriteSetter : MonoBehaviour
         string interactiveObjectSprite = null;
         switch (strClassroomName)
         {
-            case "Bde":
+            case "BDE":
                 interactiveObjectSprite = "Myke1";
                 break;
             case "Mak":
@@ -272,7 +272,7 @@ public class ClassroomSpriteSetter : MonoBehaviour
                 xSize = 1.5f;
                 ySize = 1.5f;
                 break;
-            case "Bde":
+            case "BDE":
                 xSize = 1;
                 ySize = 1;
                 break;

@@ -112,7 +112,7 @@ public class ClassroomSpriteSetter : MonoBehaviour
                 break;
             case "002":
                 x = Screen.width / 3;
-                y = -Screen.height / 5;
+                y = -Screen.height / 10;
                 width = 320f;
                 height = 400f;
                 break;

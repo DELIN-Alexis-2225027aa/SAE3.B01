@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: f5cf14791b464f447a6c5ed5e8b61bc6
+guid: 5e2fef9ebd179344fba912410ad23420
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8437055410384246151
-    second: Parrain3_0
+      213: -1526729713621861978
+    second: IMG_20240305_100917_0
   externalObjects: {}
   serializedVersion: 12
   mipmaps:
@@ -98,13 +98,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Parrain3_0
+      name: IMG_20240305_100917_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 446
-        height: 536
+        width: 3280
+        height: 2464
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -112,8 +112,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 97a62c14ece89ea80800000000000000
-      internalID: -8437055410384246151
+      spriteID: 6a9f8871a67ffcae0800000000000000
+      internalID: -1526729713621861978
       vertices: []
       indices: 
       edges: []
@@ -129,7 +129,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Parrain3_0: -8437055410384246151
+      IMG_20240305_100917_0: -1526729713621861978
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

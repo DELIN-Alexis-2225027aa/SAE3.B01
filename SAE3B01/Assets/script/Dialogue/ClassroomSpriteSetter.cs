@@ -99,16 +99,16 @@ public class ClassroomSpriteSetter : MonoBehaviour
                 y = 1000f;
                 break;
             case "Mak":
-                x = Screen.width / 3;
-                y = -Screen.height / 5;
+                x = Screen.width / 7;
+                y = -Screen.height / 10;
                 width = 320f;
                 height = 400f;
                 break;
             case "Bde":
-                x = Screen.width / 10;
-                y = Screen.height / 5;
-                width = 320f;
-                height = 400f;
+                x = -Screen.width / 200;
+                y = -Screen.height / 1000;
+                width = 1900f;
+                height = 1100f;
                 break;
             case "002":
                 x = Screen.width / 3;
@@ -269,8 +269,8 @@ public class ClassroomSpriteSetter : MonoBehaviour
         switch(strClassroomName)
         {
             case "Mak":
-                xSize = 2;
-                ySize = 2;
+                xSize = 1.5f;
+                ySize = 1.5f;
                 break;
             case "Bde":
                 xSize = 1;

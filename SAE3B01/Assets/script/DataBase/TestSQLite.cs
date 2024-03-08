@@ -112,9 +112,9 @@ public class TestSQLite : MonoBehaviour
         dbManager.Insert("Dialogues", values);
 
         iD = "2";
-        name = "PAPIER|PAPIER|PAPIER";
-        posID = "1,1,1";
-        string dialogue2 = "La réunion avec les lycéens va bientôt commencer!|Je suis désolé, je n’ai pas réussi à finaliser le livret d’informations à temps, il va falloir que tu t’en charges.|J’ai prévenu tes professeurs.|Rends toi dans toutes les salles du BUT qui sont ouvertes et n’oublie pas, pour voir le plan des salles, appuie sur “ , ”. ";
+        name = "MAKSSOUD|MAKSSOUD|MAKSSOUD";
+        posID = "1,2,1";
+        string dialogue2 = "La réunion avec les lycéens va bientôt commencer!|Je suis désolé, je n’ai pas réussi à finaliser le livret d’informations à temps, il va falloir que tu t’en charges.|J’ai prévenu tes professeurs. Rends toi dans toutes les salles du BUT qui sont ouvertes et n’oublie pas, pour voir le plan des salles, appuie sur “ , ”. ";
         firstTime = "T";
         string[] values2 = { iD, name, posID, dialogue2, firstTime };
         dbManager.Insert("Dialogues", values2);
@@ -153,7 +153,7 @@ public class TestSQLite : MonoBehaviour
 
         iD = "7";
         name = "Myke|$|Myke|.";
-        posID = "1,1,2,1";
+        posID = "2,1,2,1";
         string dialogue7 = "Salut $, tu viens jouer à Smash Bros ?|Ah, non pas aujourd’hui Myke. Là, il faut vraiment que tu m’aides. T’aurais pas le programme des activités du BDE sous la main ?|Ouais bien sûr, pas de soucis. Et en plus, là on réfléchit à plein de nouveaux trucs.| Document des activités du BDE obtenu";
         firstTime = "T";
         string[] values7 = { iD, name, posID, dialogue7, firstTime };
@@ -169,7 +169,7 @@ public class TestSQLite : MonoBehaviour
 
          iD = "12";
         name = "MAKSSOUD|MAKSSOUD";
-        posID = "1|2";
+        posID = "1,2";
         string dialogue17 = "Rends toi dans toutes les salles du bâtiment qui sont ouvertes.|Tu peux regarder les aides après avoir appuyé sur “ , ”, si tu oublies les commandes.";
         firstTime = "T";
         string[] values17 = { iD, name, posID, dialogue17, firstTime };
@@ -177,7 +177,7 @@ public class TestSQLite : MonoBehaviour
 
         iD = "13";
         name = "NEUVOT|NEUVOT";
-        posID = "1,1";
+        posID = "2,1";
         string dialogue18 = "Bah alors ? Fais vite !|Sinon tu vas être en retard pour la réunion.";
         firstTime = "T";
         string[] values18 = { iD, name, posID, dialogue18, firstTime };
@@ -185,7 +185,7 @@ public class TestSQLite : MonoBehaviour
 
         iD = "14";
         name = "$|$";
-        posID = "1|1";
+        posID = "1,1";
         string dialogue19 = "Ah ! Mais c'est bizarre ça.|Je n’avais pas déjà récupéré cette liste ?";
         firstTime = "T";
         string[] values19 = { iD, name, posID, dialogue19, firstTime };
@@ -193,7 +193,7 @@ public class TestSQLite : MonoBehaviour
 
         iD = "15";
         name = "$|$";
-        posID = "1|1";
+        posID = "1,1";
         string dialogue20 = "Ah ! Mais c'est bizarre ça.|Je n’avais pas déjà récupéré cette liste ?";
         firstTime = "T";
         string[] values20 = { iD, name, posID, dialogue20, firstTime };
@@ -201,7 +201,7 @@ public class TestSQLite : MonoBehaviour
 
         iD = "16";
         name = "MAKSSOUD|MAKSSOUD";
-        posID = "1|1";
+        posID = "1,1";
         string dialogue21 = "Je t’ai déjà tout donné, mais il te reste encore des informations à collecter.|À toi de jouer maintenant !";
         firstTime = "T";
         string[] values21 = { iD, name, posID, dialogue21, firstTime };
@@ -209,7 +209,7 @@ public class TestSQLite : MonoBehaviour
 
         iD = "17";
         name = "Myke|Myke";
-        posID = "1|1";
+        posID = "2,2";
         string dialogue22 = "Repasse me voir après ta réunion si tu veux.|Ça nous fait toujours plaisir !";
         firstTime = "T";
         string[] values22 = { iD, name, posID, dialogue22, firstTime };
@@ -217,7 +217,7 @@ public class TestSQLite : MonoBehaviour
 
         iD = "18";
         name = "Parrain|Parrain";
-        posID = "1|1";
+        posID = "1,1";
         string dialogue23 = "Si t’as besoin d’autres conseils, repasse me voir plus tard.|N'oublie pas, je suis là pour ça !";
         firstTime = "T";
         string[] values23 = { iD, name, posID, dialogue23, firstTime };
@@ -232,9 +232,9 @@ public class TestSQLite : MonoBehaviour
         dbManager.Insert("Dialogues", values9);
 
         iD = "102";
-        name = "PAPIER|PAPIER|PAPIER";
-        posID = "1,1,1";
-        string dialogue10 = "La réunion avec les lycéens va bientôt commencer!|Je suis désolé, je n’ai pas réussi à finaliser le livret d’informations à temps, il va falloir que tu t’en charges.|J’ai prévenu tes professeurs.|Rends toi dans toutes les salles du BUT qui sont ouvertes et n’oublie pas, pour voir le plan des salles, appuie sur “ , ”. ";
+        name = "MAKSSOUD|MAKSSOUD|MAKSSOUD";
+        posID = "1,2,1";
+        string dialogue10 = "La réunion avec les lycéens va bientôt commencer!|Je suis désolé, je n’ai pas réussi à finaliser le livret d’informations à temps, il va falloir que tu t’en charges.|J’ai prévenu tes professeurs. Rends toi dans toutes les salles du BUT qui sont ouvertes et n’oublie pas, pour voir le plan des salles, appuie sur “ , ”. ";
         firstTime = "T";
         string[] values10 = { iD, name, posID, dialogue10, firstTime };
         dbManager.Insert("Dialogues", values10);
@@ -273,7 +273,7 @@ public class TestSQLite : MonoBehaviour
 
         iD = "107";
         name = "Myke|$|Myke|";
-        posID = "1,1,2,1";
+        posID = "2,1,2,1";
         string dialogue15 = "Salut $, tu viens jouer à Smash Bros ?|Ah, non pas aujourd’hui Myke. Là, il faut vraiment que tu m’aides. T’aurais pas le programme des activités du BDE sous la main ?|Ouais bien sûr, pas de soucis. Et en plus, là on réfléchit à plein de nouveaux trucs.| Document des activités du BDE obtenu";
         firstTime = "T";
         string[] values15 = { iD, name, posID, dialogue15, firstTime };

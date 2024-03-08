@@ -153,7 +153,7 @@ public class DBManager
     }
     public void UpdateTuple(DBManager dbManager, string tableName, string columnName, string newValue, string conditionColumn, string conditionValue)
     {
-        string updateQuery = $"UPDATE {tableName} SET {columnName} = {newValue} WHERE {conditionColumn} = {conditionValue}";
+        string updateQuery = $"UPDATE {tableName} SET \"{columnName}\" = '{newValue}' WHERE \"{conditionColumn}\" = '{conditionValue}'";
         string requete = updateQuery;
 
         dbManager.ExecuteRequestWithoutResult(requete);  

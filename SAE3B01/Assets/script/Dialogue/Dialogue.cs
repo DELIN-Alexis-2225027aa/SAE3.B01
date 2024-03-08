@@ -335,6 +335,6 @@ public class Dialogue : MonoBehaviour
 
     public void UpdateDialogueDB(DBManager dbManager)
     {
-        dbManager.UpdateTuple(dbManager, "Dialogue", "isFirstTime", "F", "ID" , id.ToString());
+        dbManager.UpdateTuple(dbManager, "Dialogues", "isFirstTime", "F", "ID" , id.ToString());
     }
 }

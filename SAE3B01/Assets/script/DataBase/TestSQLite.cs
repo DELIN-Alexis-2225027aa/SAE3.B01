@@ -23,7 +23,7 @@ public class TestSQLite : MonoBehaviour
     {
         dbManager = new DBManager();
 
-        deleteTables();
+        //deleteTables();
         createTables();
         resetTables();
         initTables();

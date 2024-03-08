@@ -38,16 +38,25 @@ public class MainMenuButton : MonoBehaviour
         playerInfoDispayScript.showOnUI();
     }
 
+    /// <summary>
+    /// Charge la scène des paramètres du menu principal.
+    /// </summary>
     public void onParametersButtonPressed()
     {
         SceneManager.LoadScene("ParametersMainMenu");
     }
 
+    /// <summary>
+    /// Charge la scène du menu principal.
+    /// </summary>
     public void onMainMenuButtonPressed()
     {
         SceneManager.LoadScene("MainMenu");
     }
 
+    /// <summary>
+    /// Charge la scène d'aide du menu principal.
+    /// </summary>
     public void onHelpButtonPressed()
     {
         SceneManager.LoadScene("HelpMainMenu");
@@ -64,7 +73,6 @@ public class MainMenuButton : MonoBehaviour
     /// <summary>
     /// Configure le gestionnaire de dialogue et enregistre les données dans un fichier JSON.
     /// </summary>
-
     public void eraseDB()
     {
         dbManager = new DBManager();

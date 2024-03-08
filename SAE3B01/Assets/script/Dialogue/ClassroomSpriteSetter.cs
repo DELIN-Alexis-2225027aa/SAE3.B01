@@ -6,9 +6,7 @@ using UnityEngine.UI;
 using System.IO;
 using System.Linq;
 
-/// <summary>
-/// Gère la configuration des sprites de salle de classe et des objets interactifs.
-/// </summary>
+
 public class ClassroomSpriteSetter : MonoBehaviour
 {
     private ValluesConvertor valluesConvertor;
@@ -26,6 +24,7 @@ public class ClassroomSpriteSetter : MonoBehaviour
     [SerializeField] RectTransform interactiveObjectPos;
     [SerializeField] RectTransform leo;
 
+
     string json;
     private string classroomNumber;
     private string spriteName;
@@ -36,7 +35,7 @@ public class ClassroomSpriteSetter : MonoBehaviour
     float ySize;
 
     int randomNuber;
-
+    
     Vector3 leoPos;
     Vector3 dialogueButtonRectPos;
     Vector3 nameDialogueRectPos;
@@ -62,7 +61,6 @@ public class ClassroomSpriteSetter : MonoBehaviour
         posOutOfUI = new Vector3(1000f, 1000f, 0f);
         putBackDialogueObjectToUI();
     }
-
     void Update()
     {
         if (isDialogueFinished.localPosition == PosChecker)
@@ -75,9 +73,6 @@ public class ClassroomSpriteSetter : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Charge les sprites de la salle de classe.
-    /// </summary>
     void LoadClassroomSprites()
     {
         strClassroomName = getClassroomName(dbManager, valluesConvertor);
@@ -90,9 +85,7 @@ public class ClassroomSpriteSetter : MonoBehaviour
         background.sprite = sprite;
     }
 
-    /// <summary>
-    /// Configure l'emplacement de l'objet interactif en fonction de la salle de classe.
-    /// </summary>
+
     void SetupInteractibleObject()
     {
         float x = 0f;
@@ -158,9 +151,6 @@ public class ClassroomSpriteSetter : MonoBehaviour
     }
 
 
-    /// <summary>
-    /// Charge le sprite de l'objet interactif en fonction de la salle de classe.
-    /// </summary>
     void loadInteractiveObjectSprite()
     {
         string interactiveObjectSprite = null;
@@ -210,9 +200,6 @@ public class ClassroomSpriteSetter : MonoBehaviour
 
     }
 
-    /// <summary>
-    /// Sauvegarde les positions des objets de dialogue.
-    /// </summary>
     void saveDialogueObjectPos()
     {
         leoPos = leo.localPosition; 
@@ -224,9 +211,6 @@ public class ClassroomSpriteSetter : MonoBehaviour
         returnButtonRectPos = returnButtonRect.localPosition;
     }
 
-    /// <summary>
-    /// Supprime les objets de dialogue de l'interface utilisateur.
-    /// </summary>
     public void removeDialogueObjectFromUI()
     {
         posOutOfUI = new Vector3(1000f, 1000f, 0f);
@@ -240,9 +224,6 @@ public class ClassroomSpriteSetter : MonoBehaviour
         
     }
 
-    /// <summary>
-    /// Gère un événement spécial lorsque le sprite interactif est cliqué.
-    /// </summary>
     public void easter()
     {
         randomNuber = Random.Range(1,11);
@@ -253,9 +234,6 @@ public class ClassroomSpriteSetter : MonoBehaviour
 
     }
 
-    /// <summary>
-    /// Remet les objets de dialogue dans l'interface utilisateur.
-    /// </summary>
     void putBackDialogueObjectToUI()
     {
         posOutOfUI = new Vector3(1000f, 1000f, 0f);
@@ -267,18 +245,11 @@ public class ClassroomSpriteSetter : MonoBehaviour
         returnButtonRect.localPosition = posOutOfUI;
     }
 
-    /// <summary>
-    /// Gestionnaire de l'événement du bouton.
-    /// </summary>
     public void button()
     {
         putBackDialogueObjectToUI();
     }
 
-    /// <summary>
-    /// Récupère le nom de la salle de classe depuis la base de données.
-    /// </summary>
-    /// <returns>Nom de la salle de classe.</returns>
     public string getClassroomName(DBManager dbManager, ValluesConvertor valluesConvertor)
     {
         List<List<object>> resultat = dbManager.Select("Classroom", "classroomName", "1");
@@ -293,9 +264,6 @@ public class ClassroomSpriteSetter : MonoBehaviour
         return classroomRow;
     }
 
-    /// <summary>
-    /// Redimensionne l'objet interactif en fonction de la salle de classe.
-    /// </summary>
     public void resizeInteractiveObjectByNameOfTheClassroom()
     {
         switch(strClassroomName)

@@ -168,57 +168,57 @@ public class TestSQLite : MonoBehaviour
         dbManager.Insert("Dialogues", values8);
 
          iD = "12";
-        name = "MAKSSOUD";
-        posID = "2";
-        string dialogue17 = "Rends toi dans toutes les salles du bâtiment qui sont ouvertes. Tu peux regarder les aides après avoir appuyé sur “ , ”, si tu oublies les commandes.";
+        name = "MAKSSOUD|MAKSSOUD";
+        posID = "2,2";
+        string dialogue17 = "Rends toi dans toutes les salles du bâtiment qui sont ouvertes.|Tu peux regarder les aides après avoir appuyé sur “ , ”, si tu oublies les commandes.";
         firstTime = "T";
         string[] values17 = { iD, name, posID, dialogue17, firstTime };
         dbManager.Insert("Dialogues", values17);
 
         iD = "13";
-        name = "NEUVOT";
-        posID = "1";
-        string dialogue18 = "Bah alors ? Fais vite ! Sinon tu vas être en retard pour la réunion.";
+        name = "NEUVOT|NEUVOT";
+        posID = "1,2";
+        string dialogue18 = "Bah alors ? Fais vite !|Sinon tu vas être en retard pour la réunion.";
         firstTime = "T";
         string[] values18 = { iD, name, posID, dialogue18, firstTime };
         dbManager.Insert("Dialogues", values18);
 
         iD = "14";
-        name = "$";
-        posID = "1";
-        string dialogue19 = "Ah ! Mais je n’avais pas déjà récupéré cette liste ?";
+        name = "$|$";
+        posID = "1,1";
+        string dialogue19 = "Ah !|Mais je n’avais pas déjà récupéré cette liste ?";
         firstTime = "T";
         string[] values19 = { iD, name, posID, dialogue19, firstTime };
         dbManager.Insert("Dialogues", values19);
 
         iD = "15";
-        name = "$";
+        name = "$|$";
         posID = "1";
-        string dialogue20 = "Ah ! Mais je n’avais pas déjà récupéré cette liste ?";
+        string dialogue20 = "Ah !|Mais je n’avais pas déjà récupéré cette liste ?";
         firstTime = "T";
         string[] values20 = { iD, name, posID, dialogue20, firstTime };
         dbManager.Insert("Dialogues", values20);
 
         iD = "16";
-        name = "MAKSSOUD";
-        posID = "1";
-        string dialogue21 = "Je t’ai déjà tout donné. À toi de jouer maintenant !";
+        name = "MAKSSOUD|MAKSSOUD";
+        posID = "1|2";
+        string dialogue21 = "Je t’ai déjà tout donné.|À toi de jouer maintenant !";
         firstTime = "T";
         string[] values21 = { iD, name, posID, dialogue21, firstTime };
         dbManager.Insert("Dialogues", values21);
 
         iD = "17";
-        name = "Myke";
-        posID = "1";
-        string dialogue22 = "Repasse me voir après ta réunion si tu veux, ça nous fait toujours plaisir !";
+        name = "Myke|Myke";
+        posID = "1,1";
+        string dialogue22 = "Repasse me voir après ta réunion si tu veux.|ça nous fait toujours plaisir !";
         firstTime = "T";
         string[] values22 = { iD, name, posID, dialogue22, firstTime };
         dbManager.Insert("Dialogues", values22);
 
         iD = "18";
-        name = "Parrain";
-        posID = "1";
-        string dialogue23 = "Si t’as besoin d’autres conseils, repasse me voir plus tard. Je suis là pour ça !";
+        name = "Parrain|Parrain";
+        posID = "1,1";
+        string dialogue23 = "Si t’as besoin d’autres conseils|Repasse me voir plus tard. Je suis là pour ça !";
         firstTime = "T";
         string[] values23 = { iD, name, posID, dialogue23, firstTime };
         dbManager.Insert("Dialogues", values23);

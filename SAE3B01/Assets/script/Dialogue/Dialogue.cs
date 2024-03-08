@@ -18,6 +18,7 @@ public class DialogueSelector
 
 public class Dialogue : MonoBehaviour
 {
+    private TestSQLite testSQLite;
     private ValluesConvertor valluesConvertor;
     private DBManager dbManager;
     [SerializeField] Transform isDialogueFinished;
@@ -26,7 +27,7 @@ public class Dialogue : MonoBehaviour
     public GameObject dialoguePanel;
     public Text dialogueText;
     public Text dialogueName;
-    public string[] dialogueToShow;
+    public string[] dialogueToShow = {"."};
     private int index;
     public GameObject contButton;
     public float wordSpeed;
@@ -37,9 +38,11 @@ public class Dialogue : MonoBehaviour
     public string[] nameSprite;
     public string isFirstTime;
     [SerializeField] GameObject isIntroObject;
-    bool isTextInitialized;
+    public bool isTextInitialized;
     string spriteName;
 
+    public bool isOneDialogueAsBeenFinished;
+    public bool newDialogueCheck;
     public int id;
 
     public bool isDialogueLoaded;
@@ -53,6 +56,8 @@ public class Dialogue : MonoBehaviour
     /// </summary>
     void Start()
     {
+        isOneDialogueAsBeenFinished = false;
+        newDialogueCheck = false;
         classroomSpriteSetter = new ClassroomSpriteSetter();
         valluesConvertor = new ValluesConvertor();
         dbManager = new DBManager();
@@ -100,21 +105,34 @@ public class Dialogue : MonoBehaviour
         {
             contButton.SetActive(true);
         }
+        if(newDialogueCheck){
+            getDialogueInfoByID(dbManager, id);
+        }
+        if(isOneDialogueAsBeenFinished)
+        {
+            if (id < 10){
+                id += 10;
+                UpdateDialogueDB(dbManager);
+            }
+        }
     }
 
     /// Réinitialise le texte du dialogue.
     /// </summary>
     public void zeroText()
     {
+
         dialogueText.text = "";
         index = 0;
         isDialogueActive = false;
+        isTextInitialized = false;
         if (isIntro() == true)
         {
             SceneManager.LoadScene("MovingPhase");
         }
         else
         {
+            isOneDialogueAsBeenFinished= true;
             isDialogueFinished.localPosition = inPos;
             classroomSpriteSetter.removeDialogueObjectFromUI();
         }
@@ -132,7 +150,7 @@ public class Dialogue : MonoBehaviour
             yield return new WaitForSeconds(wordSpeed);
         }
         isDialogueActive = false;
-
+        newDialogueCheck = true;
     }
 
     public void loadDialogue()
@@ -209,18 +227,12 @@ public class Dialogue : MonoBehaviour
 
     public void getDialogueInfoByID(DBManager dbManager, int id)
     {
-        string strID = id.ToString();
-        getDialogueByID(strID);
-        getNameByID(strID);
-        getPosIDsByID(strID);
-        dialogueName.text = mmeOrM() + nameSprite[index];
-        isDialogueLoaded = true;
+        int checkId = id;
+        string strID = checkId.ToString();
         getIsFirstTimeByID(strID);
-        if (id < 10 && isFirstTime.Equals("F"))
-        {
-            
-            id += 10;
-            strID = id.ToString();
+        if (checkId < 10 && isFirstTime.Equals("F"))
+        {  
+            strID = checkId.ToString();
             getDialogueByID(strID);
             getNameByID(strID);
             getPosIDsByID(strID);
@@ -228,7 +240,11 @@ public class Dialogue : MonoBehaviour
             isDialogueLoaded = true;
         }else
         {
-            UpdateDialogueDB(dbManager);
+            getDialogueByID(strID);
+            getNameByID(strID);
+            getPosIDsByID(strID);
+            dialogueName.text = mmeOrM() + nameSprite[index];
+            isDialogueLoaded = true;
         }
     }
 
@@ -243,6 +259,7 @@ public class Dialogue : MonoBehaviour
         }
     }
 
+    
     public void getNameByID(string ID)
     {
         List<List<object>> resultat = dbManager.Select("Dialogues", "name", "ID = " + ID);

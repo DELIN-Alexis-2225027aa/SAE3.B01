@@ -6,6 +6,16 @@ using UnityEngine.UI;
 using System.IO;
 using System.Linq;
 
+
+
+/// <summary>
+/// Représente la sélection d'un ensemble de dialogues par son répertoire.
+/// </summary>
+public class DialogueSelector
+{
+    public string repertory;
+}
+
 public class Dialogue2ndPhase : MonoBehaviour
 {
     private InventoryManager inventoryManager;
@@ -38,6 +48,9 @@ public class Dialogue2ndPhase : MonoBehaviour
     public int dialogueInt;
     public string isProofCollected;
     public bool isDialogueLoaded;
+    public string tableIdToRead;
+    public string tableNameToRead; 
+
     Vector3 outPos;
     Vector3 inPos;
     [SerializeField] ClassroomSpriteSetter classroomSpriteSetter;
@@ -45,35 +58,28 @@ public class Dialogue2ndPhase : MonoBehaviour
     /// Méthode appelée au démarrage.
     /// </summary>
     void Start()
-{
-    isOneDialogueAsBeenFinished = false;
-    newDialogueCheck = false;
-    inventoryManager = FindObjectOfType<InventoryManager>();
-    classroomSpriteSetter = new ClassroomSpriteSetter();
-    valluesConvertor = new ValluesConvertor();
-    dbManager = new DBManager();
-
-    isTextInitialized = false;
-    isDialogueLoaded = false;
-    dialogueText.text = "";
-
-    spriteName = classroomSpriteSetter.getClassroomName(dbManager, valluesConvertor);
-    if (spriteName != null)
     {
-        id = getIdByClassroomNumber(spriteName);
-    }
-    else id = 1;
+        inventoryManager = FindObjectOfType<InventoryManager>();
+        classroomSpriteSetter = new ClassroomSpriteSetter();
+        valluesConvertor = new ValluesConvertor();
+        dbManager = new DBManager();
 
-    getDialogueInfoByID(dbManager, id);
+        isTextInitialized = false;
+        isDialogueLoaded = false;
+        dialogueText.text = "";
 
-    if (isIntro() == true)
-    {
+        getDialoguendPhaseID();
+        getDialoguendPhaseTableName();
+        getNextDialogueToRead(tableNameToRead+tableIdToRead);
+
+        getDialogueInfoByID(dbManager, tableNameToRead, tableIdToRead);
+
+        outPos = new Vector3(1000f, 1000f, 0f);
+        inPos = new Vector3(0f, 0f, 0f);
+
         loadDialogue();
     }
 
-    outPos = new Vector3(1000f, 1000f, 0f);
-    inPos = new Vector3(0f, 0f, 0f);
-}
     /// Méthode appelée à chaque frame fixe.
     /// </summary>
     void FixedUpdate()
@@ -97,21 +103,7 @@ public class Dialogue2ndPhase : MonoBehaviour
             contButton.SetActive(true);
         }
         if(newDialogueCheck){
-            getDialogueInfoByID(dbManager, id);
-        }
-        if(isOneDialogueAsBeenFinished)
-        {
-            
-            if (id < 10){
-                id += 10;
-                UpdateDialogueDB(dbManager);
-            }
-            if (isOneDialogueAsBeenFinished)
-            {
-                
-
-                zebiFonctionne();
-            }
+            getDialogueInfoByID(dbManager, tableNameToRead, tableIdToRead);
         }
     }
 
@@ -124,16 +116,7 @@ public class Dialogue2ndPhase : MonoBehaviour
         index = 0;
         isDialogueActive = false;
         isTextInitialized = false;
-        if (isIntro() == true)
-        {
-            SceneManager.LoadScene("MovingPhase");
-        }
-        else
-        {
-            isOneDialogueAsBeenFinished= true;
-            isDialogueFinished.localPosition = inPos;
-            classroomSpriteSetter.removeDialogueObjectFromUI();
-        }
+        SceneManager.LoadScene("MovingPhase");
     }
 
     /// Effectue l'effet de dactylographie pour afficher le dialogue lettre par lettre.
@@ -223,33 +206,41 @@ public class Dialogue2ndPhase : MonoBehaviour
     }
 
 
-    public void getDialogueInfoByID(DBManager dbManager, int id)
+    public void getDialogueInfoByID(DBManager dbManager, string table, string ID)
     {
-        int checkId = id;
-        string strID = checkId.ToString();
-        getIsFirstTimeByID(strID);
-        if (checkId < 10 && isFirstTime.Equals("F"))
-        {  
-            strID = checkId.ToString();
-            getDialogueByID(strID);
-            getNameByID(strID);
-            getPosIDsByID(strID);
-            dialogueName.text = mmeOrM() + nameSprite[index];
-            isDialogueLoaded = true;
-        }else
+        getDialogueByID(table, ID);
+        getNameByID(table, ID);
+        getPosIDsByID(table, ID);
+        dialogueName.text = nameSprite[index];
+        isDialogueLoaded = true;
+    }
+
+    public void getDialoguendPhaseID()
+    {
+        
+        List<List<object>> resultat = dbManager.Select("2ndPhaseDialogueSelector", "iD", "1");
+
+        foreach (List<object> row in resultat)
         {
-            getDialogueByID(strID);
-            getNameByID(strID);
-            getPosIDsByID(strID);
-            dialogueName.text = mmeOrM() + nameSprite[index];
-            isDialogueLoaded = true;
+            tableIdToRead = valluesConvertor.convertRowToString(row);
         }
     }
 
-    public void getDialogueByID(string ID)
+    public void getDialoguendPhaseTableName()
     {
         
-        List<List<object>> resultat = dbManager.Select("Dialogues", "dialogue", "ID = " + ID);
+        List<List<object>> resultat = dbManager.Select("2ndPhaseDialogueSelector", "tableName", "1");
+
+        foreach (List<object> row in resultat)
+        {
+            tableNameToRead = valluesConvertor.convertRowToString(row);
+        }
+    }
+
+    public void getDialogueByID(string table, string ID)
+    {
+        
+        List<List<object>> resultat = dbManager.Select(table, "dialogue", "ID = " + ID);
 
         foreach (List<object> row in resultat)
         {
@@ -257,9 +248,9 @@ public class Dialogue2ndPhase : MonoBehaviour
         }
     }
     
-    public void getNameByID(string ID)
+    public void getNameByID(string table, string ID)
     {
-        List<List<object>> resultat = dbManager.Select("Dialogues", "name", "ID = " + ID);
+        List<List<object>> resultat = dbManager.Select(table, "name", "ID = " + ID);
 
         foreach (List<object> row in resultat)
         {
@@ -267,19 +258,9 @@ public class Dialogue2ndPhase : MonoBehaviour
         }
     }
 
-    public void getIsFirstTimeByID(string ID)
+    public void getPosIDsByID(string table, string ID)
     {
-        List<List<object>> resultat = dbManager.Select("Dialogues", "isFirstTime", "ID = " + ID);
-
-        foreach (List<object> row in resultat)
-        {
-            isFirstTime = valluesConvertor.convertRowToString(row);
-        }
-    }
-
-    public void getPosIDsByID(string ID)
-    {
-        List<List<object>> resultat = dbManager.Select("Dialogues", "posID", "ID = " + ID);
+        List<List<object>> resultat = dbManager.Select(table, "posID", "ID = " + ID);
 
         foreach (List<object> row in resultat)
         {
@@ -288,109 +269,61 @@ public class Dialogue2ndPhase : MonoBehaviour
         }
     }
 
-    bool isIntro()
+    void getNextDialogueToRead(string fullName)
     {
-        if (isIntroObject != null)
+        switch(fullName)
         {
-            return true;
-        }
-        return false;
-    }
-
-    public string mmeOrM()
-    {
-        if (nameSprite[index].Equals("MAKSSOUD"))
-        {
-            return "Mme ";
-        }
-        else if(nameSprite[index].Equals("NEUVOT"))
-        {
-            return "M. ";
-        }else return "";
-    
-    }
-    public int getIdByClassroomNumber(string numb)
-    {
-        switch(numb)
-        {
-            case "BDE":
-                id = 7;
+            case "5553366655533666":
+                tableIdToRead = "1";
+                tableNameToRead = "Questions";
                 break;
-            case "Mak":
-                id = 2;
+            case "Questions1":
+                tableIdToRead = "1";
+                tableNameToRead = "Answers";
                 break;
-            case "002":
-                id = 3;
+            case "Answers1":
+                tableIdToRead = "2";
+                tableNameToRead = "Questions";
                 break;
-            case "010":
-                id = 4;
+            case "Questions2":
+                tableIdToRead = "2";
+                tableNameToRead = "Answers";
                 break;
-            case "109":
-                id = 5;
+            case "Answers2":
+                tableIdToRead = "3";
+                tableNameToRead = "Questions";
                 break;
-            case "110":
-                id = 6;
+            case "Questions3":
+                tableIdToRead = "3";
+                tableNameToRead = "Answers";
                 break;
-            case "208":
-                id = 8;
+            case "Answers3":
+                tableIdToRead = "4";
+                tableNameToRead = "Questions";
                 break;
-        }
-            return id;
-    }
-    
-
-    public void UpdateDialogueDB(DBManager dbManager)
-    {
-        dbManager.UpdateTuple(dbManager, "Dialogues", "isFirstTime", "F", "ID" , id.ToString());
-    }
-
-    public void zebiFonctionne()
-    {
-        spriteName = classroomSpriteSetter.getClassroomName(dbManager, valluesConvertor);
-        proofID = getIdByClassroomNumberForProof(spriteName);
-        ChangeProofState(proofID);
-    }
-
-    public void ChangeProofState(int ID)
-    {
-        dbManager.UpdateTuple(dbManager, "Proof", "isCollected", "T", "ID" , ID.ToString());
-    }
-
-    public string GetProofByID(string ID)
-    {
-        List<List<object>> resultat = dbManager.Select("Proof", "isCollected", "ID = " + ID);
-
-        foreach (List<object> row in resultat)
-        {
-            isProofCollected = valluesConvertor.convertRowToString(row);
-        }
-        return isProofCollected;
-    }
-
-
-    public int getIdByClassroomNumberForProof(string numb)
-    {
-        switch(numb)
-        {
-            case "BDE":
-                proofID = 3;
+            case "Questions4":
+                tableIdToRead = "4";
+                tableNameToRead = "Answers";
                 break;
-            case "002":
-                proofID = 1;
+            case "Answers4":
+                tableIdToRead = "5";
+                tableNameToRead = "Questions";
                 break;
-            case "010":
-                proofID = 4;
+            case "Questions5":
+                tableIdToRead = "5";
+                tableNameToRead = "Answers";
                 break;
-            case "109":
-                proofID = 6;
+            case "Answers5":
+                tableIdToRead = "6";
+                tableNameToRead = "Questions";
                 break;
-            case "110":
-                proofID = 5;
+            case "Questions6":
+                tableIdToRead = "6";
+                tableNameToRead = "Answers";
                 break;
-            case "208":
-                proofID = 2;
+            case "Answers6":
+                SceneManager.LoadScene("MainMenu");
                 break;
         }
-            return proofID;
     }
 }

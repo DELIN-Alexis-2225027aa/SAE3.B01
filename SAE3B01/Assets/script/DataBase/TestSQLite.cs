@@ -18,12 +18,14 @@ public class TestSQLite : MonoBehaviour
 
         string xPos;
         string yPos;
+
+        string tableName;
         
     void Start()
     {
         dbManager = new DBManager();
 
-        deleteTables();
+        //deleteTables();
         createTables();
         resetTables();
         initTables();
@@ -68,6 +70,11 @@ public class TestSQLite : MonoBehaviour
         string[] columns9 = { "iD", "name", "posID", "dialogue" };
         string[] types9 = { "INTEGER", "BLOB", "BLOB", "BLOB"};
         dbManager.CreateTable("Answers", columns9, types9);
+
+        string[] columns10 = { "iD", "tableName" };
+        string[] types10 = { "BLOB", "BLOB"};
+        dbManager.CreateTable("ndPhaseDialogueSelector", columns10, types10);
+
     }
 
     public void deleteTables()
@@ -82,6 +89,7 @@ public class TestSQLite : MonoBehaviour
         dbManager.Droptable("SceneResume");
         dbManager.Droptable("Questions");
         dbManager.Droptable("Answers");
+        dbManager.Droptable("ndPhaseDialogueSelector");
     }
 
     void resetTables()
@@ -96,6 +104,7 @@ public class TestSQLite : MonoBehaviour
         dbManager.DeleteEverythingFromTable("SceneResume");
         dbManager.DeleteEverythingFromTable("Questions");
         dbManager.DeleteEverythingFromTable("Answers");
+        dbManager.DeleteEverythingFromTable("ndPhaseDialogueSelector");
 
     }
 
@@ -297,10 +306,10 @@ public class TestSQLite : MonoBehaviour
         iD = "1000";
         name = "$";
         posID = "1";
-        string dialogue17 = "Vite, il faut que je me rende à l'Amphithéâtre Ouest au plus vite, sinon je vais être en retard !";
+        string dialogue1000 = "Vite, il faut que je me rende à l'Amphithéâtre Ouest au plus vite, sinon je vais être en retard !";
         firstTime = "T";
-        string[] values17 = { iD, name, posID, dialogue17, firstTime };
-        dbManager.Insert("Dialogues", values17);
+        string[] values1000 = { iD, name, posID, dialogue1000, firstTime };
+        dbManager.Insert("Dialogues", values1000);
     }
 
         // initialisation des preuves
@@ -450,6 +459,14 @@ public class TestSQLite : MonoBehaviour
         string answer6 = "L’informatique représente environ 50% des enseignements. Vous aurez également des cours de mathématiques qui vous serviront par exemple en cryptographie|mais également de droit, de gestion et de management, utiles en fonction du métier que vous choisirez.|Et effectivement les cours d’anglais sont dispensés à raison de 2 heures par semaine mais orientés davantage vers l’oral plutôt que l’écrit.";
         string[] answerValues6 = { iD, name, posID, answer6};
         dbManager.Insert("Answers", answerValues6);
+    }
+
+    void init2ndPhaseDialogue()
+    {
+        iD = "55533666";
+        tableName = "55533666";
+        string[] ndPhaseValues = { iD, tableName};
+        dbManager.Insert("ndPhaseDialogueSelector", ndPhaseValues);
     }
     
     void OnDestroy()

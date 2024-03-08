@@ -202,7 +202,7 @@ public class ClassroomSpriteSetter : MonoBehaviour
 
     void saveDialogueObjectPos()
     {
-        leoPos = leo.localPosition; 
+        leoPos = new Vector3(0.7f, 23.3f, 0f); 
         dialogueButtonRectPos = dialogueButtonRect.localPosition;
         nameDialogueRectPos = nameDialogueRect.localPosition;
         dialogueRectPos = dialogueRect.localPosition;
@@ -227,9 +227,10 @@ public class ClassroomSpriteSetter : MonoBehaviour
     public void easter()
     {
         randomNuber = Random.Range(1,11);
+        Debug.Log(randomNuber);
         if(randomNuber == 1)
         {
-            leo.localPosition = leoPos;
+            StartCoroutine(MoveLeo());
         }
 
     }
@@ -300,4 +301,20 @@ public class ClassroomSpriteSetter : MonoBehaviour
 
         interactiveObjectPos.localScale = new Vector3(xSize, ySize, 1f);
     }
+
+    IEnumerator MoveLeo()
+{
+    Vector3 targetPosition = new Vector3(0.7f, 23.3f, 0f);
+    float duration = 1.0f; 
+
+    float elapsed = 0f;
+    while (elapsed < duration)
+    {
+        leo.localPosition = Vector3.Lerp(leo.localPosition, targetPosition, elapsed / duration);
+        elapsed += Time.deltaTime;
+        yield return null;
+    }
+
+    leo.localPosition = targetPosition;
+}
 }

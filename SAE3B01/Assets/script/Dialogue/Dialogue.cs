@@ -6,16 +6,6 @@ using UnityEngine.UI;
 using System.IO;
 using System.Linq;
 
-
-
-/// <summary>
-/// Représente la sélection d'un ensemble de dialogues par son répertoire.
-/// </summary>
-public class DialogueSelector
-{
-    public string repertory;
-}
-
 public class Dialogue : MonoBehaviour
 {
     private InventoryManager inventoryManager;
@@ -68,8 +58,18 @@ public class Dialogue : MonoBehaviour
     dialogueText.text = "";
 
     spriteName = classroomSpriteSetter.getClassroomName(dbManager, valluesConvertor);
+    if (spriteName != null)
+    {
+        id = getIdByClassroomNumber(spriteName);
+    }
+    else id = 1;
 
     getDialogueInfoByID(dbManager, id);
+
+    if (isIntro() == true)
+    {
+        loadDialogue();
+    }
 
     outPos = new Vector3(1000f, 1000f, 0f);
     inPos = new Vector3(0f, 0f, 0f);
@@ -99,6 +99,20 @@ public class Dialogue : MonoBehaviour
         if(newDialogueCheck){
             getDialogueInfoByID(dbManager, id);
         }
+        if(isOneDialogueAsBeenFinished)
+        {
+            
+            if (id < 10){
+                id += 10;
+                UpdateDialogueDB(dbManager);
+            }
+            if (isOneDialogueAsBeenFinished)
+            {
+                
+
+                zebiFonctionne();
+            }
+        }
     }
 
     /// Réinitialise le texte du dialogue.
@@ -110,7 +124,16 @@ public class Dialogue : MonoBehaviour
         index = 0;
         isDialogueActive = false;
         isTextInitialized = false;
-        SceneManager.LoadScene("MovingPhase");
+        if (isIntro() == true)
+        {
+            SceneManager.LoadScene("MovingPhase");
+        }
+        else
+        {
+            isOneDialogueAsBeenFinished= true;
+            isDialogueFinished.localPosition = inPos;
+            classroomSpriteSetter.removeDialogueObjectFromUI();
+        }
     }
 
     /// Effectue l'effet de dactylographie pour afficher le dialogue lettre par lettre.
@@ -204,11 +227,23 @@ public class Dialogue : MonoBehaviour
     {
         int checkId = id;
         string strID = checkId.ToString();
+        getIsFirstTimeByID(strID);
+        if (checkId < 10 && isFirstTime.Equals("F"))
+        {  
+            strID = checkId.ToString();
             getDialogueByID(strID);
             getNameByID(strID);
             getPosIDsByID(strID);
-            dialogueName.text = nameSprite[index];
+            dialogueName.text = mmeOrM() + nameSprite[index];
             isDialogueLoaded = true;
+        }else
+        {
+            getDialogueByID(strID);
+            getNameByID(strID);
+            getPosIDsByID(strID);
+            dialogueName.text = mmeOrM() + nameSprite[index];
+            isDialogueLoaded = true;
+        }
     }
 
     public void getDialogueByID(string ID)
@@ -253,5 +288,109 @@ public class Dialogue : MonoBehaviour
         }
     }
 
+    bool isIntro()
+    {
+        if (isIntroObject != null)
+        {
+            return true;
+        }
+        return false;
+    }
 
+    public string mmeOrM()
+    {
+        if (nameSprite[index].Equals("MAKSSOUD"))
+        {
+            return "Mme ";
+        }
+        else if(nameSprite[index].Equals("NEUVOT"))
+        {
+            return "M. ";
+        }else return "";
+    
+    }
+    public int getIdByClassroomNumber(string numb)
+    {
+        switch(numb)
+        {
+            case "BDE":
+                id = 7;
+                break;
+            case "Mak":
+                id = 2;
+                break;
+            case "002":
+                id = 3;
+                break;
+            case "010":
+                id = 4;
+                break;
+            case "109":
+                id = 5;
+                break;
+            case "110":
+                id = 6;
+                break;
+            case "208":
+                id = 8;
+                break;
+        }
+            return id;
+    }
+    
+
+    public void UpdateDialogueDB(DBManager dbManager)
+    {
+        dbManager.UpdateTuple(dbManager, "Dialogues", "isFirstTime", "F", "ID" , id.ToString());
+    }
+
+    public void zebiFonctionne()
+    {
+        spriteName = classroomSpriteSetter.getClassroomName(dbManager, valluesConvertor);
+        proofID = getIdByClassroomNumberForProof(spriteName);
+        ChangeProofState(proofID);
+    }
+
+    public void ChangeProofState(int ID)
+    {
+        dbManager.UpdateTuple(dbManager, "Proof", "isCollected", "T", "ID" , ID.ToString());
+    }
+
+    public string GetProofByID(string ID)
+    {
+        List<List<object>> resultat = dbManager.Select("Proof", "isCollected", "ID = " + ID);
+
+        foreach (List<object> row in resultat)
+        {
+            isProofCollected = valluesConvertor.convertRowToString(row);
+        }
+        return isProofCollected;
+    }
+
+
+    public int getIdByClassroomNumberForProof(string numb)
+    {
+        switch(numb)
+        {
+            case "BDE":
+                proofID = 3;
+                break;
+            case "002":
+                proofID = 1;
+                break;
+            case "010":
+                proofID = 4;
+                break;
+            case "109":
+                proofID = 6;
+                break;
+            case "110":
+                proofID = 5;
+                break;
+            case "208":
+                proofID = 2;
+                break;
+        }
+            return proofID;
+    }
 }

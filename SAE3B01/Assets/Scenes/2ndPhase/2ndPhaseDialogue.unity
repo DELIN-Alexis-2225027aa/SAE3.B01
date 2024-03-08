@@ -317,7 +317,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1250120948}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Dialogue, Assembly-CSharp
         m_MethodName: nextLine
         m_Mode: 1
@@ -424,7 +424,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -1483407423975865499, guid: 6014a77b448210e41a0f4f52afd57568, type: 3}
+  m_Sprite: {fileID: 4202998537725820106, guid: 96788badc96cc10448eeb7aa9d732898, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -722,7 +722,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1250120949}
-  - component: {fileID: 1250120948}
+  - component: {fileID: 1250120950}
   m_Layer: 0
   m_Name: DialogueManager
   m_TagString: Untagged
@@ -730,32 +730,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1250120948
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1250120947}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ca2df344ce1108a40992c6cdc2eee137, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isDialogueFinished: {fileID: 0}
-  img: {fileID: 633978599}
-  dialoguePanel: {fileID: 0}
-  dialogueText: {fileID: 1162356160}
-  dialogueName: {fileID: 1611572215}
-  dialogueToShow: []
-  contButton: {fileID: 292415388}
-  wordSpeed: 0.6
-  sprites: 
-  nameSprite: []
-  isIntroObject: {fileID: 281462798}
-  id: 0
-  isDialogueLoaded: 0
-  classroomSpriteSetter: {fileID: 0}
 --- !u!4 &1250120949
 Transform:
   m_ObjectHideFlags: 0
@@ -771,6 +745,43 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1250120950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1250120947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fcc5283a5b68b04cb18992690256547, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isDialogueFinished: {fileID: 0}
+  img: {fileID: 0}
+  dialoguePanel: {fileID: 0}
+  dialogueText: {fileID: 0}
+  dialogueName: {fileID: 0}
+  dialogueToShow:
+  - .
+  contButton: {fileID: 0}
+  wordSpeed: 0
+  sprites: 
+  nameSprite: []
+  isFirstTime: 
+  isIntroObject: {fileID: 0}
+  isTextInitialized: 0
+  spriteName: 
+  proofID: 0
+  isOneDialogueAsBeenFinished: 0
+  newDialogueCheck: 0
+  id: 0
+  dialogueInt: 0
+  isProofCollected: 
+  isDialogueLoaded: 0
+  tableIdToRead: 
+  tableNameToRead: 
+  classroomSpriteSetter: {fileID: 0}
 --- !u!1 &1271587375
 GameObject:
   m_ObjectHideFlags: 0

@@ -38,5 +38,11 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainMenu/ParametersMainMenu.unity
     guid: e38f6ba00f434c5408e990c45f20bd8a
+  - enabled: 1
+    path: Assets/Scenes/2ndPhase/2ndPhaseDialogue.unity
+    guid: 501fc5a8138be314db2369ab69a65955
+  - enabled: 1
+    path: Assets/Scenes/2ndPhase/2ndPhaseInventory.unity
+    guid: a6ac42e7f0d065e42a50453522f0fa54
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0

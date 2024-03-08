@@ -293,6 +293,14 @@ public class TestSQLite : MonoBehaviour
         firstTime = "T";
         string[] values16 = { iD, name, posID, dialogue16, firstTime };
         dbManager.Insert("Dialogues", values16);
+
+        iD = "1000";
+        name = "$";
+        posID = "1";
+        string dialogue17 = "Vite, il faut que je me rende à l'Amphithéâtre Ouest au plus vite, sinon je vais être en retard !";
+        firstTime = "T";
+        string[] values17 = { iD, name, posID, dialogue17, firstTime };
+        dbManager.Insert("Dialogues", values17);
     }
 
         // initialisation des preuves
@@ -357,44 +365,44 @@ public class TestSQLite : MonoBehaviour
     {
 
         iD = "1";
-        name = "Lycéen";
-        posID = "1";
-        string question = "Est-ce que le BUT c’est pareil que le lycée ? Ou bien, on apprend autre chose que du Python.";
+        name = "Lycéen|Lycéen";
+        posID = "1|1";
+        string question = "Est-ce que le BUT c’est pareil que le lycée ?|Ou bien, on apprend autre chose que du Python.";
         string[] questionValues = { iD, name, posID, question};
         dbManager.Insert("Questions", questionValues);
 
         iD = "2";
-        name = "Lycéen";
-        posID = "1";
-        string question2 = "Après le BUT, dans quels secteurs d’activités peut-on travailler ?";
+        name = "Lycéen|Lycéen";
+        posID = "1|1";
+        string question2 = "Après l'optention du Brevet Universitaire de Technologie|J'aimrais savoir dans quels secteurs d’activités peut-on travailler ?";
         string[] questionValues2 = { iD, name, posID, question2};
         dbManager.Insert("Questions", questionValues2);
 
         iD = "3";
-        name = "Lycéen";
-        posID = "1";
-        string question3 = "Je vois qu’il y a beaucoup de possibilités après le BUT mais comment je vais savoir quel domaine je préfère ?";
+        name = "Lycéen|Lycéen";
+        posID = "1|1";
+        string question3 = "Je vois qu’il y a beaucoup de possibilités après le BUT|Mais comment je vais savoir quel domaine je préfère ?";
         string[] questionValues3 = { iD, name, posID, question3};
         dbManager.Insert("Questions", questionValues3);
 
         iD = "4";
-        name = "Lycéen";
-        posID = "1";
-        string question4 = "Comment se passe l’intégration des “première année” ?";
+        name = "Lycéen|Lycéen";
+        posID = "1|1";
+        string question4 = "N'ayant pas envie d'être perdu à mon arrivé.|Pouvez-vous me dire comment se passe l’intégration des “première année” ?";
         string[] questionValues4 = { iD, name, posID, question4};
         dbManager.Insert("Questions", questionValues4);
 
         iD = "5";
-        name = "Lycéen";
-        posID = "1";
-        string question5 = "Comment se déroulent les évaluations ?";
+        name = "Lycéen|Lycéen";
+        posID = "1|1";
+        string question5 = "Quels sont les méthodes d'évaluation utilisées par le BUT ?|Et en quoi consistent-elles ?";
         string[] questionValues5 = { iD, name, posID, question5};
         dbManager.Insert("Questions", questionValues5);
 
         iD = "6";
-        name = "Lycéen";
-        posID = "1";
-        string question6 = "J’ai entendu dire que l’anglais était indispensable dans l’informatique. Est-ce qu’on aura encore des cours de cette matière ?";
+        name = "Lycéen|Lycéen";
+        posID = "1|1";
+        string question6 = "J’ai entendu dire que l’anglais était indispensable dans l’informatique.|Est-ce qu’on aura encore des cours de cette matière ?";
         string[] questionValues6 = { iD, name, posID, question6};
         dbManager.Insert("Questions", questionValues6);
     }

@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: f98c33e24fec832468634327cf3a29a5
+guid: e00093030c40ddd4aa7e09e92087cdc7
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7019366902679397698
-    second: BDE_0
+      213: -1135525582707755010
+    second: Parrain1_0
   externalObjects: {}
   serializedVersion: 12
   mipmaps:
@@ -98,13 +98,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: BDE_0
+      name: Parrain1_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 3280
-        height: 2464
+        width: 422
+        height: 558
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -112,8 +112,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: eba19a10ef2369e90800000000000000
-      internalID: -7019366902679397698
+      spriteID: ef7f551bf7dcd30f0800000000000000
+      internalID: -1135525582707755010
       vertices: []
       indices: 
       edges: []

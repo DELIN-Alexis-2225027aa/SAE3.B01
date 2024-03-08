@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 8631f52f9a116134e976bbaf4fff2269
+guid: f7244a978a2f9e640a622c180ff6844e
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6478189023388850004
-    second: Myke1_0
+      213: 9031360593565031234
+    second: Myke_0
   externalObjects: {}
   serializedVersion: 12
   mipmaps:
@@ -98,13 +98,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Myke1_0
+      name: Myke_0
       rect:
         serializedVersion: 2
-        x: 96
-        y: 0
-        width: 230
-        height: 376
+        x: 287
+        y: 97
+        width: 77
+        height: 93
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -112,8 +112,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 4575de6089627e950800000000000000
-      internalID: 6478189023388850004
+      spriteID: 24b97e11c96d55d70800000000000000
+      internalID: 9031360593565031234
       vertices: []
       indices: 
       edges: []
@@ -129,7 +129,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Myke1_0: 6478189023388850004
+      Myke_0: 9031360593565031234
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

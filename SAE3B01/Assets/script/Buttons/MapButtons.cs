@@ -32,10 +32,10 @@ public class MapButtons : MonoBehaviour
     /// </summary>
     void Start()
     {
-        dbManager = new DBManager();
-        valluesConvertor = new ValluesConvertor();
+        dbManager = new DBManager();  // Initialise le gestionnaire de base de données.
+        valluesConvertor = new ValluesConvertor();  // Initialise le convertisseur de valeurs.
 
-        VerifyStartFloor();
+        VerifyStartFloor();  // Vérifie le niveau de départ du joueur.
     }
 
     /// <summary>
@@ -45,11 +45,12 @@ public class MapButtons : MonoBehaviour
     {
         if (File.Exists(filePath))
         {
-            // Trouver l'etage en fonction de la position y du joueur
+            // Trouve l'étage en fonction de la position y du joueur
             if (yPos > -50f)
             {
                 floor = 1;
-            }else if (yPos < -150f)
+            }
+            else if (yPos < -150f)
             {
                 floor = 3;
             }
@@ -57,7 +58,7 @@ public class MapButtons : MonoBehaviour
             {
                 floor = 2;
             }
-            PlaceCrosshair();
+            PlaceCrosshair();  // Place le réticule sur la carte en fonction du niveau actuel.
         }
         else
         {
@@ -70,12 +71,12 @@ public class MapButtons : MonoBehaviour
     /// </summary>
     void PlaceCrosshair()
     {
-        if(floor == 1)
+        if (floor == 1)
         {
             Vector3 CrosshairPos = new Vector3(-45f, -0f, 0f);
             tr.position = CrosshairPos;
         }
-        else if( floor == 2 ) 
+        else if (floor == 2)
         {
             Vector3 CrosshairPos = new Vector3(-45f, -30f, 0f);
             tr.position = CrosshairPos;
@@ -114,17 +115,17 @@ public class MapButtons : MonoBehaviour
         tr.position = CrosshairPos;
     }
 
+    /// <summary>
+    /// Obtient la position y du joueur depuis la base de données.
+    /// </summary>
     public void getPlayeYPos()
     {
         List<List<object>> resultY = dbManager.Select("PlayerPos", "yPos", "1");
 
-            
         foreach (List<object> row in resultY)
         {
             strYValue = valluesConvertor.convertRowToString(row);
             yPos = float.Parse(strYValue);
         }
-
-
     }
 }

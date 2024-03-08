@@ -293,14 +293,14 @@ public class TestSQLite : MonoBehaviour
         iDProof = "1";
         pName = "Liste des SAE";
         description = "Il y a de nombreuses SAE, toutes plus intéressantes les unes que les autres. Voici certains projets que vous pourrez avoir en 2 années de BUT : Programmation d’un PacMan. Production d’un escape game. Conception d’un jeu vidéo en rapport avec le BUT. Création d’un code pour visualiser les catastrophes naturelles en France. Création d’un réseau social inédit. ";
-        isEarned = "F";
+        isEarned = "T";
         string[] Proofvalues = { iDProof, pName, description, isEarned};
         dbManager.Insert("Proof", Proofvalues);
 
         iDProof = "2";
         pName = "Stage & Alternance";
         description = "Information sur l'Alternance Durée : 1 ou 2 ans Objectifs : Acquérir une expérience professionnelle tout en poursuivant ses études Avantages : Rémunération, acquisition de compétences pratiques, possibilité d'être embauché à la fin de la formation | Informations sur le Stage : Durée : 11 semaines (à la fin de la deuxième année) Objectifs : Découverte du milieu professionnel, mise en pratique des connaissances théoriques Avantages : Acquisition d'expérience, possibilité d'obtenir une offre d'emploi à l'issue du stage";
-        isEarned = "F";
+        isEarned = "T";
         string[] Proofvalues2 = { iDProof, pName, description, isEarned };
         dbManager.Insert("Proof", Proofvalues2);
 

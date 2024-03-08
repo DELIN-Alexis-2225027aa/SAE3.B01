@@ -74,3 +74,4 @@ crashlytics-build.properties
 # Ignore .db files
 *.db
 SAE3B01/dataBase.db
+SAE3B01/dataBase.db

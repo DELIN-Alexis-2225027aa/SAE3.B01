@@ -48,8 +48,8 @@ public class Dialogue2ndPhase : MonoBehaviour
     public int dialogueInt;
     public string isProofCollected;
     public bool isDialogueLoaded;
-    public string tableIdToRead;
-    public string tableNameToRead; 
+    [SerializeField]public string tableIdToRead;
+    [SerializeField]public string tableNameToRead; 
 
     Vector3 outPos;
     Vector3 inPos;
@@ -218,7 +218,7 @@ public class Dialogue2ndPhase : MonoBehaviour
     public void getDialoguendPhaseID()
     {
         
-        List<List<object>> resultat = dbManager.Select("2ndPhaseDialogueSelector", "iD", "1");
+        List<List<object>> resultat = dbManager.Select("ndPhaseDialogueSelector", "iD", "1");
 
         foreach (List<object> row in resultat)
         {
@@ -229,7 +229,7 @@ public class Dialogue2ndPhase : MonoBehaviour
     public void getDialoguendPhaseTableName()
     {
         
-        List<List<object>> resultat = dbManager.Select("2ndPhaseDialogueSelector", "tableName", "1");
+        List<List<object>> resultat = dbManager.Select("ndPhaseDialogueSelector", "tableName", "1");
 
         foreach (List<object> row in resultat)
         {
@@ -271,6 +271,7 @@ public class Dialogue2ndPhase : MonoBehaviour
 
     void getNextDialogueToRead(string fullName)
     {
+        
         switch(fullName)
         {
             case "5553366655533666":

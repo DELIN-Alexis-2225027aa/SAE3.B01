@@ -758,13 +758,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isDialogueFinished: {fileID: 0}
-  img: {fileID: 0}
+  img: {fileID: 633978599}
   dialoguePanel: {fileID: 0}
-  dialogueText: {fileID: 0}
-  dialogueName: {fileID: 0}
+  dialogueText: {fileID: 1162356160}
+  dialogueName: {fileID: 1611572215}
   dialogueToShow:
   - .
-  contButton: {fileID: 0}
+  contButton: {fileID: 292415388}
   wordSpeed: 0
   sprites: 
   nameSprite: []

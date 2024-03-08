@@ -326,35 +326,35 @@ public class TestSQLite : MonoBehaviour
         iDProof = "2";
         pName = "Stage & Alternance";
         description = "Information sur l'Alternance Durée : 1 ou 2 ans Objectifs : Acquérir une expérience professionnelle tout en poursuivant ses études Avantages : Rémunération, acquisition de compétences pratiques, possibilité d'être embauché à la fin de la formation | Informations sur le Stage : Durée : 11 semaines (à la fin de la deuxième année) Objectifs : Découverte du milieu professionnel, mise en pratique des connaissances théoriques Avantages : Acquisition d'expérience, possibilité d'obtenir une offre d'emploi à l'issue du stage";
-        isEarned = "T";
+        isEarned = "F";
         string[] Proofvalues2 = { iDProof, pName, description, isEarned };
         dbManager.Insert("Proof", Proofvalues2);
 
         iDProof = "3";
         pName = "BDE";
         description = "Il y a de nombreuses SAE, toutes plus intéressantes les unes que les autres. Voici certains projets que vous pourrez avoir en 2 années de BUT : Programmation d’un PacMan. Production d’un escape game. Conception d’un jeu vidéo en rapport avec le BUT. Création d’un code pour visualiser les catastrophes naturelles en France. Création d’un réseau social inédit. ";
-        isEarned = "T";
+        isEarned = "F";
         string[] Proofvalues3 = { iDProof, pName, description, isEarned};
         dbManager.Insert("Proof", Proofvalues3);
 
         iDProof = "4";
         pName = "Liste des matières complémentaires";
         description = "Liste des matières complémentaires au BUT : Mathématiques Anglais Droit Gestion Management";
-        isEarned = "T";
+        isEarned = "F";
         string[] Proofvalues4 = { iDProof, pName, description, isEarned};
         dbManager.Insert("Proof", Proofvalues4);
 
         iDProof = "5";
         pName = "Liste des débouchés des anciens élèves";
         description = "Liste des débouchés des anciens élèves : Développeur Web Ingénieur en informatique Analyste de données Administrateur de bases de données Concepteur de jeux vidéo Designer d\'interfaces utilisateur Spécialiste en sécurité informatique Architecte logiciel Ingénieur réseau Consultant en technologies de l'information";
-        isEarned = "T";
+        isEarned = "F";
         string[] Proofvalues5 = { iDProof, pName, description, isEarned };
         dbManager.Insert("Proof", Proofvalues5);
 
         iDProof = "6";
         pName = "Liste des matières informatiques";
         description = "Liste des matières informatiques au BUT : Apprentissage du Python pour les bases de la programmation Exploration du langage C++ et Java pour la création de jeux et de logiciels Utilisation du SQL pour naviguer dans une base de données Programmation web avec PHP, HTML, CSS et JavaScript pour la création de sites web";
-        isEarned = "T";
+        isEarned = "F";
         string[] Proofvalues6 = { iDProof, pName, description, isEarned};
         dbManager.Insert("Proof", Proofvalues6);
     }

@@ -40,6 +40,7 @@ public class Dialogue : MonoBehaviour
     public bool isDialogueLoaded;
     Vector3 outPos;
     Vector3 inPos;
+    string str;
     [SerializeField] ClassroomSpriteSetter classroomSpriteSetter;
 
     /// Méthode appelée au démarrage.
@@ -220,6 +221,31 @@ public class Dialogue : MonoBehaviour
             Sprite sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f));
             img.sprite = sprite;
         }
+        else{
+            int pos;
+            string gender = getPlayerGender();
+            switch (gender)
+{
+    case "F":
+        pos = 2;
+        break;
+    case "M":
+        pos = 1;
+        break;
+    default:
+        pos = 1; 
+        Debug.LogWarning($"Unknown gender: {gender}. Using default pos value.");
+        break;
+}
+
+spriteName = $"{pos}.png";
+imagePath = Path.Combine(Application.dataPath, "Images/Personnage", spriteName);
+byte[] fileData = File.ReadAllBytes(imagePath);
+Texture2D texture = new Texture2D(2, 2);
+texture.LoadImage(fileData);
+Sprite sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f));
+img.sprite = sprite;
+        }
     }
 
 
@@ -286,6 +312,18 @@ public class Dialogue : MonoBehaviour
             string str = valluesConvertor.convertRowToString(row);
             sprites = valluesConvertor.convertDBstringToIntArray(str);
         }
+    }
+
+    public string getPlayerGender()
+    {
+        
+        List<List<object>> resultat = dbManager.Select("PlayerData", "playerGender", "1" );
+
+        foreach (List<object> row in resultat)
+        {
+             str = valluesConvertor.convertRowToString(row);
+        }
+        return str;
     }
 
     bool isIntro()

@@ -1,45 +1,31 @@
 ﻿using UnityEngine;
 
-/// <summary>
-/// Déplace le GameObject selon un motif oscillant sinusoïdal.
-/// </summary>
 public class MoveImage : MonoBehaviour
 {
-    /// <summary>
-    /// Vitesse du mouvement.
-    /// </summary>
-    public float vitesse = 1.0f;
+    public float speed = 1.0f; // Vitesse de déplacement
+    public float magnitude = 1.0f; // Amplitude du mouvement
+    public float frequency = 1.0f; // Fréquence du mouvement
 
-    /// <summary>
-    /// Amplitude du mouvement.
-    /// </summary>
-    public float amplitude = 1.0f;
-
-    /// <summary>
-    /// Fréquence du mouvement.
-    /// </summary>
-    public float frequence = 1.0f;
-
-    private float positionInitialeY; // Position initiale sur l'axe Y
+    private float initialY; // Position initiale en Y
 
     void Start()
     {
-        // Enregistre la position initiale sur l'axe Y
-        positionInitialeY = transform.position.y;
+        // Enregistre la position initiale en Y
+        initialY = transform.position.y;
     }
 
     void Update()
     {
         // Calcule le décalage en Y en utilisant la fonction sinus pour créer un mouvement oscillant
-        float décalageY = Mathf.Sin(Time.time * frequence) * amplitude;
+        float offsetY = Mathf.Sin(Time.time * frequency) * magnitude;
 
-        // Calcule la nouvelle position en Y en ajoutant le décalage à la position initiale
-        float nouvellePositionY = positionInitialeY + décalageY;
+        // Calcule la position en Y en ajoutant le décalage à la position initiale
+        float newY = initialY + offsetY;
 
         // Déplace l'objet à la nouvelle position en Y
-        transform.position = new Vector3(transform.position.x, nouvellePositionY, transform.position.z);
+        transform.position = new Vector3(transform.position.x, newY, transform.position.z);
 
-        // Pour déplacer l'objet le long de l'axe X
-        // transform.position = new Vector3(nouvellePositionX, transform.position.y, transform.position.z);
+        // Pour déplacer l'objet selon l'axe X
+        // transform.position = new Vector3(newX, transform.position.y, transform.position.z);
     }
 }

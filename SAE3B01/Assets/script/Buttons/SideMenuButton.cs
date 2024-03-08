@@ -25,17 +25,11 @@ public class SideMenuButton : MonoBehaviour
         SceneManager.LoadScene("Proof");
     }
 
-    /// <summary>
-    /// Charge la scène de l'aide.
-    /// </summary>
     public void onHelpButtonPressed()
     {
         SceneManager.LoadScene("Help");
     }
 
-    /// <summary>
-    /// Charge la scène des paramètres.
-    /// </summary>
     public void onParametersButtonPressed()
     {
         SceneManager.LoadScene("Parameters");
@@ -44,7 +38,7 @@ public class SideMenuButton : MonoBehaviour
     /// <summary>
     /// Charge la scène du menu principal.
     /// </summary>
-    public void onQuitButtonPressed()
+    public void onQuitButtonPressed() 
     {
         SceneManager.LoadScene("MainMenu");
     }

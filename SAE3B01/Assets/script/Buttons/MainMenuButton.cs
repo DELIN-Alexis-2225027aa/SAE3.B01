@@ -4,9 +4,6 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.IO;
 
-/// <summary>
-/// Représente une salle de classe avec un nom associé.
-/// </summary>
 public class Classroom
 {
     public string classroomName;
@@ -17,9 +14,9 @@ public class Classroom
 /// </summary>
 public class MainMenuButton : MonoBehaviour
 {
-    private TestSQLite testSQLite;  // TestSQLite est une classe, peut-être liée à une base de données SQLite.
-    private DBManager dbManager;    // DBManager semble gérer la base de données.
-    private PlayerInfoDispayScript playerInfoDispayScript;  // Script pour afficher les informations du joueur.
+    private TestSQLite testSQLite;
+    private DBManager dbManager;
+    private PlayerInfoDispayScript playerInfoDispayScript;
 
     string json;
 
@@ -30,7 +27,7 @@ public class MainMenuButton : MonoBehaviour
 
     private void Start()
     {
-        // Aucune initialisation nécessaire pour le moment.
+
     }
 
     /// <summary>
@@ -38,28 +35,19 @@ public class MainMenuButton : MonoBehaviour
     /// </summary>
     public void onPlayButtonPressed()
     {
-        playerInfoDispayScript.showOnUI();  // Affiche les informations du joueur sur l'interface utilisateur.
+        playerInfoDispayScript.showOnUI();
     }
 
-    /// <summary>
-    /// Charge la scène des paramètres du menu principal.
-    /// </summary>
     public void onParametersButtonPressed()
     {
         SceneManager.LoadScene("ParametersMainMenu");
     }
 
-    /// <summary>
-    /// Charge la scène du menu principal.
-    /// </summary>
     public void onMainMenuButtonPressed()
     {
         SceneManager.LoadScene("MainMenu");
     }
 
-    /// <summary>
-    /// Charge la scène d'aide du menu principal.
-    /// </summary>
     public void onHelpButtonPressed()
     {
         SceneManager.LoadScene("HelpMainMenu");
@@ -70,15 +58,16 @@ public class MainMenuButton : MonoBehaviour
     /// </summary>
     public void onQuitButtonPressed()
     {
-        Application.Quit();  // Ferme l'application.
+        Application.Quit();
     }
 
     /// <summary>
     /// Configure le gestionnaire de dialogue et enregistre les données dans un fichier JSON.
     /// </summary>
+
     public void eraseDB()
     {
-        dbManager = new DBManager();  // Initialise le gestionnaire de base de données.
-        dbManager.Droptable("Dialogues");  // Supprime la table "Dialogues" de la base de données.
+        dbManager = new DBManager();
+        dbManager.Droptable("Dialogues");
     }
 }

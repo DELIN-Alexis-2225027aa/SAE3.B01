@@ -3,152 +3,97 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-/// <summary>
-/// Cette classe fournit des méthodes pour convertir des valeurs récupérées depuis une base de données.
-/// </summary>
-public class ConvertisseurDeValeurs
+public class ValluesConvertor
 {
-    private GestionnaireDB gestionnaireDB;
+    private DBManager dbManager;
+    
+    int resultInt;
+    string resultString;
+    public string name;
 
-    int resultatEntier;
-    string resultatChaine;
-    public string nom;
-
-    /// <summary>
-    /// Le démarrage est appelé avant la première mise à jour du frame.
-    /// </summary>
+    // Start is called before the first frame update
     void Start()
     {
-        gestionnaireDB = new GestionnaireDB();
+        dbManager = new DBManager();
     }
 
-    /// <summary>
-    /// Constructeur de la classe ConvertisseurDeValeurs.
-    /// </summary>
-    public ConvertisseurDeValeurs()
+    public ValluesConvertor()
     {
-        // Logique du constructeur, si nécessaire
+        // Constructor logic, if needed
     }
 
-    /// <summary>
-    /// Convertit une ligne récupérée depuis la base de données en tableau de chaînes.
-    /// </summary>
-    /// <param name="ligne">Liste d'objets représentant une ligne de base de données.</param>
-    /// <returns>Tableau de chaînes.</returns>
-    public string[] ConvertirLigneEnTableauDeChaine(List<object> ligne)
+    public string[] ConvertRowToStringArray(List<object> row)
     {
-        string chaine = ConvertirLigneEnChaine(ligne);
-
-        if (chaine.Any(char.IsLetter))
+        string str = convertRowToString(row);
+   
+        if (str.Any(char.IsLetter))
         {
-            if (VerifierSiChaineDoitEtreDivisee(chaine))
-            {
-                return ConvertirChaineDBEnTableauDeChaine(chaine);
-            }
-            else
-            {
-                return null;
-            }
+            if (checkIfStringNeedToSplit(str))
+                {
+                    return convertDBStringToStringArray(str);
+                }
+                else return null;
         }
-        else
+        else return null;
+    }
+
+
+    public bool checkIfStringNeedToSplit(string strToCheck)
+    {
+        return strToCheck.Contains("|");
+    }
+
+    public string convertRowToString(List<object> rowToConvert)
+    {
+        byte[] bytesArray = (byte[])rowToConvert[0];
+        resultString = System.Text.Encoding.UTF8.GetString(bytesArray);
+        if (nameNeedChecker(resultString))
         {
-            return null;
+            string playerName = getName();
+            resultString = putNameInStr(resultString, playerName);
         }
+        return resultString;
     }
 
-    /// <summary>
-    /// Vérifie si une chaîne doit être divisée en utilisant un délimiteur.
-    /// </summary>
-    /// <param name="chaineAVerifier">Chaîne à vérifier.</param>
-    /// <returns>Vrai si la chaîne doit être divisée, faux sinon.</returns>
-    public bool VerifierSiChaineDoitEtreDivisee(string chaineAVerifier)
+
+    public string[] convertDBStringToStringArray(string dbString)
     {
-        return chaineAVerifier.Contains("|");
+        return dbString.Split('|');
     }
 
-    /// <summary>
-    /// Convertit une ligne récupérée depuis la base de données en chaîne.
-    /// </summary>
-    /// <param name="ligneAConvertir">Liste d'objets représentant une ligne de base de données.</param>
-    /// <returns>Représentation de la ligne en chaîne.</returns>
-    public string ConvertirLigneEnChaine(List<object> ligneAConvertir)
-    {
-        byte[] tableauBytes = (byte[])ligneAConvertir[0];
-        resultatChaine = System.Text.Encoding.UTF8.GetString(tableauBytes);
-        if (VerifierSiNomNecessaire(resultatChaine))
-        {
-            string nomJoueur = ObtenirNom();
-            resultatChaine = MettreNomDansChaine(resultatChaine, nomJoueur);
-        }
-        return resultatChaine;
-    }
-
-    /// <summary>
-    /// Convertit une chaîne récupérée depuis la base de données en tableau de chaînes en utilisant un délimiteur.
-    /// </summary>
-    /// <param name="chaineDB">Chaîne récupérée depuis la base de données.</param>
-    /// <returns>Tableau de chaînes.</returns>
-    public string[] ConvertirChaineDBEnTableauDeChaine(string chaineDB)
-    {
-        return chaineDB.Split('|');
-    }
-
-    /// <summary>
-    /// OnDestroy pour nettoyer les ressources.
-    /// </summary>
     void OnDestroy()
     {
-        gestionnaireDB.FermerConnexion();
+        dbManager.CloseConnexion();
     }
 
-    /// <summary>
-    /// Convertit une chaîne récupérée depuis la base de données en tableau d'entiers en utilisant un délimiteur.
-    /// </summary>
-    /// <param name="chaineDB">Chaîne récupérée depuis la base de données.</param>
-    /// <returns>Tableau d'entiers.</returns>
-    public int[] ConvertirChaineDBEnTableauDInt(string chaineDB)
+    public int[] convertDBstringToIntArray(string dbString)
     {
-        return chaineDB.Split(',').Select(int.Parse).ToArray();
+        return dbString.Split(',').Select(int.Parse).ToArray();
     }
 
-    /// <summary>
-    /// Remplace un espace réservé dans une chaîne par un nom spécifié.
-    /// </summary>
-    /// <param name="chaineAModifier">Chaîne à modifier.</param>
-    /// <param name="nomJoueur">Nom à utiliser pour remplacer l'espace réservé.</param>
-    /// <returns>Chaîne modifiée.</returns>
-    public string MettreNomDansChaine(string chaineAModifier, string nomJoueur)
+    public string putNameInStr(string strToChange, string playerName)
     {
-        chaineAModifier = chaineAModifier.Replace("$", nomJoueur);
-        return chaineAModifier;
+        strToChange = strToChange.Replace("$", playerName);
+        return strToChange;
     }
 
-    /// <summary>
-    /// Vérifie si une chaîne contient un espace réservé pour un nom.
-    /// </summary>
-    /// <param name="chaine">Chaîne à vérifier.</param>
-    /// <returns>Vrai si la chaîne contient un espace réservé pour un nom, faux sinon.</returns>
-    public bool VerifierSiNomNecessaire(string chaine)
+    public bool nameNeedChecker(string str)
     {
-        bool estNomNecessaire = chaine.Contains("$");
-        return estNomNecessaire;
+        bool isNameNeeded = str.Contains("$");
+        return isNameNeeded;
     }
-
-    /// <summary>
-    /// Obtient le nom du joueur depuis la base de données.
-    /// </summary>
-    /// <returns>Nom du joueur.</returns>
-    public string ObtenirNom()
+    public string getName()
     {
-        gestionnaireDB = new GestionnaireDB();
+        dbManager = new DBManager();
 
-        List<List<object>> resultat = gestionnaireDB.Selectionner("DonneesJoueur", "nomJoueur", "1");
-        foreach (List<object> ligneNom in resultat)
+        List<List<object>> resultat = dbManager.Select("PlayerData", "playerName","1");
+        foreach (List<object> rowName in resultat)
         {
-            byte[] tableauBytes = (byte[])ligneNom[0];
-            nom = System.Text.Encoding.UTF8.GetString(tableauBytes);
+            byte[] bytesArray = (byte[])rowName[0];
+            name = System.Text.Encoding.UTF8.GetString(bytesArray);
         }
 
-        return nom;
+        return name;
     }
 }
+
